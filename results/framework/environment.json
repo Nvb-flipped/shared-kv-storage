@@ -1,0 +1,192 @@
+{
+  "author": "Paco",
+  "utc": "2026-10-22T02:18:31.334643+00:00",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "root": "/home/paco/Shared_KV_Storage",
+  "config": {
+    "keys": 1000,
+    "uniform_reads": 1000,
+    "additional_hot_reads": 500,
+    "seed": 3010,
+    "trials": 3,
+    "vnodes": [
+      1,
+      2,
+      4,
+      8,
+      10,
+      16,
+      32,
+      64,
+      128
+    ]
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 32
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 2
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 4
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 1
+    },
+    {
+      "trial": 1,
+      "mode": "modulo",
+      "v": 1
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 16
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 8
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 128
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 10
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "v": 64
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 4
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 2
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 8
+    },
+    {
+      "trial": 2,
+      "mode": "modulo",
+      "v": 1
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 10
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 32
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 1
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 64
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 128
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "v": 16
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 16
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 10
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 64
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 128
+    },
+    {
+      "trial": 3,
+      "mode": "modulo",
+      "v": 1
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 4
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 1
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 2
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 32
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "v": 8
+    }
+  ],
+  "source_sha256": {
+    "sharedkv/transport.py": "c6ea8504ee522d9326d7c65af6652e9af2fdeea4a95a727a6991e65dc05909cd",
+    "sharedkv/storage.py": "efd9fe462a0078e21155fc2a6dafc21156905adf897d80652c8c88fef3f42301",
+    "sharedkv/__init__.py": "60e5386bb37fef2cdb887f330f873b55d5be99ea8f3809e38397c9183e828c4e",
+    "sharedkv/router.py": "5a9c79c6e69d7350e92ecc85277ea20a9fb519a7a8d99ff19fc0440cb1a98f0e",
+    "sharedkv/placement.py": "b55135198cc8e83e9f6736bd9044f366e4fd99ff91a4c36aac71b78dc74a24ca",
+    "sharedkv/cluster.py": "06a471e0358a41b3c2af7c6e586bbff348511bcc70829f05e06551ace87473b8",
+    "sharedkv/terminal.py": "41260223b245af744ca212bfd8e6fb97ccabfa9d914b6d3371a8c7ae8a1eadd2",
+    "sharedkv/metrics.py": "32eaa6f66261c0ca44b319d1411d3b9f7714c1120db1a8d95b829021ad429eaa",
+    "router.py": "f2b16d4753f64e15263e68e34266e2906683f534062fd34f31fbe168cde04b2c",
+    "storage_node.py": "04fc42b4cef7f04d56846d20db3d8debd764645cd27317bcc3371e4df2367a47",
+    "experiment.py": "cd22c911e831cacf822d7f3732a77b36d587767ecb7fa7fe0e8f974c8c27ec21",
+    "tools/run_experiments.py": "bfab7109c104edc3a26e846873e2d09dd5c682f3fb4aa0c90d50a0356680fbb1"
+  },
+  "timing_unit": "fresh isolated cluster; join elapsed seconds; descriptive repetitions of a fixed placement"
+}

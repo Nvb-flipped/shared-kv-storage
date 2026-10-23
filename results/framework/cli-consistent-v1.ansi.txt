@@ -1,0 +1,142 @@
+>> User: put user:101 Apple
+[38;2;86;180;233m[STORED][0m user:101
+  Value:  Apple
+  Owner:  [38;2;119;201;172mC[0m
+
+>> User: put user:102 Banana
+[38;2;86;180;233m[STORED][0m user:102
+  Value:  Banana
+  Owner:  [38;2;230;159;0mB[0m
+
+>> User: put user:101 Apple-2
+[38;2;86;180;233m[STORED][0m user:101
+  Value:  Apple-2
+  Owner:  [38;2;119;201;172mC[0m
+
+>> User: get user:101
+[38;2;86;180;233m[FOUND][0m user:101
+  Value:  Apple-2
+  Owner:  [38;2;119;201;172mC[0m
+
+>> User: get missing
+[38;2;86;180;233m[NOT FOUND][0m missing
+  Owner:  B
+
+>> User: ring missing
+Ring: consistent hashing; 3 tokens (1 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  [38;2;230;159;0mB[0m[38;2;119;201;172mC[0m[38;2;86;180;233mA[0m
+  ^ (wrap-around)
+Key missing; integer hash 115633442349348644263781314783566551862283620082141374005783176387795263561597
+Next token: B/b1 @ 10.771% -> owner B
+Hash-space coverage (not stored-key share):
+  [38;2;86;180;233mA[0m  12.96% (1 tokens)
+  [38;2;230;159;0mB[0m  41.64% (1 tokens)
+  [38;2;119;201;172mC[0m  45.40% (1 tokens)
+Placement only; existence was not checked. Use --check to probe storage.
+
+>> User: ring missing --check
+Ring: consistent hashing; 3 tokens (1 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  [38;2;230;159;0mB[0m[38;2;119;201;172mC[0m[38;2;86;180;233mA[0m
+  ^ (wrap-around)
+Key missing; integer hash 115633442349348644263781314783566551862283620082141374005783176387795263561597
+Next token: B/b1 @ 10.771% -> owner B
+Hash-space coverage (not stored-key share):
+  [38;2;86;180;233mA[0m  12.96% (1 tokens)
+  [38;2;230;159;0mB[0m  41.64% (1 tokens)
+  [38;2;119;201;172mC[0m  45.40% (1 tokens)
+Stored on B: no
+
+>> User: owner user:101
+user:101: owner [38;2;119;201;172mC[0m
+
+>> User: ring user:101 --check
+Ring: consistent hashing; 3 tokens (1 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  [38;2;230;159;0mB[0m[38;2;119;201;172mC[0m[38;2;86;180;233mA[0m
+   ^
+Key user:101; integer hash 48057554945696835993351774771169607543559379798511239464904963001567313103449
+Next token: C/c1 @ 56.170% -> owner C
+Hash-space coverage (not stored-key share):
+  [38;2;86;180;233mA[0m  12.96% (1 tokens)
+  [38;2;230;159;0mB[0m  41.64% (1 tokens)
+  [38;2;119;201;172mC[0m  45.40% (1 tokens)
+Stored on C: yes
+
+>> User: ring user:101 --check
+Ring: consistent hashing; 4 tokens (1 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  [38;2;230;159;0mB[0m[38;2;119;201;172mC[0m[38;2;86;180;233mA[0m[38;2;204;121;167mD[0m
+   ^
+Key user:101; integer hash 48057554945696835993351774771169607543559379798511239464904963001567313103449
+Next token: C/c1 @ 56.170% -> owner C
+Hash-space coverage (not stored-key share):
+  [38;2;86;180;233mA[0m  12.96% (1 tokens)
+  [38;2;230;159;0mB[0m  34.37% (1 tokens)
+  [38;2;119;201;172mC[0m  45.40% (1 tokens)
+  [38;2;204;121;167mD[0m   7.27% (1 tokens)
+Stored on C: yes
+
+>> User: stats
+placement=consistent  vnodes=1  membership=v2  paused=false
+migration=idle  reload_required=False
+Node  Status     Keys   Key share   Requests  Request share
+[38;2;86;180;233mA[0m     active      119      11.9%        238       11.9%  [38;2;86;180;233m##[0m
+[38;2;230;159;0mB[0m     active      352      35.1%        766       38.1%  [38;2;230;159;0m////////[0m
+[38;2;119;201;172mC[0m     active      470      46.9%        943       47.0%  [38;2;119;201;172m=========[0m
+[38;2;204;121;167mD[0m     active       61       6.1%         61        3.0%  [38;2;204;121;167m+[0m
+Total stored items: 1002; client forwards: 2008.
+Requests include Put/Get attempts and misses; inspections and migration are excluded.
+Top requested keys:
+  user:101 -> C (5 requests)
+  user:102 -> B (2 requests)
+  key-00000 -> B (2 requests)
+  key-00001 -> C (2 requests)
+  key-00002 -> A (2 requests)
+  key-00003 -> B (2 requests)
+  key-00004 -> C (2 requests)
+  key-00005 -> C (2 requests)
+  key-00006 -> C (2 requests)
+  key-00007 -> D (2 requests)
+
+>> User: reset-counters
+[38;2;86;180;233m[OK][0m reset-counters
+
+>> User: placement modulo
+Placement modulo; V=1; revision 2.
+Existing data was not moved. Run flush, then reload before Put/Get.
+
+>> User: get user:101
+[38;2;86;180;233m[REJECTED][0m reload_required: Placement changed. Flush and reload before Put/Get. (HTTP 409)
+
+>> User: flush
+[38;2;86;180;233m[OK][0m flush; deleted 1002 items
+
+>> User: vnodes 128
+Placement modulo; V=128; revision 3.
+
+>> User: put user:101 Reloaded
+[38;2;86;180;233m[STORED][0m user:101
+  Value:  Reloaded
+  Owner:  [38;2;230;159;0mB[0m
+
+>> User: get user:101
+[38;2;86;180;233m[FOUND][0m user:101
+  Value:  Reloaded
+  Owner:  [38;2;230;159;0mB[0m
+
+Interactive continuation:
+Text key-value prompt. Type help; quit to leave.
+[38;2;86;180;233m>> User: [0m[38;2;86;180;233m>> User: [0m[38;2;86;180;233m[STORED][0m k
+  Value:  v
+  Owner:  [38;2;119;201;172mC[0m
+[38;2;86;180;233m>> User: [0m[38;2;86;180;233m[FOUND][0m k
+  Value:  v
+  Owner:  [38;2;119;201;172mC[0m
+[38;2;86;180;233m>> User: [0m[38;2;86;180;233m[NOT FOUND][0m absent
+  Owner:  C

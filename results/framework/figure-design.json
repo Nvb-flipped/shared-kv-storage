@@ -1,0 +1,27 @@
+{
+  "author": "Paco",
+  "scope": "Course documentation and 16:9 Beamer, not a journal submission",
+  "backend": "Python/Matplotlib",
+  "data": "30 fresh trials rerun after the launcher startup fix, with unchanged dataset, workloads, token layouts and plotting style; no observations excluded.",
+  "figures": {
+    "movement": "Fixed dataset: all ten settings, changed-owner counts and fractions; model references qualified in text.",
+    "balance": "All nine fixed V layouts before and after join; population CV, no layout uncertainty implied.",
+    "node-loads": "L01 finite population of four physical-node loads; all 36 marks shown, no confidence-interval claim.",
+    "key-shares": "Each bar totals 100%; A/B/C/D keep the same spatial order and use direct percentages.",
+    "requests": "Same key counts versus uniform and cumulative hot traffic; all three denominators stated.",
+    "transfers": "Same-scale 3x4 matrices; counts and percentages, retained diagonal outlined.",
+    "join-cost": "All 30 actual timings; vertical offsets separate repeated observations, diamonds mark means."
+  },
+  "reviewed_source_preflight_warnings": {
+    "TIFF": "PDF/SVG are the vector deliverables; PNG is a 300-dpi course preview, not a journal raster submission.",
+    "DPI": "300-dpi PowerPoint packaging is intentional; the primary Beamer PDF remains vector.",
+    "width": "9.4-inch working canvas targets documentation and slide scaling, not a journal column."
+  },
+  "plot_audits": "Seven alignment records, seven PDF font checks, seven collision checks with no findings, and source preflight; no accessibility certification claimed.",
+  "superseded_authoring_files_removed": [
+    "tools/build_presentation.mjs",
+    "tools/render_presentation.mjs",
+    "results/framework/presentation-package-validation.json",
+    "results/framework/presentation-secondary-validation.txt"
+  ]
+}

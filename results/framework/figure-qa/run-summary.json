@@ -1,0 +1,76 @@
+[
+  {
+    "figure": "balance",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "balance",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "join-cost",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "join-cost",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "key-shares",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "key-shares",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "movement",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "movement",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "node-loads",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "node-loads",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "requests",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "requests",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "figure": "transfers",
+    "audit": "audit_pdf_text.py",
+    "exit": 0
+  },
+  {
+    "figure": "transfers",
+    "audit": "audit_figure_collisions.py",
+    "exit": 0
+  },
+  {
+    "audit": "source-preflight",
+    "exit": 0
+  }
+]

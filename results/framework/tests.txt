@@ -1,0 +1,21 @@
+test_readiness_timeout_cleans_up_owned_child (tests.test_framework.LauncherTests.test_readiness_timeout_cleans_up_owned_child) ... ok
+test_storage_port_override_and_progress (tests.test_framework.LauncherTests.test_storage_port_override_and_progress) ... ok
+test_get_allowed_while_put_and_reconfiguration_are_paused (tests.test_framework.MigrationTests.test_get_allowed_while_put_and_reconfiguration_are_paused) ... ok
+test_lost_ack_rolls_back_staging_before_recovery (tests.test_framework.MigrationTests.test_lost_ack_rolls_back_staging_before_recovery) ... ok
+test_publication_waits_for_inflight_old_owner_get (tests.test_framework.MigrationTests.test_publication_waits_for_inflight_old_owner_get) ... ok
+test_published_cleanup_failure_recovers_forward (tests.test_framework.MigrationTests.test_published_cleanup_failure_recovers_forward) ... ok
+test_clients_do_not_import_placement_or_router (tests.test_framework.PlacementTests.test_clients_do_not_import_placement_or_router) ... ok
+test_exact_token_boundary_and_wrap (tests.test_framework.PlacementTests.test_exact_token_boundary_and_wrap) ... ok
+test_integer_modulo_and_clockwise_boundaries (tests.test_framework.PlacementTests.test_integer_modulo_and_clockwise_boundaries) ... ok
+test_ring_caret_uses_server_index_and_wraps (tests.test_framework.PlacementTests.test_ring_caret_uses_server_index_and_wraps) ... ok
+test_down_node_keeps_its_owner_without_eviction (tests.test_framework.ProcessTests.test_down_node_keeps_its_owner_without_eviction) ... ok
+test_http_boundary_errors_have_one_envelope (tests.test_framework.ProcessTests.test_http_boundary_errors_have_one_envelope) ... ok
+test_miss_probe_counters_and_cli_exit (tests.test_framework.ProcessTests.test_miss_probe_counters_and_cli_exit) ... ok
+test_real_processes_both_policies_values_and_hot_key (tests.test_framework.ProcessTests.test_real_processes_both_policies_values_and_hot_key) ... ok
+test_runtime_switch_requires_explicit_flush_and_reload (tests.test_framework.ProcessTests.test_runtime_switch_requires_explicit_flush_and_reload) ... ok
+test_text_only_overwrite_empty_and_batch_validation (tests.test_framework.StorageTests.test_text_only_overwrite_empty_and_batch_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 17.668s
+
+OK

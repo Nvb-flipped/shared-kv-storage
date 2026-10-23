@@ -1,0 +1,30 @@
+{
+  "author": "Paco",
+  "backend": "Matplotlib 3.11.2",
+  "source_sha256": "2766fc0806a80cbc0ced5dba1e50b71c8b6b44f19df622f56719994047bf9d40",
+  "summary_sha256": "f3e032ee483d77c5d2381ea9b4dcebfb45601672f61fbf7b983ff87ba7e17e5f",
+  "plot_source_sha256": "a50994850fbea5885cebc0229be7f9a816c3af7f8487a427b8970f00fe1ff0f4",
+  "outputs": [
+    "figures/movement.svg",
+    "figures/movement.pdf",
+    "figures/movement.png",
+    "figures/balance.svg",
+    "figures/balance.pdf",
+    "figures/balance.png",
+    "figures/node-loads.svg",
+    "figures/node-loads.pdf",
+    "figures/node-loads.png",
+    "figures/key-shares.svg",
+    "figures/key-shares.pdf",
+    "figures/key-shares.png",
+    "figures/requests.svg",
+    "figures/requests.pdf",
+    "figures/requests.png",
+    "figures/transfers.svg",
+    "figures/transfers.pdf",
+    "figures/transfers.png",
+    "figures/join-cost.svg",
+    "figures/join-cost.pdf",
+    "figures/join-cost.png"
+  ]
+}

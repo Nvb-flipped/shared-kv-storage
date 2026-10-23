@@ -1,0 +1,30 @@
+Alternate range: 5101–5104; router 8000. Scripted interactive Put/Get/miss/add-D/Get/quit.
+Starting four stores and the router...
+[STARTUP] Starting A on 127.0.0.1:5101...
+[STARTUP] A ready (PID 1651).
+[STARTUP] Starting B on 127.0.0.1:5102...
+[STARTUP] B ready (PID 1653).
+[STARTUP] Starting C on 127.0.0.1:5103...
+[STARTUP] C ready (PID 1655).
+[STARTUP] Starting D on 127.0.0.1:5104...
+[STARTUP] D ready (PID 1657).
+[STARTUP] Starting router on 127.0.0.1:8000...
+[STARTUP] router ready (PID 1659).
+Router: http://127.0.0.1:8000
+Independent PIDs: A=1651, B=1653, C=1655, D=1657, router=1659
+A/B/C are members. D waits for: addnode D 127.0.0.1:5104
+Text key-value prompt. Type help; quit to leave.
+>> User: [STORED] user:101
+  Value:  Apple
+  Owner:  A
+>> User: [FOUND] user:101
+  Value:  Apple
+  Owner:  A
+>> User: >> User: [JOINED] D: membership 1 -> 2
+  Reassigned 1; migrated 1; verified 1. Writes resumed.
+  Join time 0.009 s; estimated serialized item size 37 bytes (not wire traffic).
+>> User: [FOUND] user:101
+  Value:  Apple
+  Owner:  D
+>> User: [NOT FOUND] missing
+  Owner:  A

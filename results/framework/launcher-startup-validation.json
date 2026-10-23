@@ -1,0 +1,32 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "scope": "WSL launcher startup and interactive client",
+  "observed_port_issue": {
+    "port": 5004,
+    "bind_succeeded": true,
+    "tcp_connection": "timed out",
+    "comparison_port": 5005,
+    "comparison_tcp_connection": "succeeded",
+    "cause_below_application": "not established beyond the observed port-specific TCP failure"
+  },
+  "verified_command": "bash run_cluster.sh --placement consistent --vnodes 16 --storage-base-port 5101",
+  "storage_ports": {
+    "A": 5101,
+    "B": 5102,
+    "C": 5103,
+    "D": 5104
+  },
+  "router_port": 8000,
+  "checks": [
+    "five readiness messages and PIDs",
+    "Put/Get",
+    "missing Get and interactive continuation",
+    "add D and verify migrated value",
+    "quit and owned-process cleanup",
+    "timeout cleanup regression"
+  ],
+  "health_deadline_seconds": 5,
+  "network_configuration_modified": false,
+  "transcript_sha256": "57b166b52a1e1f9348ebfd725b8225107707f5cfa720d88c35fe932ed500d60a"
+}

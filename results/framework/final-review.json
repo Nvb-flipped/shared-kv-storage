@@ -1,0 +1,27 @@
+{
+  "author": "Paco",
+  "status": "Public source checks passed",
+  "publication_source": "Windows project working tree",
+  "reports": {
+    "project-audit.json": "c6a79e0a329efac0bc6a8708b2dc5bbefae67084ef18c084c0d42333e6c20aba",
+    "artifact-audit.json": "1598bd72f7684f0b54157941e779f7ab2c94072a9a9d772f2846c9a90ee68c42",
+    "math-validation.json": "baadf3ac988447bfda73ca7979c4e57628a278556d69830498f9527e5251be3e",
+    "api-audit.json": "d437ceaf46136fcf094eea12a8f65a19e550792df4a7008c3d640309546091d4",
+    "author-properties.json": "28ffab7784de66913110bd5a034687f2d22f41b753cee2a7e27326370df9fc76",
+    "visual-audit.json": "10c8bde45a99c2db9116c9d32b6dee68675846b3865fe04ed9897b3b3d544d17",
+    "figure-design.json": "4ef9e88ea51355d508a4802568a795456ca8d4dd39204a53045eadc3ae139f2b",
+    "launcher-startup-validation.json": "30a1fee09dfeb0beaf5d6e2bc3d585104b8988a7dd386cf49d3b5a8052c9316e"
+  },
+  "passed": {
+    "tests": 16,
+    "source_matched_trials": 30,
+    "values_verified_per_trial": 1000,
+    "live_api_responses": 28,
+    "markdown_math_expressions": 48,
+    "shared_plot_sets": 7,
+    "navigable_documentation_pages": 10,
+    "author_exports": 26
+  },
+  "distribution": "Source, documentation, API contracts, experiment evidence and figures. All slide material and previous private history are excluded.",
+  "provenance": "Runtime and raw trial data are unchanged from the Windows source. Tests and live API checks rerun from its publication copy; saved trial/source hashes rechecked."
+}

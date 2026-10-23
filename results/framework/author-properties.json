@@ -1,0 +1,137 @@
+{
+  "author": "Paco",
+  "checked": 26,
+  "scope": "Project-authored exports; source-file authorship is recorded in Git",
+  "files": [
+    {
+      "file": "figures/balance.pdf",
+      "author": "Paco",
+      "sha256": "45f343ff7574e7d58ce9a48eaf7a31284445a0884743e0970a84400381884f1a"
+    },
+    {
+      "file": "figures/balance.png",
+      "author": "Paco",
+      "sha256": "312c1475ed29b92840861db63ac03d22c962f1f1e8543be88ef91f0fafa547b8"
+    },
+    {
+      "file": "figures/balance.svg",
+      "author": "Paco",
+      "sha256": "03c88e0b2ec9e06ef813be81f59220044ba4d75439940765daa2d0592430d7a7"
+    },
+    {
+      "file": "figures/join-cost.pdf",
+      "author": "Paco",
+      "sha256": "2a8824f5ad6af1eb0df9dabbe4b20e509851f73c148b160d13179d1dee0f41ce"
+    },
+    {
+      "file": "figures/join-cost.png",
+      "author": "Paco",
+      "sha256": "7da2d11de899cfcc542cccc301557c415e4f9fbb4e51816a147733df59f65e12"
+    },
+    {
+      "file": "figures/join-cost.svg",
+      "author": "Paco",
+      "sha256": "78a6eb2a6e13362499d70fcc26697687dc0755f5de79be698a3afab7ce702baa"
+    },
+    {
+      "file": "figures/key-shares.pdf",
+      "author": "Paco",
+      "sha256": "0f0402cdf623b33d530f4b67b13a09766edb0f63a75000922ffd41184f530efa"
+    },
+    {
+      "file": "figures/key-shares.png",
+      "author": "Paco",
+      "sha256": "13922db5b01f672defe8534046e901999bfa696de757372bfc10bd0d8b12b6f6"
+    },
+    {
+      "file": "figures/key-shares.svg",
+      "author": "Paco",
+      "sha256": "97ed90b392280d3ea40e00d860aabe18008d9e4e971c8f100426d607ab944985"
+    },
+    {
+      "file": "figures/movement.pdf",
+      "author": "Paco",
+      "sha256": "dc34a166b60cc28c12b7b6b53d13e1ad4fe953936ff25a1c62f801570c2884c0"
+    },
+    {
+      "file": "figures/movement.png",
+      "author": "Paco",
+      "sha256": "27ce34c11746f7661cc1483ab2e609061a368cc3a7559bc8c5367077b505efd9"
+    },
+    {
+      "file": "figures/movement.svg",
+      "author": "Paco",
+      "sha256": "4b4f2f95e296edef2c8683e06835efcdac0ccd396073b415a3831b1ad690bdd7"
+    },
+    {
+      "file": "figures/node-loads.pdf",
+      "author": "Paco",
+      "sha256": "3508455904b274e93706f007e904fb9809f9c93cdd1c433a5bce3cd03f207ea3"
+    },
+    {
+      "file": "figures/node-loads.png",
+      "author": "Paco",
+      "sha256": "8545bfb4b263091b6b8a6c4320665864daf172f8ca27945e391ad336705ce222"
+    },
+    {
+      "file": "figures/node-loads.svg",
+      "author": "Paco",
+      "sha256": "d39ce6598733a0f8ee63422b79876964f9f98b734239aaf2b01bf0c75c95af95"
+    },
+    {
+      "file": "figures/requests.pdf",
+      "author": "Paco",
+      "sha256": "08dcccacb2bdc927fc9aa321810704dc048281a34a7134b3455344d0195df884"
+    },
+    {
+      "file": "figures/requests.png",
+      "author": "Paco",
+      "sha256": "2e4d36724ddfa530ecae8566b54b5221650615ea1713e0b48afc85b3d7bab190"
+    },
+    {
+      "file": "figures/requests.svg",
+      "author": "Paco",
+      "sha256": "dcacfc9305434b0b8dcf0eb7082839290989f6edd54c635de292a96e5adac795"
+    },
+    {
+      "file": "figures/transfers.pdf",
+      "author": "Paco",
+      "sha256": "43e7ba84eb49b887b20f967d20636cef93b3dcccd5e97c862e724177240ada56"
+    },
+    {
+      "file": "figures/transfers.png",
+      "author": "Paco",
+      "sha256": "08e1b7a17d40a50bb1d75bf083c60ee114d8c0e74c3459c22d485b81cef46f68"
+    },
+    {
+      "file": "figures/transfers.svg",
+      "author": "Paco",
+      "sha256": "dabffe36979f631bd895598637f6cd5200b7df3b38e9e1d6b9614b77f28cd669"
+    },
+    {
+      "file": "results/qa/figures-deuteranomaly.png",
+      "author": "Paco",
+      "sha256": "014dd041ef099141ee674390616044b1a9dd2b6e2b41b4ebba742cbe0756e7c2"
+    },
+    {
+      "file": "results/qa/figures-grayscale.png",
+      "author": "Paco",
+      "sha256": "683937b75c92ec5a680ac1a8192106cea06bea033e5ecaf709297534bde64f92"
+    },
+    {
+      "file": "results/qa/figures-original.png",
+      "author": "Paco",
+      "sha256": "8ed07521c0f96083455e4ee94ef498dfef1595544e6b9f8259ce4fcffab0c818"
+    },
+    {
+      "file": "results/qa/figures-protanomaly.png",
+      "author": "Paco",
+      "sha256": "aca2cb0d2cae9449b75ef3ef24cbc1f6492f41b4848ff2c8a23a36c9dacb567a"
+    },
+    {
+      "file": "results/qa/figures-tritanomaly.png",
+      "author": "Paco",
+      "sha256": "f9b45090106c385bd921d606571b9825b7cb3ca30791dc69f11fcefcf16ac841"
+    }
+  ]
+}

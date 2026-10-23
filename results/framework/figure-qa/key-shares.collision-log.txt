@@ -1,0 +1,10 @@
+Nature Figure Rendered Collision Audit
+pdf: /home/paco/Shared_KV_Storage/figures/key-shares.pdf
+pages: 1
+visible text boxes: 62
+stroke paths: 52
+
+
+summary: 0 fail, 0 warn, 40 contained fill overlays, 0 contained image overlays
+verdict: PASS
+note: contained overlays can be intentional; WARN findings need final-size visual review

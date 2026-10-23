@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cisc3010-sharded-kv"
+version = "0.2.0"
+description = "A lightweight HTTP framework for course-scale key partitioning"
+authors = [{name = "Paco"}]
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["sharedkv*"]

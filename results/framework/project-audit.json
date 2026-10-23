@@ -1,0 +1,16 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "trials": 30,
+  "tests": 16,
+  "identical_dataset_and_uniform_sequence": true,
+  "verified_values_per_trial": 1000,
+  "migration_readable_and_writes_rejected": true,
+  "rehearsal_cases": 3,
+  "maintained_markdown_files": 11,
+  "local_links": 120,
+  "math_blocks": 14,
+  "runtime_source_hashes_match": true,
+  "legacy_system_removed": true,
+  "scope": "Single-owner text storage, integer placement, runtime configuration, virtual nodes, no web or replication"
+}

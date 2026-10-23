@@ -1,0 +1,143 @@
+>> User: put user:101 Apple
+[STORED] user:101
+  Value:  Apple
+  Owner:  A
+
+>> User: put user:102 Banana
+[STORED] user:102
+  Value:  Banana
+  Owner:  A
+
+>> User: put user:101 Apple-2
+[STORED] user:101
+  Value:  Apple-2
+  Owner:  A
+
+>> User: get user:101
+[FOUND] user:101
+  Value:  Apple-2
+  Owner:  A
+
+>> User: get missing
+[NOT FOUND] missing
+  Owner:  A
+
+>> User: ring missing
+Ring: consistent hashing; 48 tokens (16 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  ACACBBBCCCCABABBBBBCACCCBBCBABAACCAABBBAACAAACAC
+  ^ (wrap-around)
+Key missing; integer hash 115633442349348644263781314783566551862283620082141374005783176387795263561597
+Next token: A/a9 @ 1.623% -> owner A
+Hash-space coverage (not stored-key share):
+  A  30.94% (16 tokens)
+  B  25.20% (16 tokens)
+  C  43.87% (16 tokens)
+Placement only; existence was not checked. Use --check to probe storage.
+
+>> User: ring missing --check
+Ring: consistent hashing; 48 tokens (16 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  ACACBBBCCCCABABBBBBCACCCBBCBABAACCAABBBAACAAACAC
+  ^ (wrap-around)
+Key missing; integer hash 115633442349348644263781314783566551862283620082141374005783176387795263561597
+Next token: A/a9 @ 1.623% -> owner A
+Hash-space coverage (not stored-key share):
+  A  30.94% (16 tokens)
+  B  25.20% (16 tokens)
+  C  43.87% (16 tokens)
+Stored on A: no
+
+>> User: owner user:101
+user:101: owner A
+
+>> User: ring user:101 --check
+Ring: consistent hashing; 48 tokens (16 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  ACACBBBCCCCABABBBBBCACCCBBCBABAACCAABBBAACAAACAC
+                      ^
+Key user:101; integer hash 48057554945696835993351774771169607543559379798511239464904963001567313103449
+Next token: A/a2 @ 42.122% -> owner A
+Hash-space coverage (not stored-key share):
+  A  30.94% (16 tokens)
+  B  25.20% (16 tokens)
+  C  43.87% (16 tokens)
+Stored on A: yes
+
+>> User: ring user:101 --check
+Ring: consistent hashing; 64 tokens (16 per node)
+Clockwise token order from 0% to 100%; one letter per token.
+Columns show token rank, not proportional hash-space distance.
+  ACACBBBDCDCCCABDABBBBBDCDADDDDCDCCBBCBADBDAACCADABBBDDAACAAA
+                          ^
+  CADC
+Key user:101; integer hash 48057554945696835993351774771169607543559379798511239464904963001567313103449
+Next token: D/d11 @ 41.860% -> owner D
+Hash-space coverage (not stored-key share):
+  A  28.31% (16 tokens)
+  B  24.86% (16 tokens)
+  C  30.29% (16 tokens)
+  D  16.53% (16 tokens)
+Stored on D: yes
+
+>> User: stats
+placement=consistent  vnodes=16  membership=v2  paused=false
+migration=idle  reload_required=False
+Node  Status     Keys   Key share   Requests  Request share
+A     active      297      29.6%        627       31.2%  ######
+B     active      245      24.5%        492       24.5%  /////
+C     active      270      26.9%        699       34.8%  =======
+D     active      190      19.0%        190        9.5%  ++
+Total stored items: 1002; client forwards: 2008.
+Requests include Put/Get attempts and misses; inspections and migration are excluded.
+Top requested keys:
+  user:101 -> D (5 requests)
+  user:102 -> A (2 requests)
+  key-00000 -> A (2 requests)
+  key-00001 -> C (2 requests)
+  key-00002 -> B (2 requests)
+  key-00003 -> A (2 requests)
+  key-00004 -> B (2 requests)
+  key-00005 -> C (2 requests)
+  key-00006 -> B (2 requests)
+  key-00007 -> C (2 requests)
+
+>> User: reset-counters
+[OK] reset-counters
+
+>> User: placement modulo
+Placement modulo; V=16; revision 2.
+Existing data was not moved. Run flush, then reload before Put/Get.
+
+>> User: get user:101
+[REJECTED] reload_required: Placement changed. Flush and reload before Put/Get. (HTTP 409)
+
+>> User: flush
+[OK] flush; deleted 1002 items
+
+>> User: vnodes 128
+Placement modulo; V=128; revision 3.
+
+>> User: put user:101 Reloaded
+[STORED] user:101
+  Value:  Reloaded
+  Owner:  B
+
+>> User: get user:101
+[FOUND] user:101
+  Value:  Reloaded
+  Owner:  B
+
+Interactive continuation:
+Text key-value prompt. Type help; quit to leave.
+>> User: >> User: [STORED] k
+  Value:  v
+  Owner:  C
+>> User: [FOUND] k
+  Value:  v
+  Owner:  C
+>> User: [NOT FOUND] absent
+  Owner:  C

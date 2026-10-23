@@ -1,0 +1,8 @@
+{
+  "keys": 1000,
+  "uniform_reads": 1000,
+  "additional_hot_reads": 500,
+  "seed": 3010,
+  "trials": 3,
+  "vnodes": [1, 2, 4, 8, 10, 16, 32, 64, 128]
+}

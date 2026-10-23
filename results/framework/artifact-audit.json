@@ -1,0 +1,11 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "figure_outputs": 21,
+  "navigation_pages": 10,
+  "math_expressions": 48,
+  "author_exports": 26,
+  "figure_audits": 15,
+  "figure_collision_findings": 0,
+  "scope": "Public experiment figures, saved math checks, navigation and evidence hashes."
+}

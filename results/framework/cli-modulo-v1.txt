@@ -1,0 +1,117 @@
+>> User: put user:101 Apple
+[STORED] user:101
+  Value:  Apple
+  Owner:  A
+
+>> User: put user:102 Banana
+[STORED] user:102
+  Value:  Banana
+  Owner:  A
+
+>> User: put user:101 Apple-2
+[STORED] user:101
+  Value:  Apple-2
+  Owner:  A
+
+>> User: get user:101
+[FOUND] user:101
+  Value:  Apple-2
+  Owner:  A
+
+>> User: get missing
+[NOT FOUND] missing
+  Owner:  A
+
+>> User: ring missing
+Placement: modulo hashing
+Nodes (sorted): A, B, C
+hash(missing) = 115633442349348644263781314783566551862283620082141374005783176387795263561597
+owner index = 115633442349348644263781314783566551862283620082141374005783176387795263561597 % 3 = 0
+Owner: A
+Placement only; existence was not checked. Use --check to probe storage.
+
+>> User: ring missing --check
+Placement: modulo hashing
+Nodes (sorted): A, B, C
+hash(missing) = 115633442349348644263781314783566551862283620082141374005783176387795263561597
+owner index = 115633442349348644263781314783566551862283620082141374005783176387795263561597 % 3 = 0
+Owner: A
+Stored on A: no
+
+>> User: owner user:101
+user:101: owner A
+
+>> User: ring user:101 --check
+Placement: modulo hashing
+Nodes (sorted): A, B, C
+hash(user:101) = 48057554945696835993351774771169607543559379798511239464904963001567313103449
+owner index = 48057554945696835993351774771169607543559379798511239464904963001567313103449 % 3 = 0
+Owner: A
+Stored on A: yes
+
+>> User: ring user:101 --check
+Placement: modulo hashing
+Nodes (sorted): A, B, C, D
+hash(user:101) = 48057554945696835993351774771169607543559379798511239464904963001567313103449
+owner index = 48057554945696835993351774771169607543559379798511239464904963001567313103449 % 4 = 1
+Owner: B
+Stored on B: yes
+
+>> User: stats
+placement=modulo  vnodes=1  membership=v2  paused=false
+migration=idle  reload_required=False
+Node  Status     Keys   Key share   Requests  Request share
+A     active      246      24.6%        584       29.1%  ######
+B     active      249      24.9%        586       29.2%  //////
+C     active      254      25.3%        585       29.1%  ======
+D     active      253      25.2%        253       12.6%  +++
+Total stored items: 1002; client forwards: 2008.
+Requests include Put/Get attempts and misses; inspections and migration are excluded.
+Top requested keys:
+  user:101 -> B (5 requests)
+  user:102 -> B (2 requests)
+  key-00000 -> C (2 requests)
+  key-00001 -> A (2 requests)
+  key-00002 -> B (2 requests)
+  key-00003 -> B (2 requests)
+  key-00004 -> D (2 requests)
+  key-00005 -> B (2 requests)
+  key-00006 -> A (2 requests)
+  key-00007 -> C (2 requests)
+
+>> User: reset-counters
+[OK] reset-counters
+
+>> User: placement consistent
+Placement consistent; V=1; revision 2.
+Existing data was not moved. Run flush, then reload before Put/Get.
+
+>> User: get user:101
+[REJECTED] reload_required: Placement changed. Flush and reload before Put/Get. (HTTP 409)
+
+>> User: flush
+[OK] flush; deleted 1002 items
+
+>> User: vnodes 128
+Placement consistent; V=128; revision 3.
+
+>> User: put user:101 Reloaded
+[STORED] user:101
+  Value:  Reloaded
+  Owner:  C
+
+>> User: get user:101
+[FOUND] user:101
+  Value:  Reloaded
+  Owner:  C
+
+Interactive continuation:
+Text key-value prompt. Type help; quit to leave.
+>> User: >> User: [STORED] k
+  Value:  v
+  Owner:  B
+>> User: [FOUND] k
+  Value:  v
+  Owner:  B
+>> User: [NOT FOUND] absent
+  Owner:  C

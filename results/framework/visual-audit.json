@@ -1,0 +1,26 @@
+{
+  "author": "Paco",
+  "figures": 7,
+  "modes": [
+    "original",
+    "grayscale",
+    "protanomaly",
+    "deuteranomaly",
+    "tritanomaly"
+  ],
+  "redundant_encodings": [
+    "node letters",
+    "markers",
+    "hatches",
+    "numeric labels",
+    "counts and shares"
+  ],
+  "manual_review": "Recorded figure review retained: grayscale and color-vision review sheets; labels, markers and hatches supplement color. Simulations are review aids, not accessibility certification.",
+  "reviewed_file_sha256": {
+    "results/qa/figures-deuteranomaly.png": "014dd041ef099141ee674390616044b1a9dd2b6e2b41b4ebba742cbe0756e7c2",
+    "results/qa/figures-grayscale.png": "683937b75c92ec5a680ac1a8192106cea06bea033e5ecaf709297534bde64f92",
+    "results/qa/figures-original.png": "8ed07521c0f96083455e4ee94ef498dfef1595544e6b9f8259ce4fcffab0c818",
+    "results/qa/figures-protanomaly.png": "aca2cb0d2cae9449b75ef3ef24cbc1f6492f41b4848ff2c8a23a36c9dacb567a",
+    "results/qa/figures-tritanomaly.png": "f9b45090106c385bd921d606571b9825b7cb3ca30791dc69f11fcefcf16ac841"
+  }
+}
