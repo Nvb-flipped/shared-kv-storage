@@ -1,4 +1,4 @@
-# Measured framework results
+# Original reference results
 
 <!-- navigation:start -->
 [Project home](../README.md) / [Documentation map](README.md)
@@ -7,6 +7,8 @@
 <!-- contents:start -->
 On this page: [Same keys, additional hot traffic](#same-keys-additional-hot-traffic) · [Membership cost and verification](#membership-cost-and-verification) · [Reproduce and trace](#reproduce-and-trace)
 <!-- contents:end -->
+
+**Historical reference:** these measurements belong to the public source revision in [provenance.json](../results/framework/provenance.json). They are retained unchanged as a course example, not presented as measurements of the refined version. Follow [reproduction.md](reproduction.md) for current runs and the [worked example](../results/example/analysis.md) for the configurable workflow.
 
 Thirty fresh WSL clusters: modulo and nine consistent-hash settings, three runs each. The same 1,000 key/value pairs and uniform-read sequence are used throughout. Order is randomized within each round using seed 3010. Placement repeats are deterministic; timing repeats are not independent token-layout samples.
 
@@ -83,7 +85,7 @@ Each circle is one fresh run; the diamond marks its mean. All thirty timings are
 
 ## Reproduce and trace
 
-`bash tools/reproduce.sh` regenerates the evidence. Raw cases, dataset/request digests, process PIDs, randomized schedule and source hashes are in `results/framework/`. The [API reference](api.md), [math definitions](metrics.md) and [scope map](scope.md) explain contracts and assumptions. Legacy results are excluded from the active tree and retained only in local Git history.
+Current reproduction collects a separate run and report, preserving this example. The historical trials, digests and source revision remain in `results/framework/`; optional reference audits authenticate them using public Git history. [Reproduction](reproduction.md), [metric definitions](metrics.md) and [study exercises](use-cases.md) explain how to collect and interpret new observations.
 
 <!-- reading:start -->
 [Documentation map](README.md) · Previous: [Experiment design](experiment-design.md) · Next: [Demonstration](demo.md)

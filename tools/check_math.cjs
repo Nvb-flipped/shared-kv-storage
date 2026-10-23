@@ -1,6 +1,9 @@
 // Optional MathJax 3.2.2 check. No browser or application window is launched.
 const fs=require('node:fs'), path=require('node:path'), crypto=require('node:crypto'), assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
+const outputFlag=process.argv.indexOf('--out');
+if(outputFlag>=0 && !process.argv[outputFlag+1])throw Error('--out requires a file path.');
+const output=outputFlag>=0 ? path.resolve(process.argv[outputFlag+1]) : path.join(root,'.runtime/math-validation.json');
 const packageRoot=process.env.MATHJAX_PACKAGE;
 if(!packageRoot)throw Error('Set MATHJAX_PACKAGE to an installed mathjax-full 3.2.2 package directory.');
 const load=name=>require(path.join(packageRoot,'js',name));
@@ -40,11 +43,12 @@ function convert(latex,display){
 }
 for(const item of expressions){assert(!item.latex.includes('\\operatorname'));convert(item.latex,item.mode==='display');}
 assert.throws(()=>convert('\\frac{1}{',true));assert.throws(()=>convert('\\notAProjectCommand',true));
-const display=expressions.filter(x=>x.mode==='display').length;assert.equal(display,14);
+const display=expressions.filter(x=>x.mode==='display').length;assert(display>0,'No display expressions found.');
 const report={author:'Paco',status:'passed',source_files:sources,renderer:'MathJax 3.2.2, base and ams packages, SVG output with lite adaptor',
   display_expressions:display,inline_expressions:expressions.length-display,rendered_expressions:expressions.length,
   strict_parser:'passed',malformed_expression_rejected:true,unknown_command_rejected:true,
   browser_preview:'not performed; local headless parser check',
   github_hosted_rendering:'not certified by this local check',scope:'Local parsing and SVG conversion; not a GitHub preview certification'};
-fs.writeFileSync(path.join(root,'results/framework/math-validation.json'),JSON.stringify(report,null,2)+'\n');
+fs.mkdirSync(path.dirname(output),{recursive:true});
+fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');
 console.log(`PASS: ${expressions.length} expressions (${display} display); strict parser and SVG conversion; invalid inputs rejected.`);

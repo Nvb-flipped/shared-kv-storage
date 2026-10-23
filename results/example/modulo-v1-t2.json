@@ -1,0 +1,802 @@
+{
+  "mode": "modulo",
+  "vnodes_per_node": 1,
+  "key_count": 60,
+  "dataset_sha256": "43abd83dac49f49e42167e273ec3e683e23b86f7b9e74b45c4a0b66695a19ac0",
+  "uniform_sequence_sha256": "46005e48e7e2fbb19c15a39ce29827647013a59f890c414986673205c8ba1ed2",
+  "initial_nodes": [
+    "A",
+    "B"
+  ],
+  "joining_node": "C",
+  "placement_balance_before": {
+    "key_counts": {
+      "A": 31,
+      "B": 29
+    },
+    "cv": 0.03333333333333333,
+    "max_min_ratio": 1.0689655172413792,
+    "shares": {
+      "A": 0.5166666666666667,
+      "B": 0.48333333333333334
+    }
+  },
+  "placement_balance_after": {
+    "key_counts": {
+      "A": 23,
+      "B": 20,
+      "C": 17
+    },
+    "cv": 0.1224744871391589,
+    "max_min_ratio": 1.3529411764705883,
+    "shares": {
+      "A": 0.38333333333333336,
+      "B": 0.3333333333333333,
+      "C": 0.2833333333333333
+    }
+  },
+  "owners_before": {
+    "key-00000": "A",
+    "key-00001": "A",
+    "key-00002": "B",
+    "key-00003": "B",
+    "key-00004": "B",
+    "key-00005": "B",
+    "key-00006": "A",
+    "key-00007": "A",
+    "key-00008": "A",
+    "key-00009": "B",
+    "key-00010": "B",
+    "key-00011": "B",
+    "key-00012": "A",
+    "key-00013": "B",
+    "key-00014": "A",
+    "key-00015": "B",
+    "key-00016": "B",
+    "key-00017": "B",
+    "key-00018": "B",
+    "key-00019": "A",
+    "key-00020": "B",
+    "key-00021": "B",
+    "key-00022": "B",
+    "key-00023": "B",
+    "key-00024": "A",
+    "key-00025": "B",
+    "key-00026": "B",
+    "key-00027": "B",
+    "key-00028": "A",
+    "key-00029": "B",
+    "key-00030": "A",
+    "key-00031": "A",
+    "key-00032": "B",
+    "key-00033": "B",
+    "key-00034": "A",
+    "key-00035": "B",
+    "key-00036": "B",
+    "key-00037": "A",
+    "key-00038": "A",
+    "key-00039": "A",
+    "key-00040": "A",
+    "key-00041": "B",
+    "key-00042": "A",
+    "key-00043": "A",
+    "key-00044": "A",
+    "key-00045": "A",
+    "key-00046": "B",
+    "key-00047": "A",
+    "key-00048": "B",
+    "key-00049": "B",
+    "key-00050": "A",
+    "key-00051": "A",
+    "key-00052": "A",
+    "key-00053": "A",
+    "key-00054": "B",
+    "key-00055": "A",
+    "key-00056": "A",
+    "key-00057": "A",
+    "key-00058": "A",
+    "key-00059": "A"
+  },
+  "owners_after": {
+    "key-00000": "B",
+    "key-00001": "A",
+    "key-00002": "A",
+    "key-00003": "B",
+    "key-00004": "C",
+    "key-00005": "C",
+    "key-00006": "A",
+    "key-00007": "C",
+    "key-00008": "B",
+    "key-00009": "B",
+    "key-00010": "A",
+    "key-00011": "B",
+    "key-00012": "A",
+    "key-00013": "B",
+    "key-00014": "A",
+    "key-00015": "C",
+    "key-00016": "A",
+    "key-00017": "C",
+    "key-00018": "C",
+    "key-00019": "B",
+    "key-00020": "A",
+    "key-00021": "B",
+    "key-00022": "B",
+    "key-00023": "B",
+    "key-00024": "B",
+    "key-00025": "B",
+    "key-00026": "C",
+    "key-00027": "C",
+    "key-00028": "A",
+    "key-00029": "A",
+    "key-00030": "A",
+    "key-00031": "A",
+    "key-00032": "B",
+    "key-00033": "B",
+    "key-00034": "B",
+    "key-00035": "C",
+    "key-00036": "A",
+    "key-00037": "A",
+    "key-00038": "A",
+    "key-00039": "C",
+    "key-00040": "A",
+    "key-00041": "C",
+    "key-00042": "A",
+    "key-00043": "B",
+    "key-00044": "B",
+    "key-00045": "A",
+    "key-00046": "B",
+    "key-00047": "C",
+    "key-00048": "C",
+    "key-00049": "C",
+    "key-00050": "A",
+    "key-00051": "C",
+    "key-00052": "C",
+    "key-00053": "B",
+    "key-00054": "B",
+    "key-00055": "A",
+    "key-00056": "A",
+    "key-00057": "A",
+    "key-00058": "A",
+    "key-00059": "C"
+  },
+  "ring_before": {
+    "placement_mode": "modulo",
+    "vnodes_per_node": 1,
+    "hash_space": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+    "nodes_sorted": [
+      "A",
+      "B"
+    ],
+    "membership_version": 1,
+    "placement_revision": 1,
+    "migration_state": "idle",
+    "paused_writes": false,
+    "reload_required": false
+  },
+  "ring_after": {
+    "placement_mode": "modulo",
+    "vnodes_per_node": 1,
+    "hash_space": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+    "nodes_sorted": [
+      "A",
+      "B",
+      "C"
+    ],
+    "membership_version": 2,
+    "placement_revision": 1,
+    "migration_state": "idle",
+    "paused_writes": false,
+    "reload_required": false
+  },
+  "reassignment": {
+    "reassigned_key_count": 31,
+    "fraction": 0.5166666666666667,
+    "retained": 29,
+    "matrix_counts": {
+      "A": {
+        "A": 17,
+        "B": 8,
+        "C": 6
+      },
+      "B": {
+        "A": 6,
+        "B": 12,
+        "C": 11
+      },
+      "C": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      }
+    }
+  },
+  "migration": {
+    "ok": true,
+    "old_membership_version": 1,
+    "new_membership_version": 2,
+    "placement_mode": "modulo",
+    "paused_writes": false,
+    "writes_paused_during_migration": true,
+    "reassigned_key_count": 31,
+    "reassigned_keys": [
+      "key-00000",
+      "key-00007",
+      "key-00008",
+      "key-00019",
+      "key-00024",
+      "key-00034",
+      "key-00039",
+      "key-00043",
+      "key-00044",
+      "key-00047",
+      "key-00051",
+      "key-00052",
+      "key-00053",
+      "key-00059",
+      "key-00002",
+      "key-00004",
+      "key-00005",
+      "key-00010",
+      "key-00015",
+      "key-00016",
+      "key-00017",
+      "key-00018",
+      "key-00020",
+      "key-00026",
+      "key-00027",
+      "key-00029",
+      "key-00035",
+      "key-00036",
+      "key-00041",
+      "key-00048",
+      "key-00049"
+    ],
+    "migrated": 31,
+    "verified": 31,
+    "verification_failures": [],
+    "estimated_item_bytes": 1587,
+    "seconds": 0.1225570169999628,
+    "key_counts_after": {
+      "A": 23,
+      "B": 20,
+      "C": 17
+    }
+  },
+  "verification": {
+    "checked": 60,
+    "failures": [],
+    "physical_failures": []
+  },
+  "request_balance": {
+    "uniform_reads": 80,
+    "additional_hot_reads": 40,
+    "before_hot": {
+      "A": 27,
+      "B": 29,
+      "C": 24
+    },
+    "after_hot": {
+      "A": 27,
+      "B": 69,
+      "C": 24
+    },
+    "hot_key": "key-00000",
+    "hot_key_owner": "B",
+    "ratio_after_hot": 2.875
+  },
+  "physical_inventory": {
+    "membership_version": 2,
+    "reload_required": false,
+    "keys": [
+      {
+        "key": "key-00000",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00001",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00002",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00003",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00004",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00005",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00006",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00007",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00008",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00009",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00010",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00011",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00012",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00013",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00014",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00015",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00016",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00017",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00018",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00019",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00020",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00021",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00022",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00023",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00024",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00025",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00026",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00027",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00028",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00029",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00030",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00031",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00032",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00033",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00034",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00035",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00036",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00037",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00038",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00039",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00040",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00041",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00042",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00043",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00044",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00045",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00046",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00047",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00048",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00049",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00050",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00051",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00052",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00053",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00054",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00055",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00056",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00057",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00058",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00059",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      }
+    ]
+  },
+  "membership": {
+    "version": 2,
+    "placement_revision": 1,
+    "nodes": [
+      {
+        "id": "A",
+        "addr": "127.0.0.1:42013",
+        "status": "active"
+      },
+      {
+        "id": "B",
+        "addr": "127.0.0.1:42703",
+        "status": "active"
+      },
+      {
+        "id": "C",
+        "addr": "127.0.0.1:45779",
+        "status": "active"
+      }
+    ],
+    "paused_writes": false,
+    "reload_required": false,
+    "migration": {
+      "state": "idle",
+      "old_membership_version": 1,
+      "new_membership_version": 2
+    },
+    "last_migration": {
+      "ok": true,
+      "old_membership_version": 1,
+      "new_membership_version": 2,
+      "placement_mode": "modulo",
+      "paused_writes": false,
+      "writes_paused_during_migration": true,
+      "reassigned_key_count": 31,
+      "reassigned_keys": [
+        "key-00000",
+        "key-00007",
+        "key-00008",
+        "key-00019",
+        "key-00024",
+        "key-00034",
+        "key-00039",
+        "key-00043",
+        "key-00044",
+        "key-00047",
+        "key-00051",
+        "key-00052",
+        "key-00053",
+        "key-00059",
+        "key-00002",
+        "key-00004",
+        "key-00005",
+        "key-00010",
+        "key-00015",
+        "key-00016",
+        "key-00017",
+        "key-00018",
+        "key-00020",
+        "key-00026",
+        "key-00027",
+        "key-00029",
+        "key-00035",
+        "key-00036",
+        "key-00041",
+        "key-00048",
+        "key-00049"
+      ],
+      "migrated": 31,
+      "verified": 31,
+      "verification_failures": [],
+      "estimated_item_bytes": 1587,
+      "seconds": 0.1225570169999628,
+      "key_counts_after": {
+        "A": 23,
+        "B": 20,
+        "C": 17
+      }
+    },
+    "pid": 6071
+  },
+  "trial": 2,
+  "pids": {
+    "A": 6065,
+    "B": 6067,
+    "C": 6069,
+    "router": 6071
+  },
+  "owned_children_stopped": true
+}

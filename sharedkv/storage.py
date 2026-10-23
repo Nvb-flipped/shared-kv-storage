@@ -51,3 +51,24 @@ class Storage:
             require(method, 'DELETE')
             self.kv.pop(key, None)
             return {'ok': True}
+
+
+def main():
+    import argparse
+    from .transport import serve
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--id', required=True)
+    parser.add_argument('--port', required=True, type=int)
+    args = parser.parse_args()
+    if len(args.id) != 1 or not 'A' <= args.id <= 'Z':
+        parser.error('--id must be one uppercase letter A–Z')
+    if not 1 <= args.port <= 65535:
+        parser.error('--port must be an integer from 1 to 65535')
+    try:
+        serve(Storage(args.id), args.port)
+    except OSError as exc:
+        parser.exit(1, f'Cannot start storage on port {args.port}: {exc}\n')
+
+
+if __name__ == '__main__':
+    main()

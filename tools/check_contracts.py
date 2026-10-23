@@ -1,5 +1,6 @@
 """Optional OpenAPI/schema checks against real storage and router processes."""
 import json
+import argparse
 from pathlib import Path
 import sys
 from urllib.parse import quote
@@ -12,6 +13,11 @@ from sharedkv.transport import ApiError, request
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', type=Path, default=ROOT/'results/runs/api-contracts')
+    args = parser.parse_args()
+    if args.out.exists() and (not args.out.is_dir() or any(args.out.iterdir())):
+        parser.error('Choose a new or empty --out directory.')
     specs = {n: json.loads((ROOT/'docs'/n).read_text()) for n in ('openapi.json', 'storage-openapi.json')}
     for spec in specs.values(): validate(spec)
     checks = []
@@ -34,7 +40,8 @@ def main():
             try:
                 c.api(route, method, body); raise AssertionError('Expected error')
             except ApiError as exc:
-                assert exc.status == status
+                if exc.status != status:
+                    raise ValueError(f'Expected HTTP {status}, got {exc.status}.')
                 check(router, 'Error', exc.json())
         check(router, 'MigrationSummary', c.api('/admin/addnode', 'POST', {'id': 'D', 'addr': c.addresses['D']}))
         check(router, 'Membership', c.api('/admin/membership'))
@@ -51,8 +58,8 @@ def main():
         check(storage, 'BatchResult', request(base, '/migrate_in', 'POST', {'items': [{'key': 'k', 'value': 'v'}]}))
         check(storage, 'Ok', request(base, '/kv/k', 'DELETE'))
         check(storage, 'Flush', request(base, '/keys', 'DELETE'))
-    out = ROOT/'results/framework'; out.mkdir(parents=True, exist_ok=True)
-    (out/'api-audit.json').write_text(json.dumps({'author': 'Paco', 'status': 'passed', 'documents': 2, 'live_response_checks': checks}, indent=2)+'\n')
+    out = args.out; out.mkdir(parents=True, exist_ok=True)
+    (out/'api-audit.json').write_text(json.dumps({'author': 'Paco', 'status': 'passed', 'documents': 2, 'live_response_checks': checks}, indent=2)+'\n', encoding='utf-8', newline='\n')
     print(f'PASS: two OpenAPI 3.1 documents; {len(checks)} real response schemas.')
 
 

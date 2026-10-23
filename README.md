@@ -1,126 +1,89 @@
 # Shared KV Storage
 
-A lightweight CISC3010 Project 5 framework running in WSL. One router coordinates independent text-storage processes; the CLI is a pure HTTP client. The project compares modulo and consistent hashing, measures the cost of adding a node, and shows why evenly placed keys can still receive uneven request traffic. Author: Paco.
+A small, configurable framework for studying key placement, single-owner migration and request skew with real local processes. It is intended for coursework, lab exercises and systems learning. Author: Paco.
 
-**Reading guide:** [Documentation map and repository overview](docs/README.md) · [API reference](docs/api.md) · [Results](docs/results.md) · [CLI demonstration](docs/demo.md)
+One router coordinates independent in-memory text stores. A pure HTTP client performs Put/Get and inspection; a study driver collects controlled comparisons. Established modulo and consistent-hashing mechanisms make the behavior easy to connect to the mathematics.
 
-**On this page:** [Start](#start-in-wsl) · [Standalone processes](#standalone-processes) · [Placement](#placement-and-runtime-changes) · [Migration](#assumptions-and-migration) · [API](#api-and-request-counts) · [Experiments](#experiments-and-metrics) · [Reproduction](#optional-artifacts-and-reproduction)
+[Study use cases](docs/use-cases.md) · [Configuration](docs/configuration.md) · [Architecture](docs/architecture.md) · [Math and metrics](docs/metrics.md) · [Documentation map](docs/README.md)
 
-The repository contains the runtime, documentation, experiment data and reporting tools. The published source was prepared from Paco's Windows project directory. On another PC, clone it into WSL's Linux filesystem and work directly from the clone; no files from the original PC are needed. Slides, lecture PDFs, presentation sources and speaker notes stay private and are excluded from Git.
+## Start an interactive cluster
 
-## Start in WSL
+Python 3.11+ is sufficient; the runtime has no third-party dependencies. Run from a fresh clone on Linux, WSL or Windows:
 
 ```bash
 git clone https://github.com/Nvb-flipped/shared-kv-storage.git
 cd shared-kv-storage
-python3 --version  # Python 3.11 or newer
-bash run_cluster.sh --placement consistent --vnodes 16 --storage-base-port 5101
+python -m sharedkv demo --config configs/demo.toml
 ```
 
-This starts four independent storage processes A–D, one independent router and a separate client prompt. A/B/C are initial members; D waits at `127.0.0.1:5104`. The router uses port 8000. The launcher prints real PIDs, checks ports before starting and stops only its owned processes when you quit. An occupied port is an error; it never kills another application.
-
-Startup prints each process and its readiness result. A process that fails its health check stops the launch after about five seconds and the launcher cleans up its own children. The recorded demonstration used 5101–5104 because the original PC's WSL session accepted a bind on 5004 but timed out on TCP connections. A new PC need not have that issue. Omitting the optional storage-port setting uses 5001–5004. No networking or firewall settings are changed. Use the exact `addnode D ...` command printed at startup.
+Use `python3` where that names your Python 3 interpreter. The demo starts A/B/C as members, an empty waiting D, a router, and a separate client prompt. Readiness messages include the router URL and exact join command. The launcher cleans up only the processes it owns. Occupied ports fail safely; use configuration or CLI flags to choose another range.
 
 ```text
 put user:101 Apple
 get user:101
-get missing
 owner user:101
 ring user:101 --check
 stats
-keys
 addnode D 127.0.0.1:5104
 get user:101
-ring user:101 --check
 membership
 quit
 ```
 
-Use quotes for spaces or an empty value, for example `put greeting "hello world"`. Put overwrites text; there are no record versions. A missing Get prints `NOT FOUND`, includes its routed owner and returns exit code 3. The interactive prompt continues. Colors are always enabled, with node letters, patterned bars and numeric shares as additional cues. Ring columns show token order, with a caret at the exact owner token; they do not imply equally spaced hash positions.
+The default demo profile uses the address shown above; use the printed command for a modified topology. Another terminal can attach with `python -m sharedkv client --router http://127.0.0.1:8000`. The [demo guide](docs/demo.md) explains misses, counters, reconfiguration and HTTP clients. `bash run_cluster.sh` and the standalone Python scripts remain available.
 
-To attach another client, run `python3 client.py` in a second WSL terminal. For a single command, use `python3 client.py get user:101`. A different router uses `python3 client.py --router http://localhost:8000 get user:101`. The CLI never computes owners or stores a membership table. There is no web UI.
+## Configure a comparison
 
-## Standalone processes
-
-```bash
-python3 storage_node.py --id A --port 5101
-python3 storage_node.py --id B --port 5102
-python3 storage_node.py --id C --port 5103
-python3 storage_node.py --id D --port 5104
-python3 router.py --port 8000 --nodes A=localhost:5101,B=localhost:5102,C=localhost:5103 --placement consistent --vnodes 16
-```
-
-Run each long-lived command in its own terminal, or use the launcher. Storage holds only `key -> value`, without peers or placement knowledge. The router owns membership, integer placement, request counting and migration. Both runtime and unit tests use only Python 3.11+ standard-library modules; no installation, database or cloud service is needed.
-
-## Placement and runtime changes
-
-SHA-256 produces a stable unsigned integer. Modulo uses `hash_integer % node_count` over sorted IDs. Consistent hashing selects the first integer token at or after the key, with wraparound; each member contributes V tokens. `ring KEY` asks for placement even if the key does not exist. `--check` explicitly probes storage and reports yes/no. Coverage percentages are hash intervals, separate from stored-key shares.
-
-At the prompt, `placement modulo`, `placement consistent` and `vnodes 128` rebuild placement without migrating existing data. With populated stores they set `reload_required`; Put/Get are rejected until `flush` and reload. Changing a mode alone does not delete values. `flush` deliberately deletes every registered store's values. Start a fresh cluster to repeat a three-to-four-node experiment after D has already joined.
-
-## Assumptions and migration
-
-- Membership is centralized in one router. Stable uppercase IDs identify processes; there is no gossip or automatic failure eviction.
-- There is one owner and one acknowledgment per Put. No replication, quorum, vector clock, record history or conflict resolution is implemented.
-- Writes pause during migration and receive 503. Gets remain available from the old owner during copying/verification. The router publishes the verified new map before deleting old copies; a brief gate protects in-flight Gets at publication.
-- Experiments assume nodes do not lose data during migration. An unreachable store is marked down and causes an error. Recovery performs explicit staging rollback or source cleanup; it does not rebuild lost storage contents.
-- Data and router state are volatile. The router and this PC are single failure points. All HTTP listeners bind to loopback, without authentication or TLS.
-
-Migration proceeds through prepare, copy, verify, publish, cleanup and resume. A failed migration leaves writes paused. Use `recover` only after addressing the underlying issue; it retains the old map before publication or the new map afterward. [Architecture](docs/architecture.md) explains the locks and recovery boundary. [Specification decisions](docs/spec-decisions.md) record corrections to the supplied pseudocode.
-
-## API and request counts
-
-Client endpoints are `/put`, `/get`, `/owner`, `/stats` and `/ring`. Administrative endpoints control membership, placement, V, counters, recovery and explicit reset. Storage exposes local values, keys, batch migration input, stats and health. The [API reference](docs/api.md) documents bodies, responses, errors and retry behavior; [router OpenAPI](docs/openapi.json) and [storage OpenAPI](docs/storage-openapi.json) provide machine-readable contracts. JSON is the HTTP protocol, not a required user value type.
-
-Node request counts include router-forwarded client Put/Get attempts, including misses. They exclude migration, inventory, health and ring existence probes. Puts require no version lookup. `reset-counters` clears workload counters; explicit ring probes are counted separately as inspections.
-
-## Experiments and metrics
-
-From the repository root in WSL:
+[configs/quick.toml](configs/quick.toml) is a small two-to-three-node exercise. [configs/study.toml](configs/study.toml) runs the original-sized 30-trial comparison. Copy either file to choose node IDs, placement policies, token counts, keys, read counts, extra hot reads, repetitions and seed. Ports and readiness deadlines are configurable too.
 
 ```bash
-python3 -m unittest -v
-python3 tools/run_experiments.py
-python3 tools/rehearse.py
+python -m sharedkv study --config configs/quick.toml --dry-run
+python -m sharedkv study --config configs/quick.toml --keys 200 --out results/runs/my-study
+python -m sharedkv check --input results/runs/my-study --require-current-source
+python -m sharedkv report --input results/runs/my-study
 ```
 
-The orchestrator owns fresh clusters on OS-assigned ports; `experiment.py` remains a pure HTTP client. For an existing fresh cluster, run `python3 experiment.py --mode consistent --vnodes 16 --out results/manual.json`.
+TOML is parsed with the standard library. CLI flags override file settings; invalid settings are rejected before launch. A nonempty output directory is never overwritten. New runs stay in Git-ignored `results/runs/` and contain their own effective settings, schedule, source hashes, raw observations, summaries and explanation. See [configuration semantics](docs/configuration.md).
 
-Every setting uses the same 1,000 keys/values. Compare before/after physical counts, max/min ratio, population CV and moved fraction. Read every value after join and compare exact text; also require one physical host matching each routed owner. Reset counters, send the same 1,000 uniform reads, then add 500 reads to `key-00000`. Key counts must remain unchanged while those extra requests all reach its owner.
+The numeric report needs no plotting packages. To export six figure sets as SVG/PDF/PNG, install `requirements-figures.txt` into your chosen Python environment and add `--plots` to the report command. Figures derive node labels, totals, timing points and axis ranges from the run.
 
-The sweep includes V=1,2,4,8,10,16,32,64,128, covering the specified 1/10/128 and the earlier doubling sequence. Three fresh runs per setting give 30 measured trials. Setting order is randomized within each round using seed 3010. Fixed identities give repeated placements, not independent layouts. Timings describe this laptop. Virtual nodes provide the scoped bonus; replication is excluded by the primary spec.
+## What the exercises show
 
-<!-- comparison:start -->
-| Setting | Before A/B/C | After A/B/C/D | Max/min after | CV after | Reassigned | Value failures |
-|---|---|---|---:|---:|---:|---:|
-| Modulo | 332/337/331 | 246/247/254/253 | 1.033 | 0.014 | 743 (74.3%) | 0 |
-| Consistent V=1 | 119/412/469 | 119/351/469/61 | 7.689 | 0.666 | 61 (6.1%) | 0 |
-| Consistent V=2 | 382/434/184 | 268/404/184/144 | 2.806 | 0.398 | 144 (14.4%) | 0 |
-| Consistent V=4 | 280/390/330 | 189/390/315/106 | 3.679 | 0.439 | 106 (10.6%) | 0 |
-| Consistent V=8 | 202/245/553 | 171/213/455/161 | 2.826 | 0.480 | 161 (16.1%) | 0 |
-| Consistent V=10 | 323/218/459 | 244/216/319/221 | 1.477 | 0.165 | 221 (22.1%) | 0 |
-| Consistent V=16 | 324/247/429 | 296/245/270/189 | 1.566 | 0.158 | 189 (18.9%) | 0 |
-| Consistent V=32 | 379/335/286 | 294/286/239/181 | 1.624 | 0.180 | 181 (18.1%) | 0 |
-| Consistent V=64 | 321/380/299 | 287/327/218/168 | 1.946 | 0.245 | 168 (16.8%) | 0 |
-| Consistent V=128 | 317/380/303 | 267/298/210/225 | 1.419 | 0.139 | 225 (22.5%) | 0 |
-<!-- comparison:end -->
+- **Movement:** compare changed owners and actual acknowledged transfers when one node joins.
+- **Placement balance:** compare every node's key counts, max/min ratio and population CV across token settings.
+- **Request skew:** send uniform reads, then extra reads to one hot key; key balance stays fixed while request counts change.
+- **Migration behavior:** examine verified publication, paused writes, readable Gets and explicit failure recovery.
 
-Max/min ratios approach 1 as balance improves, but are infinite or undefined when a minimum is zero; JSON stores those cases as null. CV measures spread relative to mean load. Reassigned fraction divides changed owners by all original keys. The request ratio uses node read counts after the added hot workload. [Math and qualifications](docs/metrics.md) explain every denominator, transfer matrix, expectation and empty-data convention. [Measured results](docs/results.md) contain full tables and figures.
+Every trial reads all original values after joining and checks exactly one correctly placed physical copy. It compares changed owners with acknowledged and verified copies. Repeated processes keep the same node identities and dataset: they describe local timing variability, not independent random layouts or universal performance. The [experiment guide](docs/experiment-design.md) gives a practical checklist and interpretation limits.
 
-Acknowledged transfers and join seconds are measured. `estimated_item_bytes` is calculated serialized logical item size, not captured network traffic. All 1,000 values and physical owners must pass verification; a theoretical placement calculation is insufficient.
-
-## Optional artifacts and reproduction
-
-The pinned plotting packages require Python 3.12 or newer (the recorded environment used 3.14.4). The runtime and unit tests still support Python 3.11 or newer.
+## Reproduce and verify
 
 ```bash
-python3 -m venv .venv-figures
-.venv-figures/bin/python -m pip install -r requirements-figures.txt
-bash tools/reproduce.sh
+python -m unittest -v
+python tools/reproduce.py --config configs/quick.toml --out results/runs/reproduced
 ```
 
-Figures, contracts, tests and documentation tables regenerate from source. Raw trial JSON and source hashes are under `results/framework/`. Optional contract validators use `requirements-contracts.txt`; neither plotting nor validation packages are runtime dependencies. Install both requirement files into `.venv-figures` for live contract checks during reproduction. The [CLI demonstration](docs/demo.md) gives a short end-to-end walkthrough. [The documentation map](docs/README.md) explains each directory and the evidence trail.
+Reproduction uses the selected interpreter throughout. It requires no sudo, credentials, private material, original source directory or pre-existing virtual environment. Optional figures use `--plots`. The [reproduction guide](docs/reproduction.md) covers setup, evidence validation, packaging, privacy checks and historical results.
 
-Optional math validation uses MathJax 3.2.2 without a browser: set `MATHJAX_PACKAGE` to an installed `mathjax-full` package directory and run `node tools/check_math.cjs`. This checks formulas and SVG conversion locally; it does not certify GitHub's hosted rendering. To audit the saved experiments without rerunning them, use `python3 tools/check_project.py`. Run `python3 tools/check_publication.py` before a commit or push; it checks tracked files and reachable history for slide material and likely credentials.
+[Original measured results](docs/results.md) are preserved as a historical course comparison, with their own source provenance. New runs never overwrite those reference measurements. The small [current worked example](results/example/analysis.md) illustrates the configurable workflow; it is a learning example, not a performance baseline.
 
-The project applies established partitioning ideas from [Dynamo §4.2](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf). [MIT 6.5840's shard lab](https://pdos.csail.mit.edu/6.5840/labs/lab-shard1.html) is a transfer/configuration reference only. Full Dynamo replication, consensus, quorums, gossip, read repair, automatic recovery and a web GUI are outside this framework. [Scope map](docs/scope.md) connects requirements to implementation and evidence. Paco remains the author; [assistance and attribution](docs/ai-use.md) record tools and sources truthfully.
+## System boundaries
+
+The framework is a local teaching system: volatile stores, one router, one owner per key, sequential study requests and loopback HTTP. It has no replication, consensus, authentication, TLS, persistence, node removal or automatic failure eviction. It is useful for an experimental text lookup exercise; it should not hold valuable data or serve a network application.
+
+Migration pauses Put, copies and verifies destinations, waits for in-flight old-owner Gets, publishes the new map, then removes old copies. Recovery rolls back staging before publication or finishes cleanup afterward. It cannot restore storage contents lost in a crash. Runtime mode/V changes leave data in place and require explicit flush/reload.
+
+## Code and extension map
+
+| Area | Responsibility |
+|---|---|
+| `sharedkv/placement.py`, `router.py`, `storage.py`, `transport.py` | Ownership, coordination, local values and bounded HTTP. |
+| `sharedkv/config.py`, `cluster.py` | Validated settings and owned-process lifecycle. |
+| `sharedkv/experiment.py`, `study.py` | Pure HTTP exercise and configured trial orchestration. |
+| `sharedkv/analysis.py`, `plotting.py` | Evidence checks, descriptive reports and optional figures. |
+| `tests/` | HTTP, migration, failure, configuration and bounded invariant tests. |
+| `docs/`, `configs/`, `results/` | Learning guides, example profiles and traceable observations. |
+
+`python -m sharedkv --help` lists workflows. An optional `python -m pip install .` provides the `sharedkv` console command; source-checkout commands do not need installation. See [extension boundaries](docs/use-cases.md) before adding policies or workloads.
+
+The design applies [Dynamo §4.2](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf); [MIT's shard lab](https://pdos.csail.mit.edu/6.5840/labs/lab-shard1.html) is a transfer/configuration reference. The [scope map](docs/scope.md), [specification decisions](docs/spec-decisions.md), [API contracts](docs/api.md), and [attribution](docs/ai-use.md) document the course scope and assistance.

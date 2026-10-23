@@ -8,9 +8,9 @@
 On this page: [Put, Get and owner](#put-get-and-owner) · [Router observation](#router-observation) · [Router administration](#router-administration) · [Internal storage API](#internal-storage-api) · [Validate contracts](#validate-contracts)
 <!-- contents:end -->
 
-The router normally listens on `http://127.0.0.1:8000`. Storage defaults to ports 5001–5004; the quickstart uses `--storage-base-port 5101`, so A–D use 5101–5104. Follow the addresses printed by the launcher. The two machine-readable contracts are [router OpenAPI](openapi.json) and [storage OpenAPI](storage-openapi.json). Run `python3 tools/api_contracts.py` to regenerate them. There is no web UI or documentation server.
+The router normally listens on `http://127.0.0.1:8000`. Storage defaults to ports 5001–5004; the quickstart uses `--storage-base-port 5101`, so A–D use 5101–5104. Follow the addresses printed by the launcher. The two machine-readable contracts are [router OpenAPI](openapi.json) and [storage OpenAPI](storage-openapi.json). Run `python tools/api_contracts.py` to regenerate them. There is no web UI or documentation server.
 
-All listeners bind to loopback. This local teaching framework has no authentication, TLS, CORS, pagination or durable storage. JSON is the HTTP message format; the CLI accepts ordinary text values. Bodies must be UTF-8 JSON objects with `Content-Type: application/json`, at most 1 MiB. Keys contain 1–1024 UTF-8 bytes; values may be empty text. Non-finite numbers, extra Put fields and record-version fields are rejected. Percent-encode complete storage path keys and router query keys. Use Python's `urlencode`/`quote` or curl `--data-urlencode` rather than concatenating raw keys.
+All listeners bind to loopback. This local teaching framework has no authentication, TLS, CORS, pagination or durable storage. JSON is the HTTP message format; the CLI accepts ordinary text values. Bodies must be UTF-8 JSON objects with `Content-Type: application/json`, at most 1 MiB. Repeated JSON fields and Content-Length headers, incomplete bodies and non-finite numbers are rejected. Socket reads have a 10-second inactivity timeout; a body timeout receives HTTP 408. Keys contain 1–1024 UTF-8 bytes; values may be empty text. Extra Put fields and record-version fields are rejected. Percent-encode complete storage path keys and router query keys. Use Python's `urlencode`/`quote` or curl `--data-urlencode` rather than concatenating raw keys.
 
 ## Put, Get and owner
 
@@ -90,9 +90,9 @@ Storage does not know peers, placement, membership or record versions. Ordinary 
 ## Validate contracts
 
 ```bash
-.venv-figures/bin/python -m pip install -r requirements-contracts.txt
-python3 tools/api_contracts.py
-.venv-figures/bin/python tools/check_contracts.py
+python -m pip install -r requirements-contracts.txt
+python tools/api_contracts.py
+python tools/check_contracts.py
 ```
 
 These optional development checks validate both OpenAPI documents and real responses. Running storage, router, CLI, experiments or unit tests needs no third-party runtime packages.

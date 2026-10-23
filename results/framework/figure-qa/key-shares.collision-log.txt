@@ -1,5 +1,5 @@
 Nature Figure Rendered Collision Audit
-pdf: /home/paco/Shared_KV_Storage/figures/key-shares.pdf
+pdf: figures/key-shares.pdf
 pages: 1
 visible text boxes: 62
 stroke paths: 52

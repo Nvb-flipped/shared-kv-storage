@@ -11,7 +11,7 @@ from unittest.mock import Mock, patch
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
-from sharedkv.cluster import Cluster
+from sharedkv.cluster import Cluster, child_interpreter
 from sharedkv.placement import Placement, hash_integer
 from sharedkv.router import Router
 from sharedkv.storage import Storage
@@ -21,6 +21,14 @@ from experiment import run_case
 
 
 class LauncherTests(unittest.TestCase):
+    def test_windows_venv_uses_real_executable_and_preserves_environment(self):
+        with patch('sys.platform', 'win32'), patch('sys.prefix', 'venv'), \
+             patch('sys.base_prefix', 'base'), patch('sys.executable', 'venv-python'), \
+             patch('sys._base_executable', 'real-python'):
+            executable, environment = child_interpreter()
+        self.assertEqual(executable, 'real-python')
+        self.assertEqual(environment['__PYVENV_LAUNCHER__'], 'venv-python')
+
     def test_storage_port_override_and_progress(self):
         messages=[]
         with Cluster(progress=messages.append) as cluster:
@@ -62,7 +70,7 @@ class PlacementTests(unittest.TestCase):
         self.assertAlmostEqual(sum(v['fraction'] for v in tokens['node_shares'].values()), 1)
 
     def test_clients_do_not_import_placement_or_router(self):
-        for file in ('client.py', 'experiment.py', 'sharedkv/terminal.py'):
+        for file in ('client.py', 'experiment.py', 'sharedkv/cli.py', 'sharedkv/experiment.py', 'sharedkv/terminal.py'):
             tree = ast.parse(Path(file).read_text())
             modules = [n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)]
             modules += [a.name for n in ast.walk(tree) if isinstance(n, ast.Import) for a in n.names]

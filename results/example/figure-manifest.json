@@ -1,0 +1,24 @@
+{
+  "backend": "Matplotlib 3.11.2",
+  "outputs": {
+    "figures/movement.svg": "a7930f263611424d64b0da065b99e6e2ef98f04bf75ccef1a3547781b910db70",
+    "figures/movement.pdf": "bf8fbf22d88ba4b0e345fba1a721c337f36659290410455567c355dd62b9faa4",
+    "figures/movement.png": "af8030453d9d412b1bf052a24f55933b777bd5f0f20c812fbc0d60796135e9e2",
+    "figures/balance.svg": "52dbba0290d4338eea897ec51cb7e0e6e87bc1ae5ec02ffe94b9ea223ea49b17",
+    "figures/balance.pdf": "3a0e91f51a4d5cf6621b1eddfd1e1a59da0391a09af3ab62e1f231662e92012f",
+    "figures/balance.png": "83ce99986823c8d584dde89685292352ede7f25961d656b9a0202e85f05cb910",
+    "figures/node-loads.svg": "e1997fece2140d21dcae98f37cad8f5a957aef3afddd6085573fb62a9b54e943",
+    "figures/node-loads.pdf": "f68bfcb4b2e407faf251d7b94fe05496360eed52a100caba9e58b139de071627",
+    "figures/node-loads.png": "ad9fe6ac5b9f8f022c4d1dd27bf5ccde6477e0783c8624c5008aa6f44de9ae2a",
+    "figures/requests.svg": "4f9da11fa18547d31090f1fa679e025aad75d4c308fd723c1b4f20f54baee712",
+    "figures/requests.pdf": "530199a0c190d95e59e89e7d5652f5ce924b1988cd9019955b3500e75e7c002a",
+    "figures/requests.png": "9a4fff14e950bf973095c318201f6ce122df334a254649eb3a2a88b851d97d2b",
+    "figures/transfers.svg": "cf313ab11b3ed47ba6509e9fc7c63b8dea76ca06048a78ddd6e128128ec7dfcd",
+    "figures/transfers.pdf": "f99d19443a1f001005f2f5caca6b88a9e0669142f545cdd4b6278a40a891822e",
+    "figures/transfers.png": "dad613009034da7928f10bba6330699503ad285c5c7ce621c25b2497c493461c",
+    "figures/join-time.svg": "41693fcdfaa4f2098c0304b60b4ba12fc9025b4ab1916f916df72544c73cf969",
+    "figures/join-time.pdf": "6f2c4480602975016da4c35ff273054f2751c175d714eb0a8c8d98a5ce3e232e",
+    "figures/join-time.png": "d70a318efc7abddaddb60abeeb6cf4618c083dea450603154c63f66512840d85"
+  },
+  "summary_sha256": "af9fa590b2dc3e0e76865dce42dff2ac11e63ec7ad4a5dc2da816fb6fb6a02d0"
+}

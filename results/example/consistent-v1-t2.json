@@ -1,0 +1,845 @@
+{
+  "mode": "consistent",
+  "vnodes_per_node": 1,
+  "key_count": 60,
+  "dataset_sha256": "43abd83dac49f49e42167e273ec3e683e23b86f7b9e74b45c4a0b66695a19ac0",
+  "uniform_sequence_sha256": "46005e48e7e2fbb19c15a39ce29827647013a59f890c414986673205c8ba1ed2",
+  "initial_nodes": [
+    "A",
+    "B"
+  ],
+  "joining_node": "C",
+  "placement_balance_before": {
+    "key_counts": {
+      "A": 33,
+      "B": 27
+    },
+    "cv": 0.1,
+    "max_min_ratio": 1.2222222222222223,
+    "shares": {
+      "A": 0.55,
+      "B": 0.45
+    }
+  },
+  "placement_balance_after": {
+    "key_counts": {
+      "A": 6,
+      "B": 27,
+      "C": 27
+    },
+    "cv": 0.4949747468305833,
+    "max_min_ratio": 4.5,
+    "shares": {
+      "A": 0.1,
+      "B": 0.45,
+      "C": 0.45
+    }
+  },
+  "owners_before": {
+    "key-00000": "B",
+    "key-00001": "A",
+    "key-00002": "A",
+    "key-00003": "B",
+    "key-00004": "A",
+    "key-00005": "A",
+    "key-00006": "A",
+    "key-00007": "B",
+    "key-00008": "B",
+    "key-00009": "B",
+    "key-00010": "B",
+    "key-00011": "B",
+    "key-00012": "A",
+    "key-00013": "A",
+    "key-00014": "A",
+    "key-00015": "A",
+    "key-00016": "B",
+    "key-00017": "A",
+    "key-00018": "A",
+    "key-00019": "A",
+    "key-00020": "A",
+    "key-00021": "A",
+    "key-00022": "B",
+    "key-00023": "B",
+    "key-00024": "B",
+    "key-00025": "A",
+    "key-00026": "A",
+    "key-00027": "A",
+    "key-00028": "B",
+    "key-00029": "B",
+    "key-00030": "B",
+    "key-00031": "B",
+    "key-00032": "A",
+    "key-00033": "A",
+    "key-00034": "B",
+    "key-00035": "A",
+    "key-00036": "B",
+    "key-00037": "B",
+    "key-00038": "B",
+    "key-00039": "B",
+    "key-00040": "B",
+    "key-00041": "A",
+    "key-00042": "B",
+    "key-00043": "A",
+    "key-00044": "A",
+    "key-00045": "A",
+    "key-00046": "A",
+    "key-00047": "A",
+    "key-00048": "A",
+    "key-00049": "B",
+    "key-00050": "A",
+    "key-00051": "A",
+    "key-00052": "B",
+    "key-00053": "B",
+    "key-00054": "B",
+    "key-00055": "A",
+    "key-00056": "A",
+    "key-00057": "B",
+    "key-00058": "A",
+    "key-00059": "A"
+  },
+  "owners_after": {
+    "key-00000": "B",
+    "key-00001": "C",
+    "key-00002": "A",
+    "key-00003": "B",
+    "key-00004": "C",
+    "key-00005": "C",
+    "key-00006": "C",
+    "key-00007": "B",
+    "key-00008": "B",
+    "key-00009": "B",
+    "key-00010": "B",
+    "key-00011": "B",
+    "key-00012": "C",
+    "key-00013": "C",
+    "key-00014": "C",
+    "key-00015": "A",
+    "key-00016": "B",
+    "key-00017": "A",
+    "key-00018": "C",
+    "key-00019": "C",
+    "key-00020": "C",
+    "key-00021": "C",
+    "key-00022": "B",
+    "key-00023": "B",
+    "key-00024": "B",
+    "key-00025": "C",
+    "key-00026": "C",
+    "key-00027": "C",
+    "key-00028": "B",
+    "key-00029": "B",
+    "key-00030": "B",
+    "key-00031": "B",
+    "key-00032": "C",
+    "key-00033": "C",
+    "key-00034": "B",
+    "key-00035": "C",
+    "key-00036": "B",
+    "key-00037": "B",
+    "key-00038": "B",
+    "key-00039": "B",
+    "key-00040": "B",
+    "key-00041": "A",
+    "key-00042": "B",
+    "key-00043": "C",
+    "key-00044": "C",
+    "key-00045": "C",
+    "key-00046": "C",
+    "key-00047": "A",
+    "key-00048": "C",
+    "key-00049": "B",
+    "key-00050": "C",
+    "key-00051": "C",
+    "key-00052": "B",
+    "key-00053": "B",
+    "key-00054": "B",
+    "key-00055": "C",
+    "key-00056": "C",
+    "key-00057": "B",
+    "key-00058": "A",
+    "key-00059": "C"
+  },
+  "ring_before": {
+    "placement_mode": "consistent",
+    "vnodes_per_node": 1,
+    "hash_space": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+    "total_tokens": 2,
+    "tokens": [
+      {
+        "pos": 12472032684296405969950535956834213133202460127175506114318041846502263649960,
+        "node": "B",
+        "label": "b1"
+      },
+      {
+        "pos": 80049524956275331872576727967693342490107703602297752031133437790366791338401,
+        "node": "A",
+        "label": "a1"
+      }
+    ],
+    "node_shares": {
+      "A": {
+        "tokens": 1,
+        "fraction": 0.5836106137914022,
+        "hash_units": 67577492271978925902626192010859129356905243475122245916815395943864527688441
+      },
+      "B": {
+        "tokens": 1,
+        "fraction": 0.4163893862085978,
+        "hash_units": 48214596965337269520944792997828778496364741190518318122642188064048601951495
+      }
+    },
+    "membership_version": 1,
+    "placement_revision": 1,
+    "migration_state": "idle",
+    "paused_writes": false,
+    "reload_required": false
+  },
+  "ring_after": {
+    "placement_mode": "consistent",
+    "vnodes_per_node": 1,
+    "hash_space": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+    "total_tokens": 3,
+    "tokens": [
+      {
+        "pos": 12472032684296405969950535956834213133202460127175506114318041846502263649960,
+        "node": "B",
+        "label": "b1"
+      },
+      {
+        "pos": 65039983372826170903694025170037012086491553843959485399666485802603259551072,
+        "node": "C",
+        "label": "c1"
+      },
+      {
+        "pos": 80049524956275331872576727967693342490107703602297752031133437790366791338401,
+        "node": "A",
+        "label": "a1"
+      }
+    ],
+    "node_shares": {
+      "A": {
+        "tokens": 1,
+        "fraction": 0.12962493104936612,
+        "hash_units": 15009541583449160968882702797656330403616149758338266631466951987763531787329
+      },
+      "B": {
+        "tokens": 1,
+        "fraction": 0.4163893862085978,
+        "hash_units": 48214596965337269520944792997828778496364741190518318122642188064048601951495
+      },
+      "C": {
+        "tokens": 1,
+        "fraction": 0.4539856827420361,
+        "hash_units": 52567950688529764933743489213202798953289093716783979285348443956100995901112
+      }
+    },
+    "membership_version": 2,
+    "placement_revision": 1,
+    "migration_state": "idle",
+    "paused_writes": false,
+    "reload_required": false
+  },
+  "reassignment": {
+    "reassigned_key_count": 27,
+    "fraction": 0.45,
+    "retained": 33,
+    "matrix_counts": {
+      "A": {
+        "A": 6,
+        "B": 0,
+        "C": 27
+      },
+      "B": {
+        "A": 0,
+        "B": 27,
+        "C": 0
+      },
+      "C": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      }
+    }
+  },
+  "migration": {
+    "ok": true,
+    "old_membership_version": 1,
+    "new_membership_version": 2,
+    "placement_mode": "consistent",
+    "paused_writes": false,
+    "writes_paused_during_migration": true,
+    "reassigned_key_count": 27,
+    "reassigned_keys": [
+      "key-00001",
+      "key-00004",
+      "key-00005",
+      "key-00006",
+      "key-00012",
+      "key-00013",
+      "key-00014",
+      "key-00018",
+      "key-00019",
+      "key-00020",
+      "key-00021",
+      "key-00025",
+      "key-00026",
+      "key-00027",
+      "key-00032",
+      "key-00033",
+      "key-00035",
+      "key-00043",
+      "key-00044",
+      "key-00045",
+      "key-00046",
+      "key-00048",
+      "key-00050",
+      "key-00051",
+      "key-00055",
+      "key-00056",
+      "key-00059"
+    ],
+    "migrated": 27,
+    "verified": 27,
+    "verification_failures": [],
+    "estimated_item_bytes": 1385,
+    "seconds": 0.10467684999997573,
+    "key_counts_after": {
+      "A": 6,
+      "B": 27,
+      "C": 27
+    }
+  },
+  "verification": {
+    "checked": 60,
+    "failures": [],
+    "physical_failures": []
+  },
+  "request_balance": {
+    "uniform_reads": 80,
+    "additional_hot_reads": 40,
+    "before_hot": {
+      "A": 6,
+      "B": 36,
+      "C": 38
+    },
+    "after_hot": {
+      "A": 6,
+      "B": 76,
+      "C": 38
+    },
+    "hot_key": "key-00000",
+    "hot_key_owner": "B",
+    "ratio_after_hot": 12.666666666666666
+  },
+  "physical_inventory": {
+    "membership_version": 2,
+    "reload_required": false,
+    "keys": [
+      {
+        "key": "key-00000",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00001",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00002",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00003",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00004",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00005",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00006",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00007",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00008",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00009",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00010",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00011",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00012",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00013",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00014",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00015",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00016",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00017",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00018",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00019",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00020",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00021",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00022",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00023",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00024",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00025",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00026",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00027",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00028",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00029",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00030",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00031",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00032",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00033",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00034",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00035",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00036",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00037",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00038",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00039",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00040",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00041",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00042",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00043",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00044",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00045",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00046",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00047",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00048",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00049",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00050",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00051",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00052",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00053",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00054",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00055",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00056",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      },
+      {
+        "key": "key-00057",
+        "owner": "B",
+        "stored_on": [
+          "B"
+        ]
+      },
+      {
+        "key": "key-00058",
+        "owner": "A",
+        "stored_on": [
+          "A"
+        ]
+      },
+      {
+        "key": "key-00059",
+        "owner": "C",
+        "stored_on": [
+          "C"
+        ]
+      }
+    ]
+  },
+  "membership": {
+    "version": 2,
+    "placement_revision": 1,
+    "nodes": [
+      {
+        "id": "A",
+        "addr": "127.0.0.1:44339",
+        "status": "active"
+      },
+      {
+        "id": "B",
+        "addr": "127.0.0.1:44019",
+        "status": "active"
+      },
+      {
+        "id": "C",
+        "addr": "127.0.0.1:43173",
+        "status": "active"
+      }
+    ],
+    "paused_writes": false,
+    "reload_required": false,
+    "migration": {
+      "state": "idle",
+      "old_membership_version": 1,
+      "new_membership_version": 2
+    },
+    "last_migration": {
+      "ok": true,
+      "old_membership_version": 1,
+      "new_membership_version": 2,
+      "placement_mode": "consistent",
+      "paused_writes": false,
+      "writes_paused_during_migration": true,
+      "reassigned_key_count": 27,
+      "reassigned_keys": [
+        "key-00001",
+        "key-00004",
+        "key-00005",
+        "key-00006",
+        "key-00012",
+        "key-00013",
+        "key-00014",
+        "key-00018",
+        "key-00019",
+        "key-00020",
+        "key-00021",
+        "key-00025",
+        "key-00026",
+        "key-00027",
+        "key-00032",
+        "key-00033",
+        "key-00035",
+        "key-00043",
+        "key-00044",
+        "key-00045",
+        "key-00046",
+        "key-00048",
+        "key-00050",
+        "key-00051",
+        "key-00055",
+        "key-00056",
+        "key-00059"
+      ],
+      "migrated": 27,
+      "verified": 27,
+      "verification_failures": [],
+      "estimated_item_bytes": 1385,
+      "seconds": 0.10467684999997573,
+      "key_counts_after": {
+        "A": 6,
+        "B": 27,
+        "C": 27
+      }
+    },
+    "pid": 6845
+  },
+  "trial": 2,
+  "pids": {
+    "A": 6839,
+    "B": 6841,
+    "C": 6843,
+    "router": 6845
+  },
+  "owned_children_stopped": true
+}

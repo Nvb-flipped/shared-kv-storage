@@ -1,0 +1,15 @@
+# Small end-to-end exercise; timings are illustrative, not a performance claim.
+[cluster]
+initial_nodes = ["A", "B"]
+joining_node = "C"
+isolated = true
+
+[experiment]
+keys = 60
+uniform_reads = 80
+additional_hot_reads = 40
+trials = 2
+seed = 3010
+modes = ["modulo", "consistent"]
+vnodes = [1, 16]
+output = "../results/runs/quick"

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-10-23T17:08:28.702498+00:00",
+  "environment": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "python": "3.14.4"
+  },
+  "config": {
+    "cluster": {
+      "initial_nodes": [
+        "A",
+        "B"
+      ],
+      "joining_node": "C",
+      "placement": "consistent",
+      "vnodes": 16,
+      "isolated": true,
+      "router_port": 8000,
+      "storage_base_port": 5001,
+      "startup_timeout": 5.0
+    },
+    "experiment": {
+      "keys": 60,
+      "uniform_reads": 80,
+      "additional_hot_reads": 40,
+      "seed": 3010,
+      "trials": 2,
+      "modes": [
+        "modulo",
+        "consistent"
+      ],
+      "vnodes": [
+        1,
+        16
+      ],
+      "output": "."
+    }
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "mode": "modulo",
+      "vnodes": 1,
+      "file": "modulo-v1-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 1,
+      "file": "consistent-v1-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 16,
+      "file": "consistent-v16-t1.json"
+    },
+    {
+      "trial": 2,
+      "mode": "modulo",
+      "vnodes": 1,
+      "file": "modulo-v1-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 1,
+      "file": "consistent-v1-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 16,
+      "file": "consistent-v16-t2.json"
+    }
+  ],
+  "completed": [
+    {
+      "file": "modulo-v1-t1.json",
+      "sha256": "a6f75aa1f52687cd7401aa9426ad7624ba01c940a2d5118984b693383fe5593c"
+    },
+    {
+      "file": "consistent-v1-t1.json",
+      "sha256": "46a0b604857eb6026da1d54f94b593e6915eb0b4af7b7ffc33d6f31d63c70f84"
+    },
+    {
+      "file": "consistent-v16-t1.json",
+      "sha256": "42783beccb24465fba6a0d6b46db06554ecb3f79bd737d09f2e16ea63ded083e"
+    },
+    {
+      "file": "modulo-v1-t2.json",
+      "sha256": "31eb8d44f4dd77658a5dc595eac8662859b2b9781ce4c1a31db205ca6ffd1b00"
+    },
+    {
+      "file": "consistent-v1-t2.json",
+      "sha256": "f7a6d7d943026e7b43dd1ed619a5f5d8a95aa81ba4996b49e72061a058d0ba92"
+    },
+    {
+      "file": "consistent-v16-t2.json",
+      "sha256": "b6b5ec9964ef40c31dd6c7bb73e979d895c30b8915f707aa29f9f9ac07bfd29a"
+    }
+  ],
+  "source_sha256": {
+    "sharedkv/__init__.py": "60e5386bb37fef2cdb887f330f873b55d5be99ea8f3809e38397c9183e828c4e",
+    "sharedkv/__main__.py": "49795f4775386cc9598e68635961801f8170effe476d8accbcdc7f7ad3acd2b1",
+    "sharedkv/analysis.py": "bd4889dd33050502c43ec423eded875788f78f5a7f9e612edd93654c50630210",
+    "sharedkv/cli.py": "4fb87d1c09146071cb79ba141c9741584460bcf22fcab87c0e206734ffb77b6c",
+    "sharedkv/cluster.py": "f9139562ff9a931e9faaadef0d144abcefc31367a13df2ec5aba3a0104e637fa",
+    "sharedkv/config.py": "b5ebfcf4fdfe0de557c35b6d80640e2d71c5dde655a750ffb9f1c2536c29b11e",
+    "sharedkv/experiment.py": "fe774378586cd1d68067284b45c31be151ed492365851276cd815edc77f57837",
+    "sharedkv/metrics.py": "0b786b3f3ddb378fc55fb41856c3c0072fefedb806abfe683cca8e43957c1058",
+    "sharedkv/placement.py": "b55135198cc8e83e9f6736bd9044f366e4fd99ff91a4c36aac71b78dc74a24ca",
+    "sharedkv/plotting.py": "13c5cf60f2fd7a7b1a787b909ca699d8f4652ab24246680022bc6d0ab8c7ab50",
+    "sharedkv/router.py": "5af130ca66967463cb3ec00ad5f18812ee8b848452609ca852def9ba94965a1f",
+    "sharedkv/storage.py": "46a8ba9fd845a75d232ed3fc2b6d16dec633071824e6c39534bbaf254e423ec4",
+    "sharedkv/study.py": "23f9409841fe7820de9d272ea0494c7d953e175c6fad6801325e364ef5c43e5a",
+    "sharedkv/terminal.py": "41260223b245af744ca212bfd8e6fb97ccabfa9d914b6d3371a8c7ae8a1eadd2",
+    "sharedkv/transport.py": "ae66162b202cdd101df6d333c6dc61c8dbfe3569aca3bfb08361fee0423d6826"
+  },
+  "config_sha256": "d2da5c47fefe705a9940300fced9ee710f0860154410b8318ebc734a0827f8f9",
+  "interpretation": "Fixed node identities and keys; fresh-process timing repetitions, not independent layouts.",
+  "finished_utc": "2026-10-23T17:08:35.192322+00:00"
+}

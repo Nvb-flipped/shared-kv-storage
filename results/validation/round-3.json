@@ -1,0 +1,142 @@
+{
+  "status": "passed",
+  "started_utc": "2026-10-23T17:08:16.617753+00:00",
+  "os": "Linux",
+  "python": "3.14.4",
+  "source_fingerprint": "309ecc6d94822f31b01002843dd2bdc77a400c0cee10c5fe4d1a8aa4e3f1a2fb",
+  "package_source_sha256": {
+    "sharedkv/__init__.py": "60e5386bb37fef2cdb887f330f873b55d5be99ea8f3809e38397c9183e828c4e",
+    "sharedkv/__main__.py": "49795f4775386cc9598e68635961801f8170effe476d8accbcdc7f7ad3acd2b1",
+    "sharedkv/analysis.py": "bd4889dd33050502c43ec423eded875788f78f5a7f9e612edd93654c50630210",
+    "sharedkv/cli.py": "4fb87d1c09146071cb79ba141c9741584460bcf22fcab87c0e206734ffb77b6c",
+    "sharedkv/cluster.py": "f9139562ff9a931e9faaadef0d144abcefc31367a13df2ec5aba3a0104e637fa",
+    "sharedkv/config.py": "b5ebfcf4fdfe0de557c35b6d80640e2d71c5dde655a750ffb9f1c2536c29b11e",
+    "sharedkv/experiment.py": "fe774378586cd1d68067284b45c31be151ed492365851276cd815edc77f57837",
+    "sharedkv/metrics.py": "0b786b3f3ddb378fc55fb41856c3c0072fefedb806abfe683cca8e43957c1058",
+    "sharedkv/placement.py": "b55135198cc8e83e9f6736bd9044f366e4fd99ff91a4c36aac71b78dc74a24ca",
+    "sharedkv/plotting.py": "13c5cf60f2fd7a7b1a787b909ca699d8f4652ab24246680022bc6d0ab8c7ab50",
+    "sharedkv/router.py": "5af130ca66967463cb3ec00ad5f18812ee8b848452609ca852def9ba94965a1f",
+    "sharedkv/storage.py": "46a8ba9fd845a75d232ed3fc2b6d16dec633071824e6c39534bbaf254e423ec4",
+    "sharedkv/study.py": "23f9409841fe7820de9d272ea0494c7d953e175c6fad6801325e364ef5c43e5a",
+    "sharedkv/terminal.py": "41260223b245af744ca212bfd8e6fb97ccabfa9d914b6d3371a8c7ae8a1eadd2",
+    "sharedkv/transport.py": "ae66162b202cdd101df6d333c6dc61c8dbfe3569aca3bfb08361fee0423d6826"
+  },
+  "stages": [
+    {
+      "name": "reproduction",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "a89091cf1482151d336e0823377534b3eaf5ff43af2cbcd22f479a336ef384b7"
+    },
+    {
+      "name": "cli",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "664c77a4fecaf1837fb6806573eb08cc8ff7b04ad618647894fca82ee8131d45"
+    },
+    {
+      "name": "api",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "aa262dfbe377c79449993366fe150ea61378e3112d2ae7b06277d2aed8dc5274"
+    },
+    {
+      "name": "api-generation",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "63640edb68f4100b1cc7bbaed6fb13e9121fb5939b697bca2ea66e34c71244f0"
+    },
+    {
+      "name": "documentation",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "46831238cd6993cfa6726556abfe71f36dcc392aeb7c77ed78b096f6f96be8fb"
+    },
+    {
+      "name": "historical-artifacts",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "db78c192edee05dcefd1c086166f9ae1506d62d61cd45ce9518a9f22acc1f1dc"
+    },
+    {
+      "name": "publication",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "62c9b9bf601620c43e3c2de958328f8d781f450ab6763cec5fdf70bca8877be3"
+    },
+    {
+      "name": "math-rendering",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "71d72f10caa9581f85983dfde8b42238b7ce7280a89f919b3a34ce534d7bf934"
+    },
+    {
+      "name": "edge-study",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "35680b4ed92ba655d84f97f4f6d2145d7832e1ad26b06496b828f2e42931a4fa"
+    },
+    {
+      "name": "edge-report",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "4b14bb5cc6fde4b77e5fdf47460aa4d890d120090cdf412deb617a1d647a796c"
+    },
+    {
+      "name": "study-visual-qa",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "e44d248a337dee0af14bfb2c8690bb7878e940d0050d32a487931a97d4c0f453"
+    },
+    {
+      "name": "edge-visual-qa",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "e44d248a337dee0af14bfb2c8690bb7878e940d0050d32a487931a97d4c0f453"
+    },
+    {
+      "name": "wheel",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "f7bc91a7af89e24fcb560d356c00dac98beed205be2ec94b9d923d17b460c002"
+    },
+    {
+      "name": "install",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "c64b55bbfea3fc992f8d2b804f711df91b908f147ea169dd12d2353d471d755e"
+    },
+    {
+      "name": "installed-study",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "5c6aa2155cde1009d615eb91908e54bf0700b7527166d669290183574d996975"
+    },
+    {
+      "name": "installed-report",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "68a99b7883eb8390cac18ad0b63771d40fd3169235fc1e6b255dca04fbac0f81"
+    },
+    {
+      "name": "installed-demo",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "74d7fbec91e3183ed0808b054f84b73230420638a327b6c6f45e2084fa5c8b91"
+    }
+  ],
+  "visual_review": {
+    "status": "passed",
+    "reviewer": "Codex",
+    "reviewed_utc": "2026-10-23T17:10:30.405078+00:00",
+    "scope": "Original and grayscale study/edge sheets inspected; labels, denominators, zero loads, transfer counts and timing markers readable without marker clipping.",
+    "sheet_sha256": {
+      "edge/figure-review-grayscale.png": "da0329598f56a4c265bb2677148525eb54419cc6e1e9f50fc7dc3e37c31ebce3",
+      "edge/figure-review.png": "5fbdd9667b14c33836686e1537ba44ebb8bd5112b99c4258281d83eaac0ab870",
+      "study/figure-review-grayscale.png": "f8059658d86f9e0e4292267b31976902ece1055e654d61e57beae3936002be43",
+      "study/figure-review.png": "645cd1f22c6f20c3d011feb56204e17d10143feff4643a4a9297483d40767c91"
+    }
+  },
+  "limits": "Finite tests and exercised configurations; not a proof over all possible operations or environments.",
+  "finished_utc": "2026-10-23T17:09:09.452256+00:00"
+}

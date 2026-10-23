@@ -3,7 +3,7 @@
   "utc": "2026-10-22T02:18:31.334643+00:00",
   "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "python": "3.14.4",
-  "root": "/home/paco/Shared_KV_Storage",
+  "root": ".",
   "config": {
     "keys": 1000,
     "uniform_reads": 1000,

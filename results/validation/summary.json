@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "consecutive_fresh_rounds": 3,
+  "source_fingerprint": "309ecc6d94822f31b01002843dd2bdc77a400c0cee10c5fe4d1a8aa4e3f1a2fb",
+  "completed_utc": "2026-10-23T17:11:56.699218+00:00",
+  "round_receipts": {
+    "round-1.json": "5f44c182c2c9adaf7b3312b15ae455fbfe109565c48e8e7ac03f2e13524d26f3",
+    "round-2.json": "830e587104d4e9c50e39edaa0e37b401bcd735a7aab3734ebfb32ad68a98e512",
+    "round-3.json": "2ba0e059419bd9c11a93614d6d253c7f75181169c68c3f9adce2b266ef3490de"
+  },
+  "per_round": {
+    "tests": 37,
+    "stages": 17,
+    "live_api_responses": 28,
+    "math_expressions_parsed": 48,
+    "new_study_trials": 6,
+    "new_edge_trials": 2,
+    "new_figure_exports": 36,
+    "cli_settings": 3,
+    "cli_values_verified_per_setting": 1002
+  },
+  "independence": "New source directory, venv, dependency installation, measurements, figures, package environment and receipts in every round; no earlier generated output reused.",
+  "additional_windows_check": {
+    "python": "3.14.3",
+    "tests": 37,
+    "status": "passed",
+    "log_sha256": "2db36d63b911a62dc1b9e253a0f655753b3569c69397a6683dab1ee393e641ae"
+  },
+  "published_example": {
+    "environment_sha256": "d811ec77a821b744d501a58c88f925567c61c43aef96a6edc7eff4486abcdba0",
+    "figures_sha256": "dc3bdcc774b6f00e3070be3151537a95986bc4b438fa7222d611c2cb74f42269"
+  },
+  "limits": "Finite tests under the documented local single-owner assumptions; mathematical parsing is not proof certification. Timings do not generalize across layouts or machines."
+}

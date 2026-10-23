@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "config": {
+    "cluster": {
+      "initial_nodes": [
+        "A",
+        "B"
+      ],
+      "joining_node": "C",
+      "placement": "consistent",
+      "vnodes": 16,
+      "isolated": true,
+      "router_port": 8000,
+      "storage_base_port": 5001,
+      "startup_timeout": 5.0
+    },
+    "experiment": {
+      "keys": 60,
+      "uniform_reads": 80,
+      "additional_hot_reads": 40,
+      "seed": 3010,
+      "trials": 2,
+      "modes": [
+        "modulo",
+        "consistent"
+      ],
+      "vnodes": [
+        1,
+        16
+      ],
+      "output": "."
+    }
+  },
+  "current_sources_match": true,
+  "trial_count": 6,
+  "rows": [
+    {
+      "mode": "modulo",
+      "vnodes_per_node": 1,
+      "key_count": 60,
+      "placement_balance_before": {
+        "key_counts": {
+          "A": 31,
+          "B": 29
+        },
+        "cv": 0.03333333333333333,
+        "max_min_ratio": 1.0689655172413792,
+        "shares": {
+          "A": 0.5166666666666667,
+          "B": 0.48333333333333334
+        }
+      },
+      "placement_balance_after": {
+        "key_counts": {
+          "A": 23,
+          "B": 20,
+          "C": 17
+        },
+        "cv": 0.1224744871391589,
+        "max_min_ratio": 1.3529411764705883,
+        "shares": {
+          "A": 0.38333333333333336,
+          "B": 0.3333333333333333,
+          "C": 0.2833333333333333
+        }
+      },
+      "request_balance": {
+        "uniform_reads": 80,
+        "additional_hot_reads": 40,
+        "before_hot": {
+          "A": 27,
+          "B": 29,
+          "C": 24
+        },
+        "after_hot": {
+          "A": 27,
+          "B": 69,
+          "C": 24
+        },
+        "hot_key": "key-00000",
+        "hot_key_owner": "B",
+        "ratio_after_hot": 2.875
+      },
+      "reassignment": {
+        "reassigned_key_count": 31,
+        "fraction": 0.5166666666666667,
+        "retained": 29,
+        "matrix_counts": {
+          "A": {
+            "A": 17,
+            "B": 8,
+            "C": 6
+          },
+          "B": {
+            "A": 6,
+            "B": 12,
+            "C": 11
+          },
+          "C": {
+            "A": 0,
+            "B": 0,
+            "C": 0
+          }
+        }
+      },
+      "join_seconds": {
+        "values": [
+          0.1263529510000012,
+          0.1225570169999628
+        ],
+        "mean": 0.124454983999982,
+        "sample_sd": 0.002684130672363739,
+        "minimum": 0.1225570169999628,
+        "maximum": 0.1263529510000012
+      },
+      "estimated_item_bytes": 1587
+    },
+    {
+      "mode": "consistent",
+      "vnodes_per_node": 1,
+      "key_count": 60,
+      "placement_balance_before": {
+        "key_counts": {
+          "A": 33,
+          "B": 27
+        },
+        "cv": 0.1,
+        "max_min_ratio": 1.2222222222222223,
+        "shares": {
+          "A": 0.55,
+          "B": 0.45
+        }
+      },
+      "placement_balance_after": {
+        "key_counts": {
+          "A": 6,
+          "B": 27,
+          "C": 27
+        },
+        "cv": 0.4949747468305833,
+        "max_min_ratio": 4.5,
+        "shares": {
+          "A": 0.1,
+          "B": 0.45,
+          "C": 0.45
+        }
+      },
+      "request_balance": {
+        "uniform_reads": 80,
+        "additional_hot_reads": 40,
+        "before_hot": {
+          "A": 6,
+          "B": 36,
+          "C": 38
+        },
+        "after_hot": {
+          "A": 6,
+          "B": 76,
+          "C": 38
+        },
+        "hot_key": "key-00000",
+        "hot_key_owner": "B",
+        "ratio_after_hot": 12.666666666666666
+      },
+      "reassignment": {
+        "reassigned_key_count": 27,
+        "fraction": 0.45,
+        "retained": 33,
+        "matrix_counts": {
+          "A": {
+            "A": 6,
+            "B": 0,
+            "C": 27
+          },
+          "B": {
+            "A": 0,
+            "B": 27,
+            "C": 0
+          },
+          "C": {
+            "A": 0,
+            "B": 0,
+            "C": 0
+          }
+        }
+      },
+      "join_seconds": {
+        "values": [
+          0.11087362800003575,
+          0.10467684999997573
+        ],
+        "mean": 0.10777523900000574,
+        "sample_sd": 0.004381783745350054,
+        "minimum": 0.10467684999997573,
+        "maximum": 0.11087362800003575
+      },
+      "estimated_item_bytes": 1385
+    },
+    {
+      "mode": "consistent",
+      "vnodes_per_node": 16,
+      "key_count": 60,
+      "placement_balance_before": {
+        "key_counts": {
+          "A": 39,
+          "B": 21
+        },
+        "cv": 0.3,
+        "max_min_ratio": 1.8571428571428572,
+        "shares": {
+          "A": 0.65,
+          "B": 0.35
+        }
+      },
+      "placement_balance_after": {
+        "key_counts": {
+          "A": 24,
+          "B": 13,
+          "C": 23
+        },
+        "cv": 0.24832774042918898,
+        "max_min_ratio": 1.8461538461538463,
+        "shares": {
+          "A": 0.4,
+          "B": 0.21666666666666667,
+          "C": 0.38333333333333336
+        }
+      },
+      "request_balance": {
+        "uniform_reads": 80,
+        "additional_hot_reads": 40,
+        "before_hot": {
+          "A": 32,
+          "B": 20,
+          "C": 28
+        },
+        "after_hot": {
+          "A": 72,
+          "B": 20,
+          "C": 28
+        },
+        "hot_key": "key-00000",
+        "hot_key_owner": "A",
+        "ratio_after_hot": 3.6
+      },
+      "reassignment": {
+        "reassigned_key_count": 23,
+        "fraction": 0.38333333333333336,
+        "retained": 37,
+        "matrix_counts": {
+          "A": {
+            "A": 24,
+            "B": 0,
+            "C": 15
+          },
+          "B": {
+            "A": 0,
+            "B": 13,
+            "C": 8
+          },
+          "C": {
+            "A": 0,
+            "B": 0,
+            "C": 0
+          }
+        }
+      },
+      "join_seconds": {
+        "values": [
+          0.09116122800003268,
+          0.09202993700000661
+        ],
+        "mean": 0.09159558250001965,
+        "sample_sd": 0.0006142700247593522,
+        "minimum": 0.09116122800003268,
+        "maximum": 0.09202993700000661
+      },
+      "estimated_item_bytes": 1182
+    }
+  ]
+}

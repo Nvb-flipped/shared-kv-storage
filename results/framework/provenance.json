@@ -1,0 +1,6 @@
+{
+  "kind": "Historical course comparison, not a run of the refined framework",
+  "source_revision": "a2457689cdd28021c2cec9c9a0849e430d5678f9",
+  "changes": "Machine-specific source root and artifact path prefixes redacted; measured values and timing observations unchanged.",
+  "audit": "Source digests refer to this public Git revision. New studies use results/runs/ and their own manifest."
+}

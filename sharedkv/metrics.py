@@ -4,10 +4,13 @@ import statistics
 
 def balance(counts):
     values = list(counts.values())
+    if not values or any(type(value) is not int or value < 0 for value in values):
+        raise ValueError('Balance requires nonempty, nonnegative integer counts.')
     mean = statistics.mean(values)
+    total = sum(values)
     return {'key_counts': counts, 'cv': statistics.pstdev(values)/mean if mean else 0,
             'max_min_ratio': max(values)/min(values) if min(values) else None,
-            'shares': {n: c/sum(values) if sum(values) else 0 for n, c in counts.items()}}
+            'shares': {n: c/total if total else 0 for n, c in counts.items()}}
 
 
 def movement(before, after):

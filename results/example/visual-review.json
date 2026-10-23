@@ -1,0 +1,6 @@
+{
+  "png_figures": 6,
+  "hashes": "verified",
+  "manual_review": "passed: original and grayscale exports inspected by Codex",
+  "scope": "Original and grayscale review aids; not accessibility certification."
+}

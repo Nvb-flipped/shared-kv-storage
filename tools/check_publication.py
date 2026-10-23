@@ -9,6 +9,7 @@ from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = {'balance', 'join-cost', 'key-shares', 'movement', 'node-loads', 'requests', 'transfers'}
+EXAMPLE_FIGURES = {'movement', 'balance', 'node-loads', 'requests', 'transfers', 'join-time'}
 SLIDE_EXTENSIONS = {'.ppt', '.pptx', '.pptm', '.pot', '.potx', '.potm', '.pps', '.ppsx', '.odp', '.key', '.tex', '.sty', '.cls'}
 PRIVATE_FILES = {'docs/presentation.md', 'tools/build_beamer.py', 'tools/presentation_rings.py'}
 PATTERNS = {
@@ -17,6 +18,8 @@ PATTERNS = {
     'AWS access key': re.compile(rb'(?:AKIA|ASIA)[A-Z0-9]{16}'),
     'URL credential': re.compile(rb'https?://[^\s/:@]+:[^\s/@]+@'),
 }
+LOCAL_PATH = re.compile(rb'(?:/' + rb'home' + rb'/[^/\s"\x27]+/|[A-Za-z]:[\\/]Users[\\/][^\\/\s"\x27]+[\\/])')
+PASSWORD = re.compile(rb'(?i)\b(?:password|passwd|sudo_password)\s*[:=]\s*["\x27][^"\x27\s]{4,}["\x27]')
 
 
 def git(*args):
@@ -30,7 +33,8 @@ def private(path):
         return True
     if value in PRIVATE_FILES or p.suffix in SLIDE_EXTENSIONS:
         return True
-    if p.suffix == '.pdf' and not (p.parent.as_posix() == 'figures' and p.stem in FIGURES):
+    public_figure = (p.parent.as_posix() == 'figures' and p.stem in FIGURES) or (p.parent.as_posix() == 'results/example/figures' and p.stem in EXAMPLE_FIGURES)
+    if p.suffix == '.pdf' and not public_figure:
         return True
     if any(part.startswith(('slides-', 'slide-')) for part in p.parts):
         return True
@@ -73,6 +77,21 @@ def main():
         data = batch[end+1:end+1+size]
         offset = end+size+2
         for label, pattern in PATTERNS.items():
+            if pattern.search(data):
+                errors.add(f'{path}: possible {label}')
+    if errors:
+        raise SystemExit('Publication check failed:\n' + '\n'.join(sorted(errors)))
+    # Include edits and new publishable files before staging; never scan ignored skills or environments.
+    paths = git('ls-files', '--cached', '--others', '--exclude-standard', '-z').split(b'\0')
+    for raw_path in filter(None, paths):
+        path = raw_path.decode('utf-8')
+        file = ROOT/path
+        if not file.is_file():
+            continue
+        if private(path):
+            errors.add(f'working tree: private path {path}')
+        data = file.read_bytes()
+        for label, pattern in [*PATTERNS.items(), ('machine-specific home path', LOCAL_PATH), ('password assignment', PASSWORD)]:
             if pattern.search(data):
                 errors.add(f'{path}: possible {label}')
     if errors:

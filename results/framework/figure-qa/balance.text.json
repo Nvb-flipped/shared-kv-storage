@@ -1,5 +1,5 @@
 {
-  "pdf": "/home/paco/Shared_KV_Storage/figures/balance.pdf",
+  "pdf": "figures/balance.pdf",
   "auditable": true,
   "minimum_required_pt": 5.0,
   "minimum_found_pt": 14.0,

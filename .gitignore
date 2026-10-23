@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 .venv*/
 .runtime/
+results/runs/
+build/
+dist/
 *.egg-info/
 .agents/
 .codex/
@@ -39,6 +42,7 @@ tools/presentation_rings.py
 !figures/node-loads.pdf
 !figures/requests.pdf
 !figures/transfers.pdf
+!results/example/figures/*.pdf
 results/framework/*presentation*
 results/framework/*slide*
 results/framework/beamer-compile.log

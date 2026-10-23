@@ -16,9 +16,9 @@
 | Unequal token counts in an equal-V example | Give every node exactly V tokens; their coverage fractions may differ. Positions and key hashes are integers. |
 | Earlier record-version/replication implementation | Remove it from active source and deliverables. This primary spec excludes both. Virtual nodes supply the implemented bonus; no replication bonus is claimed. |
 | Earlier 70% hot-key workload | Use 1,000 uniform reads and 500 additional hot-key reads, with cumulative denominators 1,000 and 1,500. |
-| Example project5 subfolder | Keep the source at the repository root, with no project5 subfolder. The public release is prepared from the Windows project; a clone can run in WSL on another PC. |
+| Example project5 subfolder | Keep the source at the repository root, with no project5 subfolder. A clone runs independently of the original directory on Linux, WSL or Windows. |
 
-Two convenience endpoints keep experiments behind the router: `GET /keys` exposes every key's owner and physical hosts; `POST /admin/flush` coordinates a reset. Node removal is outside scope, so `leaving` is not an active state. IDs are single uppercase letters, matching the token display, and V is an integer from 1 to 1024. The sweep includes the specified 1/10/128 and the earlier doubling sequence.
+Two convenience endpoints keep experiments behind the router: `GET /keys` exposes every key's owner and physical hosts; `POST /admin/flush` coordinates a reset. Node removal is outside scope, so `leaving` is not an active state. IDs are single uppercase letters, matching the token display, and V is an integer from 1 to 1024. The study profile includes the specified 1/10/128 and the earlier doubling sequence; smaller or custom profiles choose other settings. Configurable topology and workload parameters preserve the same one-join protocol.
 
 Dynamo supplies the partitioning concepts. MIT's shard lab informs the separation of transfer and configuration changes. Neither requires this course framework to implement consensus, replication, quorums or durable recovery.
 

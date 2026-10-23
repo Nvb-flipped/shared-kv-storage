@@ -1,0 +1,16 @@
+# Course-scale reference comparison. Edit a copy to explore another question.
+[cluster]
+initial_nodes = ["A", "B", "C"]
+joining_node = "D"
+isolated = true                     # OS-assigned loopback ports for each trial
+startup_timeout = 5.0
+
+[experiment]
+keys = 1000
+uniform_reads = 1000
+additional_hot_reads = 500
+seed = 3010
+trials = 3
+modes = ["modulo", "consistent"]
+vnodes = [1, 2, 4, 8, 10, 16, 32, 64, 128]
+output = "../results/runs/study"      # relative to THIS configuration file

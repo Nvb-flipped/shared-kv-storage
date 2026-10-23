@@ -124,7 +124,7 @@ def document(rows, title, port):
 def main():
     for name, rows, title, port in [('openapi.json', ROUTER, 'Shared KV router', 8000),
                                     ('storage-openapi.json', STORAGE, 'Shared KV internal storage', 5001)]:
-        Path('docs', name).write_text(json.dumps(document(rows, title, port), indent=2)+'\n')
+        Path('docs', name).write_text(json.dumps(document(rows, title, port), indent=2)+'\n', encoding='utf-8', newline='\n')
     print('Generated 14 router and 8 storage operations; no browser UI.')
 
 

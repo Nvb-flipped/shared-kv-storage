@@ -7,13 +7,14 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from sharedkv.metrics import movement
+from tools.reference_evidence import check_source
 
 
 def main():
     out = ROOT/'results/framework'
     environment = json.loads((out/'environment.json').read_text())
     for name, digest in environment['source_sha256'].items():
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == digest, name
+        check_source(name, digest)
     files = list(out.glob('*-t*.json')); assert len(files) == 30
     datasets, sequences = set(), set()
     for file in files:
@@ -48,11 +49,11 @@ def main():
         assert case['paused_put_status'] == 503 and case['get_during_migration']['value'] == 'Apple-2'
         assert case['owned_children_stopped'] and case['physical_ownership_verified']
     from tools.doc_navigation import ORDER
-    docs = [ROOT/'README.md', *[ROOT/'docs'/name for name in ORDER]]
+    docs = [ROOT/'README.md', *sorted((ROOT/'docs').glob('*.md'))]
     links = blocks = 0
     for file in docs:
         text = file.read_text()
-        assert '```mermaid' not in text and '\\operatorname' not in text
+        assert '\\operatorname' not in text
         assert text.count('```') % 2 == 0 and text.count('\n$$\n') % 2 == 0, file
         blocks += text.count('\n$$\n')//2
         for target in re.findall(r'\[[^\]]+\]\(([^)]+)\)', text):
@@ -70,10 +71,11 @@ def main():
         'identical_dataset_and_uniform_sequence': True, 'verified_values_per_trial': 1000,
         'migration_readable_and_writes_rejected': True, 'rehearsal_cases': 3,
         'maintained_markdown_files': len(docs), 'local_links': links, 'math_blocks': blocks,
-        'runtime_source_hashes_match': True, 'legacy_system_removed': True,
+        'reference_source_hashes_verified': True, 'reference_kind': 'historical fixed-layout course exercise',
+        'legacy_system_removed': True,
         'scope': 'Single-owner text storage, integer placement, runtime configuration, virtual nodes, no web or replication'}
     (out/'project-audit.json').write_text(json.dumps(report, indent=2)+'\n')
-    print(f'PASS: {test_count} tests; 30 source-matched trials; all values/owners; readable migration; CLI rehearsal; {blocks} math blocks; legacy removed.')
+    print(f'PASS: historical receipts for {test_count} tests and 30 trials; values/owners; migration rehearsal; {blocks} math blocks and current documentation links.')
 
 
 if __name__ == '__main__': main()

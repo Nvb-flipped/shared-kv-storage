@@ -46,7 +46,7 @@ $$
 \mathrm{CV}=\frac{\sigma}{\bar c}.
 $$
 
-Use three active nodes before join and four afterward. Standard deviation is in keys; CV measures spread relative to average load. Counts 90/110 and 900/1100 both give CV=0.10. CV is not a fraction of moved keys.
+Use the active node count at each stage: N before joining and N+1 afterward (three and four in the historical reference). Standard deviation is in keys; CV measures spread relative to average load. Counts 90/110 and 900/1100 both give CV=0.10. CV is not a fraction of moved keys.
 
 The ratio requires a positive minimum. If one node is empty and another is not, it is infinite; an all-empty ratio is undefined. JSON uses `null` for either case rather than a non-finite number. Empty shares and CV=0 are display conventions, not evidence of balanced placement. Reported experiments use nonempty datasets.
 
@@ -78,13 +78,15 @@ Modulo can shuffle keys among old nodes as well as send keys to D. Consistent ha
 
 ## Expectations and fixed layouts
 
-For modulo, preserve old indices and append D. Under uniform residues modulo $N(N+1)$:
+For modulo, insert one new ID into the sorted membership. Under uniform residues modulo $N(N+1)$:
 
 $$
 \mathbb E[f_{\mathrm{move}}]=\frac{N}{N+1}.
 $$
 
-This predicts about 75% for three nodes growing to four. It is a uniform-hash model, not a finite-dataset guarantee. Inserting an arbitrary new ID into the middle of the sorted member list is a different case.
+This predicts about 75% for three nodes growing to four. It is a uniform-hash model, not a finite-dataset guarantee. Inserting an ID at another sorted position changes transfer destinations, but not this expected total fraction.
+
+Index the old nodes from zero. If an old node had index i and has new index j, a key stays there exactly when its remainders modulo N and modulo N+1 are i and j. Since the moduli are coprime, the Chinese remainder theorem gives one residue modulo their product for each old node's pair. There are N distinct staying residues among N(N+1), giving a staying fraction of 1/(N+1) and its complementary moved fraction. This applies at every insertion position. It uses a uniform-residue idealization; SHA-256 on a chosen finite dataset does not guarantee these frequencies.
 
 With old tokens fixed, equal tokens per node and ideal exchangeable random token positions:
 
@@ -94,6 +96,8 @@ m_{\mathrm{old}}=0,\qquad m=c_D^{\mathrm{after}},\qquad
 $$
 
 The 25% expectation averages over layouts. More virtual nodes can reduce coverage variation; they do not change that expectation to 12.5%. Improvement need not be monotonic for fixed node IDs.
+
+Two arguments are separate here. Inserting only the new node's tokens leaves every old token fixed, so changed intervals can only acquire that new owner. Under the ideal exchangeable-position model with equal token counts, all N+1 physical labels have equal expected coverage. Their coverage sums to one, so each expected share is 1/(N+1). Repeating processes with the same IDs does not repeat that random-layout experiment.
 
 For this particular ring, let $L=2^{256}$ and use distinct sorted token positions. Each token owns its clockwise predecessor interval. With at least two distinct positions, D's exact share of hash space is:
 
@@ -115,14 +119,16 @@ p_i^{\mathrm{read}}=\frac{r_i}{Q},\qquad
 R_{\mathrm{requests}}=\frac{\max_i r_i}{\min_i r_i}.
 $$
 
-The ratio has the same zero-denominator qualifications as the key ratio. The experiment first sends $U=1000$ uniformly sampled reads, including the hot key, then adds $H=500$ reads to that key. It compares cumulative counts before and after those added reads. Thus $Q=U+H=1500$ and $\alpha=H/(U+H)=1/3$.
+The ratio has the same zero-denominator qualifications as the key ratio. The original reference exercise sends $U=1000$ uniformly sampled reads, including the hot key, then adds $H=500$ reads to that key. It compares cumulative counts before and after those added reads. Thus $Q=U+H=1500$ and $\alpha=H/(U+H)=1/3$. Configurable runs use their recorded positive U and nonnegative H; the same formulas apply, including H=0.
 
 $$
 \mathbb E[p_h^{\mathrm{read}}]
 =\alpha+(1-\alpha)\frac{c_h}{K}.
 $$
 
-Here $h$ is the hot key's owner. The background includes the hot key, so the fraction is $c_h/K$. The older $(c_h-1)/(K-1)$ expression applies only to a background excluding it, with $K>1$; that is not this experiment. Key counts stay unchanged while exactly 500 extra requests reach $h$. Virtual nodes spread different keys, but one hot key still has one owner.
+Here $h$ is the hot key's owner. The background includes the hot key, so the fraction is $c_h/K$. The older $(c_h-1)/(K-1)$ expression applies only to a background excluding it, with $K>1$; that is not this experiment. Key counts stay unchanged while the configured extra requests reach $h$. Virtual nodes spread different keys, but one hot key still has one owner.
+
+This follows by weighting counts: each background read reaches h with probability equal to its stored-key share, while every extra hot read reaches h. Divide the expected count by U+H. A finite seeded sequence can differ from that expectation. Custom runs replace the reference's 500 extra reads with their configured H and use their actual totals in tables and plots.
 
 ## Membership cost
 

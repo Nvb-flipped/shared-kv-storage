@@ -14,8 +14,8 @@ from .transport import ApiError, fields, request, require, text_key
 def address(value):
     if not isinstance(value, str):
         raise ApiError(400, 'invalid_address', 'Use localhost:PORT or 127.0.0.1:PORT.')
-    parsed = urlsplit('//'+value)
     try:
+        parsed = urlsplit('//'+value)
         valid = parsed.hostname in ('localhost', '127.0.0.1') and parsed.port and 1 <= parsed.port <= 65535
     except ValueError:
         valid = False
@@ -373,3 +373,32 @@ class Router:
             finally:
                 self.mutation.release()
         raise ApiError(404, 'unknown_endpoint', 'Unknown router endpoint.')
+
+
+def main():
+    import argparse
+    from .transport import serve
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--port', type=int, default=8000)
+    parser.add_argument('--nodes', default='A=localhost:5001,B=localhost:5002,C=localhost:5003')
+    parser.add_argument('--placement', choices=['modulo', 'consistent'], default='consistent')
+    parser.add_argument('--vnodes', type=int, default=16)
+    args = parser.parse_args()
+    if not 1 <= args.port <= 65535:
+        parser.error('--port must be an integer from 1 to 65535')
+    try:
+        pairs = [item.split('=', 1) for item in args.nodes.split(',')]
+        nodes = dict(pairs)
+        if len(nodes) != len(pairs) or any(len(n) != 1 or not 'A' <= n <= 'Z' for n in nodes):
+            raise ValueError('Use distinct uppercase node IDs, for example A=localhost:5001.')
+        app = Router(nodes, args.placement, args.vnodes)
+    except (ValueError, TypeError, ApiError) as exc:
+        parser.error(str(exc))
+    try:
+        serve(app, args.port)
+    except OSError as exc:
+        parser.exit(1, f'Cannot start router on port {args.port}: {exc}\n')
+
+
+if __name__ == '__main__':
+    main()

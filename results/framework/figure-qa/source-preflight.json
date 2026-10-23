@@ -1,5 +1,5 @@
 {
-  "source": "/home/paco/Shared_KV_Storage/tools/figures.py",
+  "source": "tools/figures.py",
   "backend": "python",
   "summary": {
     "ready": true,

@@ -1,0 +1,10 @@
+# Predictable ports for attaching another client. Occupied ports are errors.
+[cluster]
+initial_nodes = ["A", "B", "C"]
+joining_node = "D"
+placement = "consistent"
+vnodes = 16
+isolated = false
+router_port = 8000
+storage_base_port = 5101
+startup_timeout = 5.0

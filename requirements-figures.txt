@@ -1,2 +1,4 @@
-# Optional plotting, author-property checks and visual review tools.
--r requirements-figures.lock
+# Optional figures for current study runs; Python 3.11+.
+# Keep runtime and numeric reports dependency-free.
+matplotlib>=3.8,<4
+Pillow>=11,<14

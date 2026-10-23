@@ -1,5 +1,5 @@
 Nature Figure Rendered Collision Audit
-pdf: /home/paco/Shared_KV_Storage/figures/node-loads.pdf
+pdf: figures/node-loads.pdf
 pages: 1
 visible text boxes: 22
 stroke paths: 118
