@@ -2,6 +2,7 @@
 # The core KV runtime still has no third-party dependencies.
 -r requirements-figures.txt
 -r requirements-contracts.txt
+-r requirements-diagrams.txt
 # The PDF geometry checks use the lightweight 1.x API, without layout/ML extras.
 PyMuPDF>=1.24,<1.27
 colorspacious>=1.1.2,<2

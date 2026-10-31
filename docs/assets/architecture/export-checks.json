@@ -1,0 +1,34 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "source": "docs/assets/architecture/diagram.svg",
+  "source_sha256": "1c80cfbfa6f46946a35b7044d2516de67fd22c912763f2ce936b6a8641b32eb0",
+  "print_size_pt": [
+    518.74,
+    270.898
+  ],
+  "text_labels": 29,
+  "minimum_font_pt": 8.12671875,
+  "grid_checks": {
+    "equal_client_and_store_dimensions": true,
+    "client_column_aligned": true,
+    "store_column_aligned": true,
+    "store_rows_regular": true,
+    "client_rows_match_outer_active_stores": true,
+    "client_elbows_share_axis": true,
+    "active_store_elbows_share_axis": true,
+    "client_connections_anchor_on_edges": true,
+    "router_inputs_anchor_on_left_edge": true,
+    "router_outputs_anchor_on_right_edge": true,
+    "store_connections_anchor_on_edges": true,
+    "join_anchors_on_waiting_store": true,
+    "router_input_output_rows_match": true,
+    "router_output_rows_regular": true,
+    "outer_router_and_membership_bounds_align": true,
+    "join_uses_router_center_axis": true,
+    "waiting_store_outside_active_enclosure": true,
+    "all_connection_segments_orthogonal": true
+  },
+  "findings": [],
+  "scope": "Actual SVG grid/routes, rendered text bounds, font floor, label overlap and PDF structure; semantic review is separate."
+}

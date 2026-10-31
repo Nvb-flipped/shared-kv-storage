@@ -1,0 +1,206 @@
+{
+  "author": "Paco",
+  "checks": {
+    "client_centers_match_outer_storage_rows": true,
+    "router_input_output_ports_match_rows": true,
+    "router_frame_matches_active_enclosure_top_bottom": true,
+    "client_elbows_aligned_x295": true,
+    "store_elbows_aligned_x600": true,
+    "store_endpoint_anchors_x655": true,
+    "router_output_anchors_x555": true,
+    "router_output_ports_equal_pitch17": true,
+    "client_router_anchors_x345": true,
+    "join_follows_router_center_axis_x450": true,
+    "ordinary_strokes_uniform_1_25": true,
+    "white_child_processes": true,
+    "role_heading_baselines_equal": true,
+    "role_heading_x": true,
+    "client_dimensions_equal": true,
+    "client_left_edges_equal": true,
+    "store_dimensions_equal": true,
+    "store_left_edges_equal": true,
+    "store_centers_regular": true,
+    "process_widths_equal": true,
+    "all_square_rectangles": true,
+    "store_labels_left_aligned": true,
+    "store_ports_left_aligned": true,
+    "d_outside_active_group": true,
+    "all_semantic_edges_orthogonal": true,
+    "no_edge_crossings": true,
+    "no_store_to_store_edge": true,
+    "one_waiting_join_path": true,
+    "no_normal_traffic_to_d": true,
+    "all_text_8_to_10_pt": true,
+    "exact_reused_source_paths": true,
+    "all_parts_real_and_nonempty": true
+  },
+  "passed": true,
+  "canvas": [
+    900,
+    470
+  ],
+  "print_width_mm": 183,
+  "column_x": [
+    35,
+    345,
+    655
+  ],
+  "process_width": 210,
+  "client_boxes": [
+    [
+      35.0,
+      85.0,
+      210.0,
+      60.0
+    ],
+    [
+      35.0,
+      265.0,
+      210.0,
+      60.0
+    ]
+  ],
+  "store_boxes": [
+    [
+      655.0,
+      85.0,
+      210.0,
+      60.0
+    ],
+    [
+      655.0,
+      175.0,
+      210.0,
+      60.0
+    ],
+    [
+      655.0,
+      265.0,
+      210.0,
+      60.0
+    ],
+    [
+      655.0,
+      355.0,
+      210.0,
+      60.0
+    ]
+  ],
+  "store_center_pitch": 90,
+  "role_heading_baseline": 35,
+  "font_print_pt_range": [
+    8.126926666666668,
+    9.798422222222221
+  ],
+  "edge_crossings": [],
+  "actual_edge_points": {
+    "cli-to-router": [
+      [
+        245.0,
+        115.0
+      ],
+      [
+        295.0,
+        115.0
+      ],
+      [
+        295.0,
+        188.0
+      ],
+      [
+        345.0,
+        188.0
+      ]
+    ],
+    "experiment-to-router": [
+      [
+        245.0,
+        295.0
+      ],
+      [
+        295.0,
+        295.0
+      ],
+      [
+        295.0,
+        222.0
+      ],
+      [
+        345.0,
+        222.0
+      ]
+    ],
+    "router-to-a": [
+      [
+        555.0,
+        188.0
+      ],
+      [
+        600.0,
+        188.0
+      ],
+      [
+        600.0,
+        115.0
+      ],
+      [
+        655.0,
+        115.0
+      ]
+    ],
+    "router-to-b": [
+      [
+        555.0,
+        205.0
+      ],
+      [
+        655.0,
+        205.0
+      ]
+    ],
+    "router-to-c": [
+      [
+        555.0,
+        222.0
+      ],
+      [
+        600.0,
+        222.0
+      ],
+      [
+        600.0,
+        295.0
+      ],
+      [
+        655.0,
+        295.0
+      ]
+    ],
+    "router-to-d-join": [
+      [
+        450.0,
+        340.0
+      ],
+      [
+        450.0,
+        385.0
+      ],
+      [
+        655.0,
+        385.0
+      ]
+    ]
+  },
+  "elbow_x": {
+    "clients": 295,
+    "active_stores": 600
+  },
+  "join_axis_x": 450,
+  "router_data_port_y": [
+    188,
+    205,
+    222
+  ],
+  "actual_source_path_count": 7,
+  "part_count": 11
+}

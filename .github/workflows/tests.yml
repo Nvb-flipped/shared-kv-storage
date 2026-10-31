@@ -76,3 +76,7 @@ jobs:
       - run: python -m sharedkv report --input results/runs/figures --plots --require-current-source
       - run: python tools/check_figures.py --input results/runs/figures
       - run: python tools/visual_qa.py --input results/runs/figures
+      - name: Architecture export dependencies
+        run: python -m playwright install --with-deps chromium --only-shell
+      - name: Native architecture diagram and rendered labels
+        run: python tools/export_architecture.py --out results/runs/architecture

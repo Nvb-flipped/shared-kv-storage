@@ -10,6 +10,8 @@ For the configurable-framework refinement, the Experimental Design, Statistical 
 
 The readiness update also used API/interface, HumanWriting, Nature Figure, Scientific Visualization and Vivid Illustration guidance. Figure code retains traceable measured inputs; style references do not supply experimental data. All maintained project prose and graph labels are English.
 
+The architecture schematic uses Vivid Illustration's editable SVG workflow. Its process boundaries, labels, ports and connections were checked against the implementation; glyph and embedded-font attribution is retained with the [figure source](assets/architecture/README.md).
+
 The primary design source is [refined_spec.md](../refined_spec.md), with Paco's subsequent integer-hash clarification. The project implements established partitioning mechanisms at course scale. No Dynamo or MIT lab implementation code is copied. [Dynamo §4.2](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) supplies consistent hashing and virtual-node concepts; [MIT's shard lab](https://pdos.csail.mit.edu/6.5840/labs/lab-shard1.html) informs transfer/configuration separation. Full replication, consensus and durable recovery are outside scope.
 
 Generated project figures name Paco as author. Git records source-file authorship. Supplied lecture material and all presentation files remain private and are excluded from this repository and its published history.

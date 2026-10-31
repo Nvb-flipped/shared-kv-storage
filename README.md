@@ -18,6 +18,7 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 ├── requirements-dev.txt                # Complete test, API and figure-QA environment
 ├── requirements-figures.txt            # Optional plotting dependencies
 ├── requirements-contracts.txt          # Optional API validators
+├── requirements-diagrams.txt           # Optional architecture exports
 ├── client.py                           # Standalone HTTP client entry point
 ├── router.py                           # Standalone router entry point
 ├── storage_node.py                     # Standalone storage entry point
@@ -43,6 +44,7 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 ├── configs/                            # Demo, quick-check and course-study profiles
 ├── tests/                              # System, boundary, study and plotting tests
 ├── docs/                               # Reading map, design, API, math and assessment
+│   └── assets/                         # Editable diagrams, previews and source notes
 ├── results/                            # Recorded observations and validation evidence
 │   ├── final/                          # Assessed course comparison and provenance
 │   ├── example/                        # Earlier small worked example

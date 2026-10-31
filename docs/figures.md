@@ -5,7 +5,7 @@
 <!-- navigation:end -->
 
 <!-- contents:start -->
-On this page: [Reading the six figures](#reading-the-six-figures) · [Visual choices](#visual-choices) · [Rebuild and check](#rebuild-and-check)
+On this page: [Reading the six figures](#reading-the-six-figures) · [Visual choices](#visual-choices) · [Architecture schematic](#architecture-schematic) · [Rebuild and check](#rebuild-and-check)
 <!-- contents:end -->
 
 The figures explain three different effects: how many keys move, how those keys are spread across physical nodes, and how one hot key concentrates requests. Timing is a separate local cost. A visually small movement is not automatically a balanced placement, and a balanced key count is not a balanced request workload.
@@ -30,6 +30,12 @@ The style borrows restrained typography, direct labels, RGB output and accessibl
 Plots use white backgrounds, light blue/orange/green fills, clear outlines and consistent sans-serif text. The transfer scale has no dark navy endpoint. Node marks use stable colors with distinct shapes and letters; large memberships may repeat hues, so color is never the only identifier. Terminal colors use the same stable node mapping and preserve letters, patterned bars, counts and percentages.
 
 SVG and PDF retain selectable text. PNG is exported at 300 dpi. Main panels are about 183 mm wide, with topology-dependent expansion when needed. The exported size, rather than the size of an on-screen preview, determines legibility. The font floor and panel geometry are checked on the actual outputs. No decorative 3-D, synthetic uncertainty, smoothing or generated data is used.
+
+## Architecture schematic
+
+The [architecture figure](architecture.md) is a native, editable SVG rather than an ASCII drawing. It uses aligned component rows, text anchors, router ports and connector elbows. Short internal labels describe the actual router; the caption explains process boundaries and the waiting-node state. Pale role groups, white child components, thin uniform outlines and dashed join styling keep the structure readable without relying on color alone.
+
+The [source notes](assets/architecture/README.md) include glyph/font attribution and the headless rebuild command. `requirements-diagrams.txt` supplies the optional export dependencies; the numerical plots continue to use `requirements-figures.txt`. Architecture export creates a vector PDF and a 300 dpi PNG and checks the actual rendered labels. The separate CI figures job exercises that export too.
 
 ## Rebuild and check
 

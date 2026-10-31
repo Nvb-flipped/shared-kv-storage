@@ -1,0 +1,4 @@
+# Optional architecture-documentation exports; no KV runtime dependency.
+playwright>=1.64,<2
+PyMuPDF>=1.24,<1.27
+Pillow>=11,<14

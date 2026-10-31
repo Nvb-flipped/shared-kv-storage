@@ -10,12 +10,9 @@ On this page: [Configuration and study lifecycle](#configuration-and-study-lifec
 
 The system is the network of processes. `sharedkv/cli.py` and `sharedkv/experiment.py` implement the two HTTP clients; the original top-level scripts delegate to them. Neither imports the router, membership table or placement module. The router computes ownership on demand, and each storage process holds only its own `key -> text value` dictionary.
 
-```text
-CLI client -------- HTTP ----> Router :8000 ---- HTTP ----> A :5101
-Experiment client ------------>     |                    > B :5102
-                                   |                    > C :5103
-                                   +--------------------> D :5104 (joins)
-```
+![Default WSL process topology: alternative HTTP clients, one router, three active stores and an empty waiting D.](assets/architecture/diagram.png)
+
+*Figure 1. Default process topology on one WSL machine. Solid arrows show HTTP requests and replies; the dashed path marks the join operation. A/B/C are active, while D runs empty outside membership until `addnode`. Each box represents a software process and each key has one owner.* [Figure source and exports](assets/architecture/README.md).
 
 `sharedkv/transport.py` provides bounded JSON messages and consistent errors. `storage.py` holds local values. `router.py` manages membership, counters and migration, using integer placement from `placement.py`. `terminal.py` formats responses without choosing owners. `cluster.py` launches processes; clients do not import it. Runtime code uses only Python's standard library.
 
