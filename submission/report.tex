@@ -20,6 +20,7 @@
 \setlength{\abovedisplayskip}{5pt}
 \setlength{\belowdisplayskip}{5pt}
 \newcommand{\repo}{\url{https://github.com/Nvb-flipped/shared-kv-storage}}
+\newcommand{\detail}[2]{\href{https://github.com/Nvb-flipped/shared-kv-storage/blob/3f5da8a06de57b4e222b7b551b1a55b96c4cbadf/#1}{#2}}
 \begin{document}
 \begin{center}
 {\LARGE\bfseries Sharded key-value storage}\par
@@ -71,7 +72,7 @@ owners, so clients cannot silently use a different placement algorithm.
 \texttt{POST /put} overwrites a text value; \texttt{GET /get?key=...} reads it.
 Owner, key inventory, statistics and ring endpoints expose routing and physical
 placement. A missing key receives HTTP 404 and CLI exit code 3; the interactive
-prompt continues. Router and storage OpenAPI contracts specify bodies, responses
+prompt continues. Router and storage \detail{docs/api.md}{OpenAPI contracts} specify bodies, responses
 and errors. Repeated JSON fields, invalid lengths and oversized bodies are
 rejected; a stalled body receives HTTP 408 after a 10-second inactivity timeout.
 JSON is the transport envelope, while stored keys and values remain plain text.
@@ -89,7 +90,7 @@ Each successful trial requires changed owners, acknowledged copies and verified
 destinations to agree. It then reads every original value and checks exactly one
 physical copy at the routed owner. All 30 trials passed, covering 30,000 original
 value checks. The release also passed 46 tests with zero skips on Windows
-(Python 3.12.14) and WSL (3.14.4). Barrier tests exercise paused writes, overlapping
+(Python 3.12.14) and WSL (3.14.4). Barrier \href{https://github.com/Nvb-flipped/shared-kv-storage/tree/3f5da8a06de57b4e222b7b551b1a55b96c4cbadf/tests}{tests} exercise paused writes, overlapping
 reads, lost acknowledgments and cleanup recovery. Thirty live response checks
 validate both API contracts, including timeout errors. These are finite checks,
 not a proof for every possible failure schedule.
@@ -103,7 +104,7 @@ followed by 500 extra reads to one key. Inspection and migration do not count as
 workload requests; ordinary client misses do.
 
 For $K$ keys and $n$ active physical nodes, let $c_i$ be node $i$'s key count and
-$\bar c=K/n$. Placement imbalance and reassignment are
+$\bar c=K/n$. \detail{docs/metrics.md}{Placement imbalance and reassignment} are
 \[
 \mathrm{CV}=\frac{\sqrt{\frac1n\sum_{i=1}^{n}(c_i-\bar c)^2}}{\bar c},
 \qquad
@@ -147,7 +148,7 @@ does not establish balance; virtual nodes also cannot split one hot key's demand
 \newpage
 \section{Reproduction, feedback and limitations}
 The assessed runtime and raw comparison are pinned by \texttt{v0.3.1}~\cite{project}.
-\texttt{results/final/} retains all trials, effective settings, schedule, environment,
+\href{https://github.com/Nvb-flipped/shared-kv-storage/tree/3f5da8a06de57b4e222b7b551b1a55b96c4cbadf/results/final}{\texttt{results/final/}} retains all trials, effective settings, schedule, environment,
 source hashes, transfer matrices, counters and generated summaries. Later
 documentation changes retain this measured runtime. Source matching prevents an
 older run from being described as a measurement of changed code.
@@ -161,7 +162,7 @@ resource caps. Fresh processes repeat timing, not token layouts. Table~\ref{tab:
 reports sample SD across three timings; it does not estimate uncertainty over
 independent layouts, machines or production workloads.
 
-The README provides setup, dependency groups, startup, sample commands and port
+The \detail{README.md}{README} provides setup, dependency groups, startup, sample commands and port
 troubleshooting. \texttt{tools/reproduce.py} runs a fresh comparison using one
 interpreter. The complete development environment enables every test, API check,
 plot export and formula check; runtime operations have no third-party dependencies.
@@ -169,6 +170,16 @@ Outputs use new directories and are never silently overwritten. Archived
 Windows/WSL receipts retain 19 completed validation stages per platform.
 Reproduction should preserve ownership, values and counter invariants; elapsed
 times need not match. Matplotlib plots~\cite{matplotlib} use labels and shapes as well as color.
+
+\textbf{Extended material.}
+Details beyond the page limit are linked at GitHub revision \texttt{3f5da8a}:
+\detail{docs/README.md}{documentation map};
+\detail{docs/api.md}{API reference};
+\detail{docs/metrics.md}{mathematical derivations};
+\detail{docs/experiment-design.md}{experiment protocol};
+\detail{results/final/analysis.md}{complete results};
+\detail{docs/reproduction.md}{reproduction instructions}; and
+\detail{docs/ai-use.md}{assistance and attribution}.
 
 \textbf{Changes after presentation feedback.}
 Compared with the 23 October revision \texttt{a245768}, the refinement adds TOML

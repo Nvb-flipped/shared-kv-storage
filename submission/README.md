@@ -4,6 +4,8 @@ The final report is [report.pdf](report.pdf): four A4 pages of main text, figure
 
 The report explains the question, Dynamo connection, architecture, implementation, API boundaries, correctness evidence, experiment, results, interpretation, limitations, changes after presentation feedback, personal contributions and AI assistance. It summarizes the documentation rather than reproducing the full API specification or every raw observation. The [documentation map](../docs/README.md) leads to those details.
 
+The PDF includes clickable GitHub links at relevant passages and an extended-material index on page 4. Detailed API definitions, derivations, experiment protocol, complete results, reproduction instructions and assistance notes are pinned to revision `3f5da8a`; the corresponding repository link remains printed in the references. Core methods, results and limitations remain in the report itself.
+
 ## Rebuild
 
 From the project root, with Python 3.11+ and an existing TeX Live installation:

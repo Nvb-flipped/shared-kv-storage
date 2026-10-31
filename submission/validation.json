@@ -118,7 +118,7 @@
   "report": {
     "main_pages": 4,
     "reference_pages": 1,
-    "pdf_sha256": "f135c95c51734621360a4715291b38aa55d0bef683983e57fc26b19b5de4206f",
+    "pdf_sha256": "1fec01d0ac1a0cd934a6bc89dad7d894e6526df507b6a0292b14d130921ebe0e",
     "manual_visual_review": "completed on all five rendered pages",
     "review_checks": [
       "readable formulas and glyphs",
@@ -126,7 +126,8 @@
       "complete captions and references",
       "no clipped content or unintended page overflow"
     ],
-    "extracted_source_latex_rebuild": "passed; identical five-page text and rendered pixels"
+    "extracted_source_latex_rebuild": "passed; identical five-page text and rendered pixels",
+    "pinned_supplementary_links": 10
   },
   "raw_verification_logs": "Retained locally; the compact receipt does not substitute for the published course raw data.",
   "note": "These six trials verify the submitted workflow. The 30 assessed trials remain under results/final; no old measurement is relabelled."

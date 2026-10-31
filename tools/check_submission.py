@@ -7,10 +7,16 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+DOC_REVISION = '3f5da8a06de57b4e222b7b551b1a55b96c4cbadf'
 
 
 def sha256(file):
     return hashlib.sha256(file.read_bytes()).hexdigest()
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
 
 
 def audit():
@@ -19,11 +25,12 @@ def audit():
     from tools.check_publication import private
     report = ROOT/'submission/report.pdf'
     source = (ROOT/'submission/report.tex').read_text(encoding='utf-8')
-    require = lambda condition, message: None if condition else fail(message)
     require(r'\documentclass[12pt,a4paper]{article}' in source and r'\usepackage{lmodern}' in source,
         'The report must use A4, 12 pt Latin Modern article text.')
     require(not re.search(r'[\u3400-\u9fff]', source), 'The report source must be English.')
     require('beamer' not in source.lower(), 'The public report must not be a slide source.')
+    for target in re.findall(r'\\detail\{([^}]+)\}', source):
+        require((ROOT/target).is_file(), 'Linked supplementary file is missing: '+target)
     require((ROOT/'submission/results-table.tex').read_text(encoding='utf-8') == results_table(),
         'The table differs from the source-matched raw study.')
     fonts = set()
@@ -31,6 +38,11 @@ def audit():
         require(len(document) == 5, 'Expected four main pages and one reference page.')
         require(document.metadata.get('author') == 'Paco', 'PDF author must be Paco.')
         texts = [page.get_text() for page in document]
+        links = {link['uri'] for page in document for link in page.get_links() if link.get('uri')}
+        pinned = [link for link in links if DOC_REVISION in link]
+        require(len(pinned) >= 10, 'The PDF must link directly to the pinned supporting documentation and evidence.')
+        require(not any('/blob/main/' in link or '/tree/main/' in link for link in links),
+            'Report evidence links must identify a fixed revision.')
         require(texts[-1].startswith('References'), 'References must start on page 5.')
         require(all(not t.startswith('References') for t in texts[:4]), 'Main text page is missing.')
         for i, page in enumerate(document, 1):
@@ -61,12 +73,9 @@ def audit():
     return {'author': 'Paco', 'status': 'passed', 'main_pages': 4, 'reference_pages': 1,
         'paper': 'A4', 'body_font': 'Latin Modern, 12 TeX pt', 'fonts_embedded': True,
         'table_settings': 10, 'source_matched': True, 'author_math_attribution_present': True,
+        'pinned_supplementary_links': len(pinned), 'documentation_revision': DOC_REVISION,
         'manual_visual_review': 'required separately; automated checks do not certify appearance',
         'pdf_sha256': sha256(report), 'input_sha256': {name: sha256(ROOT/name) for name in inputs}}
-
-
-def fail(message):
-    raise ValueError(message)
 
 
 def main():
