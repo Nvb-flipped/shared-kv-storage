@@ -6,6 +6,8 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 
 [Study use cases](docs/use-cases.md) · [Configuration](docs/configuration.md) · [Architecture](docs/architecture.md) · [Math and metrics](docs/metrics.md) · [Documentation map](docs/README.md)
 
+For UM submission, use the [four-page report and reference page](submission/report.pdf), its [LaTeX source and build guide](submission/README.md), and the source archive described there. The repository documentation supplies the detailed contracts and evidence behind the report.
+
 ## Project structure
 
 ```text
@@ -42,6 +44,7 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 │   ├── figure_quality.py               # Rendered layout checks
 │   └── terminal.py                     # Formatted and colored CLI output
 ├── configs/                            # Demo, quick-check and course-study profiles
+├── submission/                         # UM report, LaTeX source and submission guide
 ├── tests/                              # System, boundary, study and plotting tests
 ├── docs/                               # Reading map, design, API, math and assessment
 │   └── assets/                         # Editable diagrams, previews and source notes
@@ -62,7 +65,11 @@ Start with the [documentation map](docs/README.md) when moving between design, A
 
 ## Start an interactive cluster
 
-Python 3.11+ is sufficient; the runtime has no third-party dependencies. Run from a fresh clone on Linux, WSL or Windows:
+Python 3.11+ is sufficient; the runtime has no third-party dependencies. Hardware: one ordinary PC capable of running a router, four storage processes and a client at the same time. No GPU, database, container engine or cloud account is required. Stores hold their configured data in RAM, so larger workloads need more memory.
+
+The course comparison ran on an x86_64 laptop under WSL. A later hardware check identified an Intel Core i7-12700H, with WSL exposing 20 logical CPUs and about 15.4 GiB RAM. These are observed resources, not measured minimum requirements or an archived CPU/RAM quota for the earlier study.
+
+Run from a fresh clone on Linux, WSL or Windows:
 
 ```bash
 git clone https://github.com/Nvb-flipped/shared-kv-storage.git
@@ -83,6 +90,8 @@ get user:101
 membership
 quit
 ```
+
+`put` reports that `user:101` was stored; `get user:101` returns `Apple`. Add `get missing` to see a normal not-found response (exit 3 in one-shot use); the interactive prompt remains available. Owner labels depend on the configured placement and membership. After `addnode`, reading the key must still return `Apple`.
 
 The default demo profile uses the address shown above; use the printed command for a modified topology. Another terminal can attach with `python -m sharedkv client --router http://127.0.0.1:8000`. The [demo guide](docs/demo.md) explains misses, counters, reconfiguration and HTTP clients. `bash run_cluster.sh` and the standalone Python scripts remain available.
 
@@ -136,6 +145,17 @@ Reproduction uses the selected interpreter throughout. It requires no sudo, cred
 [Course results and interpretation](docs/report.md) identify the final comparison and its raw observations. The [assessment map](docs/assessment.md) connects each criterion to implementation and evidence. [Original measured results](docs/results.md) remain historical reference material. The earlier [small worked example](results/example/analysis.md) illustrates the workflow at its recorded source version. New runs never overwrite either reference dataset.
 
 For an assessed snapshot, use the immutable `v0.3.1` tag rather than assuming that a future `main` still contains the same source. The [reproduction guide](docs/reproduction.md) gives the exact workflow and explains what must agree and why timings may differ.
+
+## Setup and dependency issues
+
+| Symptom or task | What to do |
+|---|---|
+| `python` is missing or TOML parsing is unavailable | Use Python 3.11+; on Linux/WSL the command may be `python3`. |
+| A configured port is occupied | Stop your own earlier cluster or select another range; `demo --isolated` uses OS-assigned ports. The launcher never kills unrelated services. |
+| Plotting, PDF or API checks cannot import a package | Install `requirements-dev.txt` into the same virtual environment used for validation. A core-only run can skip optional tests; complete validation rejects skips. |
+| Installing dependencies needs network access | Install once before an offline demonstration. The running KV cluster and study do not need the internet. |
+| An output directory already contains files | Choose a fresh output path; keep interrupted observations separate. |
+| Rebuilding the UM report | Install a LaTeX distribution with `pdflatex` and Latin Modern; see the [submission guide](submission/README.md). LaTeX is not a KV runtime dependency. |
 
 ## System boundaries
 

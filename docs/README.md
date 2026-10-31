@@ -12,6 +12,7 @@ Start with the [project README](../README.md). These routes connect a learning g
 | Run a personal comparison | [Configuration](configuration.md) → [Experiment design](experiment-design.md) → [Reproduction](reproduction.md) |
 | Understand behavior | [Architecture](architecture.md) → [Math and metrics](metrics.md) → [API](api.md) → [HTTP clients](api-client.md) |
 | Read assessed results | [Course report](report.md) → [Final run](../results/final/) → [Figure guide](figures.md) |
+| Prepare the UM submission | [Four-page report PDF](../submission/report.pdf) → [LaTeX and packaging guide](../submission/README.md) → [Setup and sample inputs](../README.md) |
 | Compare earlier examples | [Earlier worked example](../results/example/analysis.md) → [Historical reference](results.md) |
 | Check course scope | [Assessment map](assessment.md) → [Requirements map](scope.md) → [Specification decisions](spec-decisions.md) → [Attribution](ai-use.md) |
 
@@ -26,6 +27,7 @@ Start with the [project README](../README.md). These routes connect a learning g
 | `tests/` | API behavior, migration/failure boundaries, config validation and finite invariant checks. |
 | `results/runs/` | Ignored local runs; effective settings, schedule, raw trials and derived artifacts. |
 | `results/final/` | Assessed full comparison, raw trials, figures, hashes and provenance. |
+| `submission/` | Four-page final report plus references, editable LaTeX source and submission instructions. |
 | `results/example/` | Earlier small worked example at its recorded source version. |
 | `results/framework/`, `figures/`, `results/qa/` | Historical reference measurements, figures and receipts. |
 | `tools/reproduce.py`, `reproduce.sh` | Current complete workflow using the selected interpreter. |

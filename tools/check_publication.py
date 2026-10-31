@@ -12,6 +12,7 @@ FIGURES = {'balance', 'join-cost', 'key-shares', 'movement', 'node-loads', 'requ
 EXAMPLE_FIGURES = {'movement', 'balance', 'node-loads', 'requests', 'transfers', 'join-time'}
 SLIDE_EXTENSIONS = {'.ppt', '.pptx', '.pptm', '.pot', '.potx', '.potm', '.pps', '.ppsx', '.odp', '.key', '.tex', '.sty', '.cls'}
 PRIVATE_FILES = {'docs/presentation.md', 'tools/build_beamer.py', 'tools/presentation_rings.py'}
+PUBLIC_REPORT_FILES = {'submission/report.tex', 'submission/results-table.tex', 'submission/report.pdf'}
 PATTERNS = {
     'GitHub token': re.compile(rb'(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})'),
     'private key': re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----'),
@@ -31,10 +32,10 @@ def private(path):
     p = PurePosixPath(value)
     if value.startswith(('presentation/', 'reference-material/', 'docs/requirements/', '.runtime/', '.agents/', '.codex/')):
         return True
-    if value in PRIVATE_FILES or p.suffix in SLIDE_EXTENSIONS:
+    if value in PRIVATE_FILES or (p.suffix in SLIDE_EXTENSIONS and value not in PUBLIC_REPORT_FILES):
         return True
     public_figure = (p.parent.as_posix() == 'figures' and p.stem in FIGURES) or (p.parent.as_posix() in {'results/example/figures', 'results/final/figures'} and p.stem in EXAMPLE_FIGURES)
-    if p.suffix == '.pdf' and not public_figure:
+    if p.suffix == '.pdf' and not public_figure and value not in PUBLIC_REPORT_FILES:
         return True
     if any(part.startswith(('slides-', 'slide-')) for part in p.parts):
         return True

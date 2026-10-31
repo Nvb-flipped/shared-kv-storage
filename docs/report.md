@@ -5,8 +5,12 @@
 <!-- navigation:end -->
 
 <!-- contents:start -->
-On this page: [Question and scope](#question-and-scope) · [Connection to the reading](#connection-to-the-reading) · [Design and correctness](#design-and-correctness) · [Experimental method](#experimental-method) · [Results](#results) · [Reproduction and evidence](#reproduction-and-evidence) · [Limits and interpretation](#limits-and-interpretation)
+On this page: [Question and scope](#question-and-scope) · [Connection to the reading](#connection-to-the-reading) · [Design and correctness](#design-and-correctness) · [Experimental method](#experimental-method) · [Results](#results) · [Reproduction and evidence](#reproduction-and-evidence) · [Changes after presentation feedback](#changes-after-presentation-feedback) · [Limits and interpretation](#limits-and-interpretation)
 <!-- contents:end -->
+
+The [UM report PDF](../submission/report.pdf) presents this material in four main pages plus one reference page, using 12 pt Latin Modern. Its [LaTeX source and submission guide](../submission/README.md) provide the build and packaging commands. This Markdown page retains the longer reading route and evidence links.
+
+
 
 ## Question and scope
 
@@ -76,6 +80,12 @@ Use the immutable `v0.3.1` source tag and install `requirements-dev.txt` for the
 The [reproduction guide](reproduction.md) gives the commands. The [assessment map](assessment.md) maps each criterion to evidence. The [figure guide](figures.md) explains source data, geometry checks and grayscale/color-vision sheets. Runtime and numeric reports still need no third-party packages.
 
 Historical measurements retain their original provenance and are not relabelled as fresh results. New timings need not equal previous timings; controlled placement and verification invariants must agree. Actual dependency versions and raw outputs are retained with validation evidence.
+
+## Changes after presentation feedback
+
+The comparison baseline is the 23 October public revision `a245768`. Following presentation feedback, the project gained TOML profiles, one workflow entry point, clearer dependency installation and configurable workloads. API handling now covers more malformed requests and stalled bodies. A fresh source-matched comparison, explicit actual-ring coverage, an aligned architecture diagram and documentation navigation make the result easier to inspect and reproduce. Hashing, virtual nodes, migration and the original comparison already existed at the baseline; these are not claimed as later additions.
+
+Paco chose the experimental settings, directed the flexible framework design and specified API refinements for exception cases. The initial mathematical derivations were completed by Paco; Codex helped refine notation, formalize the exposition and qualify the assumptions. Implementation, debugging, tests and documentation also received Codex assistance, recorded in the [assistance statement](ai-use.md).
 
 ## Limits and interpretation
 

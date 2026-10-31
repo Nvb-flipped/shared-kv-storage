@@ -41,7 +41,7 @@ Presentation-only findings from the earlier review are closed from this maintena
 
 ## Submission snapshot
 
-Use the `v0.3.1` tag for the assessed source, the [course report](report.md) for interpretation and `results/final/` for raw trials, figures and provenance. The [platform validation evidence](../results/validation/v0.3.1/README.md) records actual dependency versions and source hashes. Keep later exploratory runs under ignored `results/runs/` rather than silently replacing the assessed dataset.
+Use the `v0.3.1` tag for the assessed runtime and `results/final/` for raw trials, figures and provenance. The [UM report](../submission/report.pdf) supplies four main pages and one reference page; the [submission guide](../submission/README.md) covers its LaTeX source and source-archive packaging. These are later documentation additions to the same measured runtime. The longer [course report](report.md) retains evidence links. The [platform validation evidence](../results/validation/v0.3.1/README.md) records actual dependency versions and source hashes. Keep later exploratory runs under ignored `results/runs/` rather than silently replacing the assessed dataset.
 
 Passing finite checks supports the stated local single-owner system. It does not establish all possible failure schedules, restore volatile data after a crash, or guarantee an instructor's grade.
 

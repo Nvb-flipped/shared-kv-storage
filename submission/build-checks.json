@@ -1,0 +1,24 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "main_pages": 4,
+  "reference_pages": 1,
+  "paper": "A4",
+  "body_font": "Latin Modern, 12 TeX pt",
+  "fonts_embedded": true,
+  "table_settings": 10,
+  "source_matched": true,
+  "author_math_attribution_present": true,
+  "manual_visual_review": "required separately; automated checks do not certify appearance",
+  "pdf_sha256": "f135c95c51734621360a4715291b38aa55d0bef683983e57fc26b19b5de4206f",
+  "input_sha256": {
+    "submission/report.tex": "c62475292f2a26ac65d114c1307470dafeed66d43ea36c92cd1f698c9092b9ee",
+    "submission/results-table.tex": "48b5b0b3e917d362d40915a0f3bcec874751959e01900edb0f6fdd5414af5309",
+    "docs/assets/architecture/diagram.png": "96a54a98755a69e2730812e153cbc78e0a2a3ee5cf0e033366c8db37c53248e5",
+    "results/final/figures/requests.pdf": "508b73b691218e44934f8a1f7cb345d474815a3ab534dd488dd2de043827cbcd",
+    "results/final/environment.json": "6a0cb460e0caf9572f0c043792aa9f72dc54099b34241b6d710bfd9d22ab23cb",
+    "results/final/summary.csv": "16c4d09c46fa63ee4b8e2b7dd90d8699f64e09dfad4ada6c6bfd72c8a030d56b",
+    "tools/build_report.py": "9f5961e9d41446555e7db4dd96ebcdab72900237233416639074becc48fbfc43",
+    "tools/check_submission.py": "47c701efd98def02ab806d4211a90bd5b2498765c206903ca0bc5bd3cfc3ca56"
+  }
+}

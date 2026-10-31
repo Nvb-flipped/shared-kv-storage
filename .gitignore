@@ -36,6 +36,10 @@ tools/presentation_rings.py
 *.sty
 *.cls
 *.pdf
+# Public course report; all other TeX/slide sources and PDFs remain excluded.
+!submission/report.tex
+!submission/results-table.tex
+!submission/report.pdf
 !figures/balance.pdf
 !figures/join-cost.pdf
 !figures/key-shares.pdf

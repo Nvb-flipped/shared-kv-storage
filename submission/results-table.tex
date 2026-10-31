@@ -1,0 +1,23 @@
+\begin{center}
+\captionof{table}{All 1,000-key settings; three fresh-process timings per fixed layout. Join duration is mean $\pm$ sample SD. Reassigned, copied and verified counts agree.}
+\label{tab:results}
+\vspace{3pt}
+{\fontsize{10.5}{12.5}\selectfont
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lr r r r@{}}
+\toprule
+Setting & After A/B/C/D & CV & Moved & Join (s) \\
+\midrule
+Modulo & 246/247/254/253 & 0.014 & 74.3\% & $2.767 \pm 0.024$ \\
+Consistent $V=1$ & 119/351/469/61 & 0.666 & 6.1\% & $0.239 \pm 0.023$ \\
+Consistent $V=2$ & 268/404/184/144 & 0.398 & 14.4\% & $0.534 \pm 0.006$ \\
+Consistent $V=4$ & 189/390/315/106 & 0.439 & 10.6\% & $0.433 \pm 0.063$ \\
+Consistent $V=8$ & 171/213/455/161 & 0.480 & 16.1\% & $0.596 \pm 0.014$ \\
+Consistent $V=10$ & 244/216/319/221 & 0.165 & 22.1\% & $0.868 \pm 0.061$ \\
+Consistent $V=16$ & 296/245/270/189 & 0.158 & 18.9\% & $0.768 \pm 0.104$ \\
+Consistent $V=32$ & 294/286/239/181 & 0.180 & 18.1\% & $0.679 \pm 0.007$ \\
+Consistent $V=64$ & 287/327/218/168 & 0.245 & 16.8\% & $0.667 \pm 0.040$ \\
+Consistent $V=128$ & 267/298/210/225 & 0.139 & 22.5\% & $0.874 \pm 0.080$ \\
+\bottomrule
+\end{tabular}}
+\end{center}
