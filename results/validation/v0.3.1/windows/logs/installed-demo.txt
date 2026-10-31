@@ -1,0 +1,30 @@
+Starting 3 stores and the router...
+[STARTUP] Starting X on 127.0.0.1:9312...
+[STARTUP] X ready (PID 35188).
+[STARTUP] Starting Y on 127.0.0.1:9313...
+[STARTUP] Y ready (PID 22124).
+[STARTUP] Starting Z on 127.0.0.1:9314...
+[STARTUP] Z ready (PID 15136).
+[STARTUP] Starting router on 127.0.0.1:9311...
+[STARTUP] router ready (PID 13572).
+Router: http://127.0.0.1:9311
+Independent PIDs: X=35188, Y=22124, Z=15136, router=13572
+X/Y are members. Z waits for: addnode Z 127.0.0.1:9314
+Text key-value prompt. Type help; quit to leave.
+>> User: [STORED] installed-key
+  Value:  installed-value
+  Owner:  Y
+>> User: [FOUND] installed-key
+  Value:  installed-value
+  Owner:  Y
+>> User: installed-key: owner Y
+>> User: placement=consistent  vnodes=16  membership=v1  paused=false
+migration=idle  reload_required=False
+Node  Status     Keys   Key share   Requests  Request share
+X     active        0       0.0%          0        0.0%
+Y     active        1     100.0%          2      100.0%  ####################
+Total stored items: 1; client forwards: 2.
+Requests include Put/Get attempts and misses; inspections and migration are excluded.
+Top requested keys:
+  installed-key -> Y (2 requests)
+>> User:

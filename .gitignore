@@ -10,6 +10,7 @@ dist/
 .agents/
 .codex/
 skills-lock.json
+node_modules/
 .chart-data-*/
 
 # Private course material and every slide source/export/preview
@@ -43,6 +44,7 @@ tools/presentation_rings.py
 !figures/requests.pdf
 !figures/transfers.pdf
 !results/example/figures/*.pdf
+!results/final/figures/*.pdf
 results/framework/*presentation*
 results/framework/*slide*
 results/framework/beamer-compile.log

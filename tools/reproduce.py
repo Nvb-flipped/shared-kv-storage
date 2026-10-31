@@ -1,5 +1,6 @@
 """Portable reproduction using the selected interpreter, without a named venv."""
 import argparse
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -32,11 +33,16 @@ def main():
         print(tests.stdout+tests.stderr, end='', flush=True)
         if tests.returncode:
             return tests.returncode
+        test_output = tests.stdout+tests.stderr
+        test_count = re.search(r'Ran (\d+) tests', test_output)
+        skipped = re.search(r'skipped=(\d+)', test_output)
         run_study(config, out, args.config)
         build_report(out, plots=args.plots, require_current=True)
         load_run(out, require_current=True)
         (out/'tests.txt').write_text(tests.stdout+tests.stderr, encoding='utf-8', newline='\n')
         write_json(out/'workflow.json', {'status': 'passed', 'tests': 'passed',
+            'tests_run': int(test_count[1]) if test_count else None,
+            'tests_skipped': int(skipped[1]) if skipped else 0,
             'study': 'complete', 'evidence': 'verified against current sources', 'figures': args.plots})
         print(f'Reproduction passed. Read {out/"analysis.md"}.')
         return 0

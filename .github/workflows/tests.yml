@@ -1,6 +1,10 @@
 name: Project checks
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,14 +28,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - name: Complete test and figure dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mathematical expression dependencies
+        run: npm ci --ignore-scripts
+      - name: Current Markdown formula rendering
+        run: npm run check:math
       - name: Tests, configurable study and current-source evidence
-        run: python tools/reproduce.py --config configs/quick.toml --out results/runs/ci
+        run: python tools/reproduce.py --config configs/quick.toml --out results/runs/ci --plots
+      - name: Rendered figure checks
+        run: python tools/check_figures.py --input results/runs/ci
+      - name: Require every test to run
+        run: python -c "import json; w=json.load(open('results/runs/ci/workflow.json')); assert w['tests_skipped']==0"
       - name: Saved experiment and documentation audit
         run: python tools/check_project.py
       - name: Figure and math receipts
         run: python tools/check_artifacts.py
       - name: Public files and history
         run: python tools/check_publication.py
+      - name: Assessed release evidence
+        run: python tools/check_release.py
       - name: Installed package in an isolated interpreter
         shell: bash
         run: |
@@ -52,6 +71,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r requirements-figures.txt
+      - run: python -m pip install -r requirements-dev.txt
       - run: python -m sharedkv study --config configs/quick.toml --out results/runs/figures
       - run: python -m sharedkv report --input results/runs/figures --plots --require-current-source
+      - run: python tools/check_figures.py --input results/runs/figures
+      - run: python tools/visual_qa.py --input results/runs/figures

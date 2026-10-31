@@ -1,15 +1,51 @@
 """Optional OpenAPI/schema checks against real storage and router processes."""
 import json
 import argparse
+from http.client import HTTPConnection
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 import sys
+import threading
 from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from jsonschema import Draft202012Validator
 from openapi_spec_validator import validate
 from sharedkv.cluster import Cluster
-from sharedkv.transport import ApiError, request
+from sharedkv.storage import Storage
+from sharedkv.transport import ApiError, Handler, request
+
+
+def timeout_responses():
+    """Exercise the common HTTP boundary over real sockets with a short deadline."""
+    class FastDeadline(Handler):
+        timeout = .2
+
+    http = ThreadingHTTPServer(('127.0.0.1', 0), FastDeadline)
+    http.daemon_threads = True
+    http.app = Storage('T')
+    thread = threading.Thread(target=http.serve_forever, daemon=True)
+    thread.start()
+    try:
+        for contract in ('openapi.json', 'storage-openapi.json'):
+            connection = HTTPConnection('127.0.0.1', http.server_port, timeout=3)
+            try:
+                connection.putrequest('POST', '/migrate_in')
+                connection.putheader('Content-Type', 'application/json')
+                connection.putheader('Content-Length', '10')
+                connection.endheaders(b'{')
+                response = connection.getresponse()
+                if response.status != 408:
+                    raise ValueError(f'Expected HTTP 408, got {response.status}.')
+                yield contract, json.loads(response.read())
+            finally:
+                connection.close()
+        if request(f'http://127.0.0.1:{http.server_port}', '/health')['status'] != 'ok':
+            raise ValueError('Storage did not remain healthy after timed-out bodies.')
+    finally:
+        http.shutdown()
+        thread.join(3)
+        http.server_close()
 
 
 def main():
@@ -58,6 +94,10 @@ def main():
         check(storage, 'BatchResult', request(base, '/migrate_in', 'POST', {'items': [{'key': 'k', 'value': 'v'}]}))
         check(storage, 'Ok', request(base, '/kv/k', 'DELETE'))
         check(storage, 'Flush', request(base, '/keys', 'DELETE'))
+    for contract, response in timeout_responses():
+        if response['error'] != 'request_timeout':
+            raise ValueError('The timeout error code differs from the HTTP contract.')
+        check(contract, 'Error', response)
     out = args.out; out.mkdir(parents=True, exist_ok=True)
     (out/'api-audit.json').write_text(json.dumps({'author': 'Paco', 'status': 'passed', 'documents': 2, 'live_response_checks': checks}, indent=2)+'\n', encoding='utf-8', newline='\n')
     print(f'PASS: two OpenAPI 3.1 documents; {len(checks)} real response schemas.')

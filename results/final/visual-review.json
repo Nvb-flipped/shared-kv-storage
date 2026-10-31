@@ -1,0 +1,29 @@
+{
+  "png_figures": 6,
+  "hashes": "verified",
+  "manual_review": "completed",
+  "sheets": {
+    "original": {
+      "file": "figure-review.png",
+      "sha256": "176c872d81815cf2aaa24cc3ef44da8b591834abdabea6f45372951f3a4954a7"
+    },
+    "grayscale": {
+      "file": "figure-review-grayscale.png",
+      "sha256": "0dd41f801fa4c29fe9773bc0e40b49bce63ab5af2de8e42e962b45a7414d67b3"
+    },
+    "protanomaly": {
+      "file": "figure-review-protanomaly.png",
+      "sha256": "22c233354725cdfa2f8205e8cf751333ce6d3240a8a0e7460109a49c7c6a9ceb"
+    },
+    "deuteranomaly": {
+      "file": "figure-review-deuteranomaly.png",
+      "sha256": "609759db34ba0262afd966911d5401bdff3415ae7e03334ed4130afa2ec345be"
+    },
+    "tritanomaly": {
+      "file": "figure-review-tritanomaly.png",
+      "sha256": "35d9eca72020df3809eab0dd25c4883817dbd726dcfe01ba0ad96fb160422081"
+    }
+  },
+  "scope": "Original, grayscale and three color-vision simulations. Review aids, not accessibility certification.",
+  "inspection": "All six actual figures inspected in original, grayscale, protanomaly, deuteranomaly and tritanomaly sheets after the corrected-source collection. Counts, labels, node markers and timing observations remain readable; no unresolved clipping or ambiguity found."
+}

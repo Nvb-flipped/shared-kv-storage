@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cisc3010-sharded-kv"
-version = "0.3.0"
+version = "0.3.1"
 description = "A configurable local framework for studying key placement, migration and request skew"
 authors = [{name = "Paco"}]
 requires-python = ">=3.11"

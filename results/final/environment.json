@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_utc": "2026-10-31T08:03:07.016543+00:00",
+  "environment": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "python": "3.14.4"
+  },
+  "config": {
+    "cluster": {
+      "initial_nodes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "joining_node": "D",
+      "placement": "consistent",
+      "vnodes": 16,
+      "isolated": true,
+      "router_port": 8000,
+      "storage_base_port": 5001,
+      "startup_timeout": 5.0
+    },
+    "experiment": {
+      "keys": 1000,
+      "uniform_reads": 1000,
+      "additional_hot_reads": 500,
+      "seed": 3010,
+      "trials": 3,
+      "modes": [
+        "modulo",
+        "consistent"
+      ],
+      "vnodes": [
+        1,
+        2,
+        4,
+        8,
+        10,
+        16,
+        32,
+        64,
+        128
+      ],
+      "output": "."
+    }
+  },
+  "schedule": [
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 32,
+      "file": "consistent-v32-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 2,
+      "file": "consistent-v2-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 4,
+      "file": "consistent-v4-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 1,
+      "file": "consistent-v1-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "modulo",
+      "vnodes": 1,
+      "file": "modulo-v1-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 16,
+      "file": "consistent-v16-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 8,
+      "file": "consistent-v8-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 128,
+      "file": "consistent-v128-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 10,
+      "file": "consistent-v10-t1.json"
+    },
+    {
+      "trial": 1,
+      "mode": "consistent",
+      "vnodes": 64,
+      "file": "consistent-v64-t1.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 4,
+      "file": "consistent-v4-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 2,
+      "file": "consistent-v2-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 8,
+      "file": "consistent-v8-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "modulo",
+      "vnodes": 1,
+      "file": "modulo-v1-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 10,
+      "file": "consistent-v10-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 32,
+      "file": "consistent-v32-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 1,
+      "file": "consistent-v1-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 64,
+      "file": "consistent-v64-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 128,
+      "file": "consistent-v128-t2.json"
+    },
+    {
+      "trial": 2,
+      "mode": "consistent",
+      "vnodes": 16,
+      "file": "consistent-v16-t2.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 16,
+      "file": "consistent-v16-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 10,
+      "file": "consistent-v10-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 64,
+      "file": "consistent-v64-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 128,
+      "file": "consistent-v128-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "modulo",
+      "vnodes": 1,
+      "file": "modulo-v1-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 4,
+      "file": "consistent-v4-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 1,
+      "file": "consistent-v1-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 2,
+      "file": "consistent-v2-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 32,
+      "file": "consistent-v32-t3.json"
+    },
+    {
+      "trial": 3,
+      "mode": "consistent",
+      "vnodes": 8,
+      "file": "consistent-v8-t3.json"
+    }
+  ],
+  "completed": [
+    {
+      "file": "consistent-v32-t1.json",
+      "sha256": "b02192e8acf7f0cee98a36d403d737931797943c7acd4ac062459c277eb3dbce"
+    },
+    {
+      "file": "consistent-v2-t1.json",
+      "sha256": "9e8dc78399b5809f1bdb4324b912aac86601c29e257aa89adfcc2b5c1705fd54"
+    },
+    {
+      "file": "consistent-v4-t1.json",
+      "sha256": "7f787d5aa4ab3411156757522d7eb527815d7d91bf06f9fe1a98038c9bb57ef2"
+    },
+    {
+      "file": "consistent-v1-t1.json",
+      "sha256": "ba601af9c15d344162b05e6cee8a313739990fb06f1a78f73854b5c62b317a85"
+    },
+    {
+      "file": "modulo-v1-t1.json",
+      "sha256": "442085fc563ca6ccfc37cdd908702bac62ffb8cd9c1353c64808dda420d188f9"
+    },
+    {
+      "file": "consistent-v16-t1.json",
+      "sha256": "ba1b082d7097d9c7dcdcbb3593367c074d73dbf33fda3fbc451be46e9fc58b8b"
+    },
+    {
+      "file": "consistent-v8-t1.json",
+      "sha256": "0b063cc0ae2b7b46321a0c8564e55665de58accad35d6574b1443d61c7fb66f6"
+    },
+    {
+      "file": "consistent-v128-t1.json",
+      "sha256": "89026a2d2d182febfecaf7a038a0fd73c05e41755839d37aac376a87f809414d"
+    },
+    {
+      "file": "consistent-v10-t1.json",
+      "sha256": "85b5f1ee147fe2c758ea57a360fba1d7d49b8ab87c90721968e9ddad30f9e375"
+    },
+    {
+      "file": "consistent-v64-t1.json",
+      "sha256": "5cd4884f16b1b707d8e2cc5c403b8f8b5a0236adc32b42ba199ac36a02daedc6"
+    },
+    {
+      "file": "consistent-v4-t2.json",
+      "sha256": "0ba6606c249bc17fa49893d5e704631d1e7da3a4fc6d9db9ee09b5ae4c02dba9"
+    },
+    {
+      "file": "consistent-v2-t2.json",
+      "sha256": "53324e947a831fa1e84d0f8b616687dd23a1dd314a5f71c509b8e35c180ec78e"
+    },
+    {
+      "file": "consistent-v8-t2.json",
+      "sha256": "833b087703ff3d35d1e922e659772871262e68085d0b1357e4e430f13c2519bf"
+    },
+    {
+      "file": "modulo-v1-t2.json",
+      "sha256": "88b82c0a3999072db5275911db62a602a50a3f12dc86fa8e32edffc6a619e5a5"
+    },
+    {
+      "file": "consistent-v10-t2.json",
+      "sha256": "c5bfa2a89301de2b1e63bd2eeb4093c581bd08cdd2f37a38809d362aad45c10d"
+    },
+    {
+      "file": "consistent-v32-t2.json",
+      "sha256": "11afe440db83fff4c9bcdaa229d961b03c5cc8f85c3a493cd2a5262fe7cbc1a6"
+    },
+    {
+      "file": "consistent-v1-t2.json",
+      "sha256": "11c90d8ece4f1edee4a31f82c0521c0e98b926ab41cb0be6ac6224778334d3b7"
+    },
+    {
+      "file": "consistent-v64-t2.json",
+      "sha256": "f6700944bf9a7eeba5fdf3248b6df60cbf7107e7036187a51cd6e8200d4c1b83"
+    },
+    {
+      "file": "consistent-v128-t2.json",
+      "sha256": "b6be0650c1cbfa41ae5505218c7e90378a0fbf0df1e381d183506e1027b8488a"
+    },
+    {
+      "file": "consistent-v16-t2.json",
+      "sha256": "d3df6aad255a6577549bb3ae79e5693f31b3d1d0df0d71f3d86f4c63c3f23a7c"
+    },
+    {
+      "file": "consistent-v16-t3.json",
+      "sha256": "c13a44cfad20b2a1bd3b5a525693d7f151ef37efa292d766bae4e56d2975d1fb"
+    },
+    {
+      "file": "consistent-v10-t3.json",
+      "sha256": "f5ef737167ced1d044b57266b35f1183a460775cc193b1060b5b1b13e3b5e30c"
+    },
+    {
+      "file": "consistent-v64-t3.json",
+      "sha256": "92e565f1736465bfaca90e0a3931a75e703025ad081ee564699fbe47479fcb70"
+    },
+    {
+      "file": "consistent-v128-t3.json",
+      "sha256": "4fdb98e4fbc4854a0c8fb223c0dae19a301877d364246e6cf0eded2f0f56ba44"
+    },
+    {
+      "file": "modulo-v1-t3.json",
+      "sha256": "4c7623e877aeae57777b019007e919acd4ff51c3ac9c9efaa2158011601b78b5"
+    },
+    {
+      "file": "consistent-v4-t3.json",
+      "sha256": "1f83c67de4eaf0a74d0820b7ea340c9542139db14902ee4721d5761d070743d7"
+    },
+    {
+      "file": "consistent-v1-t3.json",
+      "sha256": "29f3a581cc851870a7d5f9b0af0d1abdc345faadf4212de134abfb5a26efdd90"
+    },
+    {
+      "file": "consistent-v2-t3.json",
+      "sha256": "81d6e876826e5ae321f434568b6f65e292ca6b2961fd26e9de4dfa435d619086"
+    },
+    {
+      "file": "consistent-v32-t3.json",
+      "sha256": "e094b6c681682e648813fd9e43f1630667237d5fa11423e6a20e3ac9c8608484"
+    },
+    {
+      "file": "consistent-v8-t3.json",
+      "sha256": "410803252c1d5144c416c6ae4edeee277b20a148bf00aa26ee449b236e7eecce"
+    }
+  ],
+  "source_sha256": {
+    "sharedkv/__init__.py": "60e5386bb37fef2cdb887f330f873b55d5be99ea8f3809e38397c9183e828c4e",
+    "sharedkv/__main__.py": "49795f4775386cc9598e68635961801f8170effe476d8accbcdc7f7ad3acd2b1",
+    "sharedkv/analysis.py": "930dd33cc1c30c8b91c2aa49d6b22cf43524dab82556c4a6f205efc3c0feb9cf",
+    "sharedkv/cli.py": "4fb87d1c09146071cb79ba141c9741584460bcf22fcab87c0e206734ffb77b6c",
+    "sharedkv/cluster.py": "f9139562ff9a931e9faaadef0d144abcefc31367a13df2ec5aba3a0104e637fa",
+    "sharedkv/config.py": "b5ebfcf4fdfe0de557c35b6d80640e2d71c5dde655a750ffb9f1c2536c29b11e",
+    "sharedkv/experiment.py": "fe774378586cd1d68067284b45c31be151ed492365851276cd815edc77f57837",
+    "sharedkv/figure_quality.py": "89eba1829627e049bead4620ea45a5055428dbb1b95e664c64d0d0eefc646092",
+    "sharedkv/metrics.py": "d737d2753a887a4a7cd9e89c2a1bc74540c8f5c8d24236b07977b1c00ffe37a6",
+    "sharedkv/placement.py": "b55135198cc8e83e9f6736bd9044f366e4fd99ff91a4c36aac71b78dc74a24ca",
+    "sharedkv/plotting.py": "3619ee64a83105bdff7c85d76ea31de18190053192e60e5e1e1b92a05b2b3ee4",
+    "sharedkv/router.py": "82259b6f8acbccc7ff7ef08606495fb8668fa42802197c4b074b798d372b1e6b",
+    "sharedkv/storage.py": "46a8ba9fd845a75d232ed3fc2b6d16dec633071824e6c39534bbaf254e423ec4",
+    "sharedkv/study.py": "23f9409841fe7820de9d272ea0494c7d953e175c6fad6801325e364ef5c43e5a",
+    "sharedkv/terminal.py": "32302dc2650931937f675f8d065f4d947570ea5131377d2d007a3b1f6d48d999",
+    "sharedkv/transport.py": "ae66162b202cdd101df6d333c6dc61c8dbfe3569aca3bfb08361fee0423d6826"
+  },
+  "config_sha256": "8ae25c6dc9b9577b4373dc40aafb43224fb4cff077758570e4cae5052e1e8301",
+  "interpretation": "Fixed node identities and keys; fresh-process timing repetitions, not independent layouts.",
+  "finished_utc": "2026-10-31T08:08:06.899639+00:00"
+}

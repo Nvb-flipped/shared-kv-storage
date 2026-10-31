@@ -99,9 +99,10 @@ def document(rows, title, port):
         operation = {'operationId': method+'_'+route.strip('/').replace('/', '_').replace('{key}', 'key'),
             'summary': description.split('.')[0], 'description': description,
             'responses': {'200': {'description': 'Success', 'content': {'application/json': {'schema': ref(result)}}}}}
-        for status in (400, 404, 405, 409, 413, 415, 500, 502, 503):
+        for status in (400, 404, 405, 408, 409, 413, 415, 500, 502, 503):
             operation['responses'][str(status)] = {'description': {
-                400: 'Invalid input', 404: 'Missing key or endpoint', 405: 'Wrong method', 409: 'State conflict or reload required',
+                400: 'Invalid input', 404: 'Missing key or endpoint', 405: 'Wrong method',
+                408: 'Request body inactivity timeout', 409: 'State conflict or reload required',
                 413: 'Body exceeds 1 MiB', 415: 'Use application/json', 500: 'Internal error', 502: 'Invalid dependency response',
                 503: 'Migration, busy writer or unavailable storage'}[status], 'content': {'application/json': {'schema': ref('Error')}}}
         parameters = []

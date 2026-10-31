@@ -88,5 +88,5 @@ Each circle is one fresh run; the diamond marks its mean. All thirty timings are
 Current reproduction collects a separate run and report, preserving this example. The historical trials, digests and source revision remain in `results/framework/`; optional reference audits authenticate them using public Git history. [Reproduction](reproduction.md), [metric definitions](metrics.md) and [study exercises](use-cases.md) explain how to collect and interpret new observations.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Experiment design](experiment-design.md) · Next: [Demonstration](demo.md)
+[Documentation map](README.md) · Previous: [Figure guide](figures.md) · Next: [Demonstration](demo.md)
 <!-- reading:end -->

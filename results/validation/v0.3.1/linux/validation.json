@@ -1,0 +1,186 @@
+{
+  "status": "automated_passed",
+  "started_utc": "2026-10-31T08:09:44.393055+00:00",
+  "os": "Linux",
+  "python": "3.14.4",
+  "source_fingerprint": "e3359977b512c379655ffb978ff5faa1c3e5a4136e79871cdd93fc46d095f1e9",
+  "package_source_sha256": {
+    "sharedkv/__init__.py": "60e5386bb37fef2cdb887f330f873b55d5be99ea8f3809e38397c9183e828c4e",
+    "sharedkv/__main__.py": "49795f4775386cc9598e68635961801f8170effe476d8accbcdc7f7ad3acd2b1",
+    "sharedkv/analysis.py": "930dd33cc1c30c8b91c2aa49d6b22cf43524dab82556c4a6f205efc3c0feb9cf",
+    "sharedkv/cli.py": "4fb87d1c09146071cb79ba141c9741584460bcf22fcab87c0e206734ffb77b6c",
+    "sharedkv/cluster.py": "f9139562ff9a931e9faaadef0d144abcefc31367a13df2ec5aba3a0104e637fa",
+    "sharedkv/config.py": "b5ebfcf4fdfe0de557c35b6d80640e2d71c5dde655a750ffb9f1c2536c29b11e",
+    "sharedkv/experiment.py": "fe774378586cd1d68067284b45c31be151ed492365851276cd815edc77f57837",
+    "sharedkv/figure_quality.py": "89eba1829627e049bead4620ea45a5055428dbb1b95e664c64d0d0eefc646092",
+    "sharedkv/metrics.py": "d737d2753a887a4a7cd9e89c2a1bc74540c8f5c8d24236b07977b1c00ffe37a6",
+    "sharedkv/placement.py": "b55135198cc8e83e9f6736bd9044f366e4fd99ff91a4c36aac71b78dc74a24ca",
+    "sharedkv/plotting.py": "3619ee64a83105bdff7c85d76ea31de18190053192e60e5e1e1b92a05b2b3ee4",
+    "sharedkv/router.py": "82259b6f8acbccc7ff7ef08606495fb8668fa42802197c4b074b798d372b1e6b",
+    "sharedkv/storage.py": "46a8ba9fd845a75d232ed3fc2b6d16dec633071824e6c39534bbaf254e423ec4",
+    "sharedkv/study.py": "23f9409841fe7820de9d272ea0494c7d953e175c6fad6801325e364ef5c43e5a",
+    "sharedkv/terminal.py": "32302dc2650931937f675f8d065f4d947570ea5131377d2d007a3b1f6d48d999",
+    "sharedkv/transport.py": "ae66162b202cdd101df6d333c6dc61c8dbfe3569aca3bfb08361fee0423d6826"
+  },
+  "stages": [
+    {
+      "name": "reproduction",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "9f289a91c1fd6c0229d039c10ffcb9f8d68c4b4368b0098a514a364d2e94811d",
+      "original_log_sha256": "a661e1673a253ce7501ff0e4e7326b77cb19ac8e1c9caa927ea3de7cd2841546",
+      "published_log": "logs/reproduction.txt"
+    },
+    {
+      "name": "cli",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "664c77a4fecaf1837fb6806573eb08cc8ff7b04ad618647894fca82ee8131d45",
+      "original_log_sha256": "664c77a4fecaf1837fb6806573eb08cc8ff7b04ad618647894fca82ee8131d45",
+      "published_log": "logs/cli.txt"
+    },
+    {
+      "name": "api",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "5a75aab933f5256b52dd0146fa424b858c3a0580f80a966da1250ee681087ab5",
+      "original_log_sha256": "5a75aab933f5256b52dd0146fa424b858c3a0580f80a966da1250ee681087ab5",
+      "published_log": "logs/api.txt"
+    },
+    {
+      "name": "api-generation",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "63640edb68f4100b1cc7bbaed6fb13e9121fb5939b697bca2ea66e34c71244f0",
+      "original_log_sha256": "63640edb68f4100b1cc7bbaed6fb13e9121fb5939b697bca2ea66e34c71244f0",
+      "published_log": "logs/api-generation.txt"
+    },
+    {
+      "name": "documentation",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "46831238cd6993cfa6726556abfe71f36dcc392aeb7c77ed78b096f6f96be8fb",
+      "original_log_sha256": "46831238cd6993cfa6726556abfe71f36dcc392aeb7c77ed78b096f6f96be8fb",
+      "published_log": "logs/documentation.txt"
+    },
+    {
+      "name": "historical-artifacts",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "cec618fa0bd455d9bf794f679dffb12aa02e2df74543e68776603c46784f616d",
+      "original_log_sha256": "cec618fa0bd455d9bf794f679dffb12aa02e2df74543e68776603c46784f616d",
+      "published_log": "logs/historical-artifacts.txt"
+    },
+    {
+      "name": "publication",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "d2ec788a099994065a46406abcbbe1ac3d850fe992905cbc6737cda9e9072101",
+      "original_log_sha256": "d2ec788a099994065a46406abcbbe1ac3d850fe992905cbc6737cda9e9072101",
+      "published_log": "logs/publication.txt"
+    },
+    {
+      "name": "math-rendering",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "71d72f10caa9581f85983dfde8b42238b7ce7280a89f919b3a34ce534d7bf934",
+      "original_log_sha256": "71d72f10caa9581f85983dfde8b42238b7ce7280a89f919b3a34ce534d7bf934",
+      "published_log": "logs/math-rendering.txt"
+    },
+    {
+      "name": "edge-study",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "3df59b3c6b55df8c09d0c1ac42ee0e318a98e1244c5282448b448df808063ce0",
+      "original_log_sha256": "d50b8378571a196abd662288aa79b2481e26ef6ed8b50a77a7928cb579a50a04",
+      "published_log": "logs/edge-study.txt"
+    },
+    {
+      "name": "edge-report",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "4b14bb5cc6fde4b77e5fdf47460aa4d890d120090cdf412deb617a1d647a796c",
+      "original_log_sha256": "4b14bb5cc6fde4b77e5fdf47460aa4d890d120090cdf412deb617a1d647a796c",
+      "published_log": "logs/edge-report.txt"
+    },
+    {
+      "name": "study-figure-audit",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "a679a7dbb458a7e2d2382fc24fa51637962292b265f562d41d2ef34ba986358f",
+      "original_log_sha256": "a679a7dbb458a7e2d2382fc24fa51637962292b265f562d41d2ef34ba986358f",
+      "published_log": "logs/study-figure-audit.txt"
+    },
+    {
+      "name": "study-visual-qa",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "5d8f379397a036b4f83b0100a7803bfa0030ff04789235338165e74006d6d70c",
+      "original_log_sha256": "5d8f379397a036b4f83b0100a7803bfa0030ff04789235338165e74006d6d70c",
+      "published_log": "logs/study-visual-qa.txt"
+    },
+    {
+      "name": "edge-figure-audit",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "a679a7dbb458a7e2d2382fc24fa51637962292b265f562d41d2ef34ba986358f",
+      "original_log_sha256": "a679a7dbb458a7e2d2382fc24fa51637962292b265f562d41d2ef34ba986358f",
+      "published_log": "logs/edge-figure-audit.txt"
+    },
+    {
+      "name": "edge-visual-qa",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "5d8f379397a036b4f83b0100a7803bfa0030ff04789235338165e74006d6d70c",
+      "original_log_sha256": "5d8f379397a036b4f83b0100a7803bfa0030ff04789235338165e74006d6d70c",
+      "published_log": "logs/edge-visual-qa.txt"
+    },
+    {
+      "name": "wheel",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "06544a7660c5c0dab7bf254d7d344732cb09a2eb0d8d5c9ceaf62d2b9e1b80e9",
+      "original_log_sha256": "af2e6530ccfab44ffaaa16f77a881c957e18faf3ea32dd05a822ac2368bccd27",
+      "published_log": "logs/wheel.txt"
+    },
+    {
+      "name": "install",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "3011ed8c8c694411f12bcf00305af388543fe7e606f024816e63b9a60acf296a",
+      "original_log_sha256": "3011ed8c8c694411f12bcf00305af388543fe7e606f024816e63b9a60acf296a",
+      "published_log": "logs/install.txt"
+    },
+    {
+      "name": "installed-study",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "7045ff2a060f961deefeb968de271e04007846d461b2090f4c70ae92364d28b6",
+      "original_log_sha256": "291d61051c7cc2261b58c7ff711bd4a8fb878a09757bf1ba148fab8238ab0cfe",
+      "published_log": "logs/installed-study.txt"
+    },
+    {
+      "name": "installed-report",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "68a99b7883eb8390cac18ad0b63771d40fd3169235fc1e6b255dca04fbac0f81",
+      "original_log_sha256": "68a99b7883eb8390cac18ad0b63771d40fd3169235fc1e6b255dca04fbac0f81",
+      "published_log": "logs/installed-report.txt"
+    },
+    {
+      "name": "installed-demo",
+      "exit": 0,
+      "output_checks": true,
+      "log_sha256": "16e78f89fcf3590f8614034276ebe207384d2c13b35a1f57cd5c127ac118afe2",
+      "original_log_sha256": "0afc73b82ec4b4e86e3b567aeb051b46c840013e6b78048dde9b7c0834948928",
+      "published_log": "logs/installed-demo.txt"
+    }
+  ],
+  "tests_run": 46,
+  "tests_skipped": 0,
+  "visual_review": "completed; original, grayscale and three color-vision modes inspected for study and edge figures",
+  "limits": "Finite tests and exercised configurations; not a proof over all possible operations or environments.",
+  "finished_utc": "2026-10-31T08:10:47.621181+00:00",
+  "original_receipt_sha256": "452675c826ed3a06efbc9c785007a80caa55e3ef97723934640473b3c83c28a7",
+  "publication": "Machine-specific path prefixes, terminal color codes and trailing formatting whitespace removed from published logs; raw receipts/logs retained locally."
+}

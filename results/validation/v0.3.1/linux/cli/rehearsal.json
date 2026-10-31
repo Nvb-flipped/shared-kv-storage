@@ -1,0 +1,2030 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "cases": [
+    {
+      "mode": "modulo",
+      "v": 1,
+      "pids": {
+        "A": 8643,
+        "B": 8645,
+        "C": 8647,
+        "D": 8649,
+        "router": 8651
+      },
+      "addresses": {
+        "A": "127.0.0.1:38356",
+        "B": "127.0.0.1:39928",
+        "C": "127.0.0.1:41106",
+        "D": "127.0.0.1:40106"
+      },
+      "cli_cases": [
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:102",
+            "Banana"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple-2"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "missing"
+          ],
+          "exit": 3
+        },
+        {
+          "command": [
+            "ring",
+            "missing"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "missing",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "owner",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "help"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "membership"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "keys"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "recover"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "vnodes",
+            "not-an-integer"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "unknown"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "addnode",
+            "D",
+            "127.0.0.1:40106"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "stats"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "reset-counters"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "placement",
+            "consistent"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "flush"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "vnodes",
+            "128"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Reloaded"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        }
+      ],
+      "before": {
+        "placement_mode": "modulo",
+        "vnodes_per_node": 1,
+        "membership_version": 1,
+        "placement_revision": 1,
+        "paused_writes": false,
+        "reload_required": false,
+        "migration_state": "idle",
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38356",
+            "status": "active",
+            "key_count": 334,
+            "request_count": 337
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39928",
+            "status": "active",
+            "key_count": 337,
+            "request_count": 337
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:41106",
+            "status": "active",
+            "key_count": 331,
+            "request_count": 331
+          }
+        ],
+        "key_counts_total": 1002,
+        "top_keys_by_requests": [
+          {
+            "key": "user:101",
+            "owner": "A",
+            "requests": 3
+          },
+          {
+            "key": "user:102",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "missing",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00000",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00001",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00002",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00003",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00004",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00005",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00006",
+            "owner": "A",
+            "requests": 1
+          }
+        ],
+        "inspection_reads": 2,
+        "counts_complete": true
+      },
+      "membership_after_join": {
+        "version": 2,
+        "placement_revision": 1,
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38356",
+            "status": "active"
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39928",
+            "status": "active"
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:41106",
+            "status": "active"
+          },
+          {
+            "id": "D",
+            "addr": "127.0.0.1:40106",
+            "status": "active"
+          }
+        ],
+        "paused_writes": false,
+        "reload_required": false,
+        "migration": {
+          "state": "idle",
+          "old_membership_version": 1,
+          "new_membership_version": 2
+        },
+        "last_migration": {
+          "ok": true,
+          "old_membership_version": 1,
+          "new_membership_version": 2,
+          "placement_mode": "modulo",
+          "paused_writes": false,
+          "writes_paused_during_migration": true,
+          "reassigned_key_count": 745,
+          "reassigned_keys": [
+            "key-00002",
+            "key-00010",
+            "key-00012",
+            "key-00014",
+            "key-00016",
+            "key-00020",
+            "key-00028",
+            "key-00029",
+            "key-00031",
+            "key-00036",
+            "key-00050",
+            "key-00055",
+            "key-00062",
+            "key-00065",
+            "key-00066",
+            "key-00074",
+            "key-00087",
+            "key-00093",
+            "key-00096",
+            "key-00097",
+            "key-00099",
+            "key-00102",
+            "key-00112",
+            "key-00115",
+            "key-00120",
+            "key-00121",
+            "key-00122",
+            "key-00132",
+            "key-00134",
+            "key-00140",
+            "key-00141",
+            "key-00142",
+            "key-00143",
+            "key-00144",
+            "key-00147",
+            "key-00153",
+            "key-00156",
+            "key-00158",
+            "key-00164",
+            "key-00172",
+            "key-00175",
+            "key-00177",
+            "key-00178",
+            "key-00179",
+            "key-00180",
+            "key-00182",
+            "key-00187",
+            "key-00192",
+            "key-00198",
+            "key-00204",
+            "key-00205",
+            "key-00208",
+            "key-00209",
+            "key-00215",
+            "key-00216",
+            "key-00223",
+            "key-00224",
+            "key-00232",
+            "key-00234",
+            "key-00238",
+            "key-00250",
+            "key-00257",
+            "key-00258",
+            "key-00264",
+            "key-00269",
+            "key-00271",
+            "key-00273",
+            "key-00274",
+            "key-00303",
+            "key-00305",
+            "key-00306",
+            "key-00308",
+            "key-00315",
+            "key-00317",
+            "key-00322",
+            "key-00323",
+            "key-00324",
+            "key-00325",
+            "key-00328",
+            "key-00335",
+            "key-00338",
+            "key-00340",
+            "key-00341",
+            "key-00347",
+            "key-00350",
+            "key-00358",
+            "key-00368",
+            "key-00369",
+            "key-00372",
+            "key-00373",
+            "key-00377",
+            "key-00379",
+            "key-00381",
+            "key-00385",
+            "key-00386",
+            "key-00392",
+            "key-00394",
+            "key-00396",
+            "key-00398",
+            "key-00400",
+            "key-00403",
+            "key-00409",
+            "key-00412",
+            "key-00415",
+            "key-00424",
+            "key-00426",
+            "key-00429",
+            "key-00431",
+            "key-00433",
+            "key-00436",
+            "key-00438",
+            "key-00445",
+            "key-00447",
+            "key-00450",
+            "key-00459",
+            "key-00460",
+            "key-00464",
+            "key-00466",
+            "key-00471",
+            "key-00472",
+            "key-00476",
+            "key-00478",
+            "key-00481",
+            "key-00483",
+            "key-00490",
+            "key-00498",
+            "key-00510",
+            "key-00512",
+            "key-00517",
+            "key-00525",
+            "key-00526",
+            "key-00530",
+            "key-00533",
+            "key-00536",
+            "key-00537",
+            "key-00542",
+            "key-00546",
+            "key-00555",
+            "key-00558",
+            "key-00561",
+            "key-00564",
+            "key-00565",
+            "key-00577",
+            "key-00583",
+            "key-00590",
+            "key-00598",
+            "key-00601",
+            "key-00604",
+            "key-00607",
+            "key-00608",
+            "key-00617",
+            "key-00624",
+            "key-00631",
+            "key-00635",
+            "key-00637",
+            "key-00638",
+            "key-00640",
+            "key-00641",
+            "key-00652",
+            "key-00656",
+            "key-00659",
+            "key-00662",
+            "key-00663",
+            "key-00668",
+            "key-00673",
+            "key-00674",
+            "key-00676",
+            "key-00684",
+            "key-00685",
+            "key-00688",
+            "key-00691",
+            "key-00695",
+            "key-00696",
+            "key-00703",
+            "key-00708",
+            "key-00709",
+            "key-00712",
+            "key-00714",
+            "key-00716",
+            "key-00717",
+            "key-00718",
+            "key-00720",
+            "key-00723",
+            "key-00728",
+            "key-00730",
+            "key-00747",
+            "key-00748",
+            "key-00755",
+            "key-00758",
+            "key-00764",
+            "key-00777",
+            "key-00782",
+            "key-00785",
+            "key-00786",
+            "key-00794",
+            "key-00799",
+            "key-00800",
+            "key-00806",
+            "key-00811",
+            "key-00826",
+            "key-00827",
+            "key-00832",
+            "key-00836",
+            "key-00838",
+            "key-00840",
+            "key-00847",
+            "key-00848",
+            "key-00854",
+            "key-00859",
+            "key-00866",
+            "key-00870",
+            "key-00875",
+            "key-00878",
+            "key-00879",
+            "key-00881",
+            "key-00883",
+            "key-00884",
+            "key-00888",
+            "key-00894",
+            "key-00898",
+            "key-00912",
+            "key-00917",
+            "key-00930",
+            "key-00931",
+            "key-00933",
+            "key-00934",
+            "key-00939",
+            "key-00941",
+            "key-00946",
+            "key-00949",
+            "key-00954",
+            "key-00955",
+            "key-00956",
+            "key-00961",
+            "key-00966",
+            "key-00969",
+            "key-00970",
+            "key-00976",
+            "key-00977",
+            "key-00979",
+            "key-00980",
+            "key-00982",
+            "key-00985",
+            "key-00994",
+            "user:101",
+            "user:102",
+            "key-00000",
+            "key-00008",
+            "key-00009",
+            "key-00011",
+            "key-00013",
+            "key-00019",
+            "key-00021",
+            "key-00022",
+            "key-00024",
+            "key-00032",
+            "key-00033",
+            "key-00034",
+            "key-00043",
+            "key-00044",
+            "key-00046",
+            "key-00053",
+            "key-00054",
+            "key-00060",
+            "key-00068",
+            "key-00072",
+            "key-00076",
+            "key-00078",
+            "key-00079",
+            "key-00080",
+            "key-00084",
+            "key-00088",
+            "key-00092",
+            "key-00094",
+            "key-00095",
+            "key-00103",
+            "key-00104",
+            "key-00106",
+            "key-00108",
+            "key-00111",
+            "key-00113",
+            "key-00114",
+            "key-00116",
+            "key-00118",
+            "key-00119",
+            "key-00125",
+            "key-00133",
+            "key-00137",
+            "key-00138",
+            "key-00146",
+            "key-00149",
+            "key-00150",
+            "key-00159",
+            "key-00161",
+            "key-00163",
+            "key-00169",
+            "key-00173",
+            "key-00185",
+            "key-00191",
+            "key-00193",
+            "key-00194",
+            "key-00202",
+            "key-00206",
+            "key-00210",
+            "key-00211",
+            "key-00212",
+            "key-00217",
+            "key-00218",
+            "key-00221",
+            "key-00222",
+            "key-00227",
+            "key-00233",
+            "key-00235",
+            "key-00240",
+            "key-00246",
+            "key-00253",
+            "key-00260",
+            "key-00261",
+            "key-00266",
+            "key-00267",
+            "key-00276",
+            "key-00277",
+            "key-00279",
+            "key-00280",
+            "key-00287",
+            "key-00288",
+            "key-00291",
+            "key-00301",
+            "key-00302",
+            "key-00310",
+            "key-00319",
+            "key-00329",
+            "key-00330",
+            "key-00331",
+            "key-00337",
+            "key-00343",
+            "key-00344",
+            "key-00346",
+            "key-00349",
+            "key-00353",
+            "key-00363",
+            "key-00364",
+            "key-00370",
+            "key-00374",
+            "key-00378",
+            "key-00397",
+            "key-00402",
+            "key-00410",
+            "key-00411",
+            "key-00417",
+            "key-00423",
+            "key-00427",
+            "key-00434",
+            "key-00437",
+            "key-00448",
+            "key-00453",
+            "key-00454",
+            "key-00456",
+            "key-00457",
+            "key-00461",
+            "key-00463",
+            "key-00467",
+            "key-00468",
+            "key-00469",
+            "key-00470",
+            "key-00474",
+            "key-00480",
+            "key-00482",
+            "key-00487",
+            "key-00489",
+            "key-00492",
+            "key-00496",
+            "key-00497",
+            "key-00499",
+            "key-00501",
+            "key-00502",
+            "key-00503",
+            "key-00505",
+            "key-00506",
+            "key-00507",
+            "key-00514",
+            "key-00532",
+            "key-00541",
+            "key-00543",
+            "key-00544",
+            "key-00547",
+            "key-00548",
+            "key-00554",
+            "key-00557",
+            "key-00562",
+            "key-00566",
+            "key-00567",
+            "key-00572",
+            "key-00574",
+            "key-00585",
+            "key-00588",
+            "key-00589",
+            "key-00591",
+            "key-00592",
+            "key-00595",
+            "key-00600",
+            "key-00603",
+            "key-00605",
+            "key-00615",
+            "key-00618",
+            "key-00625",
+            "key-00628",
+            "key-00633",
+            "key-00634",
+            "key-00644",
+            "key-00647",
+            "key-00654",
+            "key-00655",
+            "key-00657",
+            "key-00664",
+            "key-00666",
+            "key-00669",
+            "key-00671",
+            "key-00672",
+            "key-00677",
+            "key-00680",
+            "key-00682",
+            "key-00689",
+            "key-00693",
+            "key-00697",
+            "key-00699",
+            "key-00701",
+            "key-00704",
+            "key-00705",
+            "key-00706",
+            "key-00722",
+            "key-00724",
+            "key-00726",
+            "key-00731",
+            "key-00735",
+            "key-00738",
+            "key-00740",
+            "key-00744",
+            "key-00752",
+            "key-00757",
+            "key-00760",
+            "key-00761",
+            "key-00773",
+            "key-00775",
+            "key-00779",
+            "key-00784",
+            "key-00791",
+            "key-00805",
+            "key-00807",
+            "key-00808",
+            "key-00812",
+            "key-00818",
+            "key-00821",
+            "key-00822",
+            "key-00825",
+            "key-00831",
+            "key-00833",
+            "key-00837",
+            "key-00839",
+            "key-00841",
+            "key-00842",
+            "key-00843",
+            "key-00844",
+            "key-00851",
+            "key-00857",
+            "key-00865",
+            "key-00868",
+            "key-00872",
+            "key-00874",
+            "key-00876",
+            "key-00886",
+            "key-00889",
+            "key-00890",
+            "key-00892",
+            "key-00902",
+            "key-00904",
+            "key-00908",
+            "key-00909",
+            "key-00911",
+            "key-00918",
+            "key-00919",
+            "key-00928",
+            "key-00929",
+            "key-00935",
+            "key-00937",
+            "key-00943",
+            "key-00944",
+            "key-00952",
+            "key-00953",
+            "key-00957",
+            "key-00962",
+            "key-00965",
+            "key-00978",
+            "key-00981",
+            "key-00986",
+            "key-00987",
+            "key-00989",
+            "key-00991",
+            "key-00992",
+            "key-00004",
+            "key-00005",
+            "key-00015",
+            "key-00017",
+            "key-00018",
+            "key-00026",
+            "key-00027",
+            "key-00035",
+            "key-00039",
+            "key-00041",
+            "key-00048",
+            "key-00049",
+            "key-00052",
+            "key-00061",
+            "key-00064",
+            "key-00070",
+            "key-00071",
+            "key-00073",
+            "key-00081",
+            "key-00082",
+            "key-00085",
+            "key-00086",
+            "key-00089",
+            "key-00091",
+            "key-00107",
+            "key-00110",
+            "key-00117",
+            "key-00127",
+            "key-00128",
+            "key-00130",
+            "key-00139",
+            "key-00154",
+            "key-00155",
+            "key-00157",
+            "key-00160",
+            "key-00162",
+            "key-00166",
+            "key-00176",
+            "key-00183",
+            "key-00184",
+            "key-00186",
+            "key-00189",
+            "key-00190",
+            "key-00195",
+            "key-00197",
+            "key-00200",
+            "key-00201",
+            "key-00203",
+            "key-00213",
+            "key-00225",
+            "key-00226",
+            "key-00228",
+            "key-00229",
+            "key-00230",
+            "key-00236",
+            "key-00239",
+            "key-00241",
+            "key-00244",
+            "key-00245",
+            "key-00247",
+            "key-00251",
+            "key-00252",
+            "key-00254",
+            "key-00255",
+            "key-00262",
+            "key-00265",
+            "key-00268",
+            "key-00272",
+            "key-00278",
+            "key-00285",
+            "key-00286",
+            "key-00290",
+            "key-00292",
+            "key-00293",
+            "key-00294",
+            "key-00295",
+            "key-00296",
+            "key-00298",
+            "key-00300",
+            "key-00309",
+            "key-00311",
+            "key-00316",
+            "key-00320",
+            "key-00326",
+            "key-00327",
+            "key-00334",
+            "key-00336",
+            "key-00355",
+            "key-00361",
+            "key-00362",
+            "key-00365",
+            "key-00366",
+            "key-00376",
+            "key-00384",
+            "key-00388",
+            "key-00389",
+            "key-00390",
+            "key-00391",
+            "key-00393",
+            "key-00399",
+            "key-00405",
+            "key-00406",
+            "key-00408",
+            "key-00413",
+            "key-00414",
+            "key-00416",
+            "key-00418",
+            "key-00420",
+            "key-00421",
+            "key-00422",
+            "key-00425",
+            "key-00441",
+            "key-00444",
+            "key-00458",
+            "key-00462",
+            "key-00475",
+            "key-00479",
+            "key-00486",
+            "key-00495",
+            "key-00500",
+            "key-00504",
+            "key-00508",
+            "key-00511",
+            "key-00515",
+            "key-00516",
+            "key-00518",
+            "key-00522",
+            "key-00523",
+            "key-00524",
+            "key-00528",
+            "key-00540",
+            "key-00545",
+            "key-00553",
+            "key-00556",
+            "key-00568",
+            "key-00576",
+            "key-00578",
+            "key-00581",
+            "key-00582",
+            "key-00584",
+            "key-00586",
+            "key-00594",
+            "key-00596",
+            "key-00606",
+            "key-00611",
+            "key-00612",
+            "key-00613",
+            "key-00614",
+            "key-00616",
+            "key-00621",
+            "key-00627",
+            "key-00636",
+            "key-00639",
+            "key-00643",
+            "key-00645",
+            "key-00648",
+            "key-00649",
+            "key-00661",
+            "key-00665",
+            "key-00670",
+            "key-00687",
+            "key-00694",
+            "key-00698",
+            "key-00700",
+            "key-00702",
+            "key-00707",
+            "key-00710",
+            "key-00711",
+            "key-00713",
+            "key-00715",
+            "key-00719",
+            "key-00721",
+            "key-00725",
+            "key-00729",
+            "key-00732",
+            "key-00733",
+            "key-00739",
+            "key-00741",
+            "key-00743",
+            "key-00745",
+            "key-00750",
+            "key-00751",
+            "key-00759",
+            "key-00762",
+            "key-00765",
+            "key-00766",
+            "key-00768",
+            "key-00770",
+            "key-00771",
+            "key-00778",
+            "key-00780",
+            "key-00781",
+            "key-00783",
+            "key-00792",
+            "key-00793",
+            "key-00795",
+            "key-00797",
+            "key-00802",
+            "key-00804",
+            "key-00810",
+            "key-00813",
+            "key-00814",
+            "key-00815",
+            "key-00819",
+            "key-00820",
+            "key-00823",
+            "key-00824",
+            "key-00835",
+            "key-00845",
+            "key-00850",
+            "key-00855",
+            "key-00856",
+            "key-00862",
+            "key-00864",
+            "key-00873",
+            "key-00887",
+            "key-00895",
+            "key-00897",
+            "key-00899",
+            "key-00901",
+            "key-00907",
+            "key-00910",
+            "key-00913",
+            "key-00914",
+            "key-00920",
+            "key-00921",
+            "key-00922",
+            "key-00923",
+            "key-00932",
+            "key-00936",
+            "key-00942",
+            "key-00947",
+            "key-00950",
+            "key-00951",
+            "key-00958",
+            "key-00959",
+            "key-00960",
+            "key-00964",
+            "key-00968",
+            "key-00974",
+            "key-00975",
+            "key-00984",
+            "key-00990",
+            "key-00995",
+            "key-00997",
+            "key-00999"
+          ],
+          "migrated": 745,
+          "verified": 745,
+          "verification_failures": [],
+          "estimated_item_bytes": 39853,
+          "seconds": 3.0380441410000003,
+          "key_counts_after": {
+            "A": 246,
+            "B": 249,
+            "C": 254,
+            "D": 253
+          }
+        },
+        "pid": 8651
+      },
+      "verified_values": 1002,
+      "failures": [],
+      "physical_ownership_verified": true,
+      "interactive_continues_after_miss": true,
+      "owned_children_stopped": true
+    },
+    {
+      "mode": "consistent",
+      "v": 1,
+      "pids": {
+        "A": 15736,
+        "B": 15738,
+        "C": 15740,
+        "D": 15742,
+        "router": 15744
+      },
+      "addresses": {
+        "A": "127.0.0.1:38672",
+        "B": "127.0.0.1:39694",
+        "C": "127.0.0.1:38016",
+        "D": "127.0.0.1:41874"
+      },
+      "cli_cases": [
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:102",
+            "Banana"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple-2"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "missing"
+          ],
+          "exit": 3
+        },
+        {
+          "command": [
+            "ring",
+            "missing"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "missing",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "owner",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "help"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "membership"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "keys"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "recover"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "vnodes",
+            "not-an-integer"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "unknown"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "addnode",
+            "D",
+            "127.0.0.1:41874"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "stats"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "reset-counters"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "placement",
+            "modulo"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "flush"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "vnodes",
+            "128"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Reloaded"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        }
+      ],
+      "before": {
+        "placement_mode": "consistent",
+        "vnodes_per_node": 1,
+        "membership_version": 1,
+        "placement_revision": 1,
+        "paused_writes": false,
+        "reload_required": false,
+        "migration_state": "idle",
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38672",
+            "status": "active",
+            "key_count": 119,
+            "request_count": 119
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39694",
+            "status": "active",
+            "key_count": 413,
+            "request_count": 414
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:38016",
+            "status": "active",
+            "key_count": 470,
+            "request_count": 472
+          }
+        ],
+        "key_counts_total": 1002,
+        "top_keys_by_requests": [
+          {
+            "key": "user:101",
+            "owner": "C",
+            "requests": 3
+          },
+          {
+            "key": "user:102",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "missing",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00000",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00001",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00002",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00003",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00004",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00005",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00006",
+            "owner": "C",
+            "requests": 1
+          }
+        ],
+        "inspection_reads": 2,
+        "counts_complete": true
+      },
+      "membership_after_join": {
+        "version": 2,
+        "placement_revision": 1,
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38672",
+            "status": "active"
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39694",
+            "status": "active"
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:38016",
+            "status": "active"
+          },
+          {
+            "id": "D",
+            "addr": "127.0.0.1:41874",
+            "status": "active"
+          }
+        ],
+        "paused_writes": false,
+        "reload_required": false,
+        "migration": {
+          "state": "idle",
+          "old_membership_version": 1,
+          "new_membership_version": 2
+        },
+        "last_migration": {
+          "ok": true,
+          "old_membership_version": 1,
+          "new_membership_version": 2,
+          "placement_mode": "consistent",
+          "paused_writes": false,
+          "writes_paused_during_migration": true,
+          "reassigned_key_count": 61,
+          "reassigned_keys": [
+            "key-00007",
+            "key-00016",
+            "key-00028",
+            "key-00053",
+            "key-00074",
+            "key-00080",
+            "key-00098",
+            "key-00101",
+            "key-00102",
+            "key-00109",
+            "key-00114",
+            "key-00122",
+            "key-00124",
+            "key-00131",
+            "key-00141",
+            "key-00155",
+            "key-00159",
+            "key-00178",
+            "key-00187",
+            "key-00205",
+            "key-00206",
+            "key-00230",
+            "key-00233",
+            "key-00274",
+            "key-00332",
+            "key-00350",
+            "key-00354",
+            "key-00371",
+            "key-00412",
+            "key-00449",
+            "key-00466",
+            "key-00477",
+            "key-00535",
+            "key-00566",
+            "key-00571",
+            "key-00580",
+            "key-00590",
+            "key-00597",
+            "key-00607",
+            "key-00613",
+            "key-00647",
+            "key-00690",
+            "key-00750",
+            "key-00763",
+            "key-00764",
+            "key-00785",
+            "key-00791",
+            "key-00807",
+            "key-00818",
+            "key-00836",
+            "key-00885",
+            "key-00888",
+            "key-00929",
+            "key-00947",
+            "key-00959",
+            "key-00960",
+            "key-00968",
+            "key-00975",
+            "key-00986",
+            "key-00996",
+            "key-00999"
+          ],
+          "migrated": 61,
+          "verified": 61,
+          "verification_failures": [],
+          "estimated_item_bytes": 3259,
+          "seconds": 0.2539865570000188,
+          "key_counts_after": {
+            "A": 119,
+            "B": 352,
+            "C": 470,
+            "D": 61
+          }
+        },
+        "pid": 15744
+      },
+      "verified_values": 1002,
+      "failures": [],
+      "physical_ownership_verified": true,
+      "interactive_continues_after_miss": true,
+      "owned_children_stopped": true
+    },
+    {
+      "mode": "consistent",
+      "v": 16,
+      "pids": {
+        "A": 20093,
+        "B": 20095,
+        "C": 20097,
+        "D": 20099,
+        "router": 20101
+      },
+      "addresses": {
+        "A": "127.0.0.1:38684",
+        "B": "127.0.0.1:39238",
+        "C": "127.0.0.1:38160",
+        "D": "127.0.0.1:39618"
+      },
+      "cli_cases": [
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:102",
+            "Banana"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Apple-2"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "missing"
+          ],
+          "exit": 3
+        },
+        {
+          "command": [
+            "ring",
+            "missing"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "missing",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "owner",
+            "user:101"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "help"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "membership"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "keys"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "recover"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "vnodes",
+            "not-an-integer"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "unknown"
+          ],
+          "exit": 2
+        },
+        {
+          "command": [
+            "addnode",
+            "D",
+            "127.0.0.1:39618"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "ring",
+            "user:101",
+            "--check"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "stats"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "reset-counters"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "placement",
+            "modulo"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 4
+        },
+        {
+          "command": [
+            "flush"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "vnodes",
+            "128"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "put",
+            "user:101",
+            "Reloaded"
+          ],
+          "exit": 0
+        },
+        {
+          "command": [
+            "get",
+            "user:101"
+          ],
+          "exit": 0
+        }
+      ],
+      "before": {
+        "placement_mode": "consistent",
+        "vnodes_per_node": 16,
+        "membership_version": 1,
+        "placement_revision": 1,
+        "paused_writes": false,
+        "reload_required": false,
+        "migration_state": "idle",
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38684",
+            "status": "active",
+            "key_count": 326,
+            "request_count": 329
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39238",
+            "status": "active",
+            "key_count": 247,
+            "request_count": 247
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:38160",
+            "status": "active",
+            "key_count": 429,
+            "request_count": 429
+          }
+        ],
+        "key_counts_total": 1002,
+        "top_keys_by_requests": [
+          {
+            "key": "user:101",
+            "owner": "A",
+            "requests": 3
+          },
+          {
+            "key": "user:102",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "missing",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00000",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00001",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00002",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00003",
+            "owner": "A",
+            "requests": 1
+          },
+          {
+            "key": "key-00004",
+            "owner": "B",
+            "requests": 1
+          },
+          {
+            "key": "key-00005",
+            "owner": "C",
+            "requests": 1
+          },
+          {
+            "key": "key-00006",
+            "owner": "B",
+            "requests": 1
+          }
+        ],
+        "inspection_reads": 2,
+        "counts_complete": true
+      },
+      "membership_after_join": {
+        "version": 2,
+        "placement_revision": 1,
+        "nodes": [
+          {
+            "id": "A",
+            "addr": "127.0.0.1:38684",
+            "status": "active"
+          },
+          {
+            "id": "B",
+            "addr": "127.0.0.1:39238",
+            "status": "active"
+          },
+          {
+            "id": "C",
+            "addr": "127.0.0.1:38160",
+            "status": "active"
+          },
+          {
+            "id": "D",
+            "addr": "127.0.0.1:39618",
+            "status": "active"
+          }
+        ],
+        "paused_writes": false,
+        "reload_required": false,
+        "migration": {
+          "state": "idle",
+          "old_membership_version": 1,
+          "new_membership_version": 2
+        },
+        "last_migration": {
+          "ok": true,
+          "old_membership_version": 1,
+          "new_membership_version": 2,
+          "placement_mode": "consistent",
+          "paused_writes": false,
+          "writes_paused_during_migration": true,
+          "reassigned_key_count": 190,
+          "reassigned_keys": [
+            "key-00014",
+            "key-00026",
+            "key-00074",
+            "key-00107",
+            "key-00141",
+            "key-00142",
+            "key-00174",
+            "key-00176",
+            "key-00206",
+            "key-00291",
+            "key-00309",
+            "key-00342",
+            "key-00360",
+            "key-00366",
+            "key-00412",
+            "key-00417",
+            "key-00421",
+            "key-00488",
+            "key-00574",
+            "key-00584",
+            "key-00607",
+            "key-00615",
+            "key-00713",
+            "key-00785",
+            "key-00885",
+            "key-00959",
+            "key-00965",
+            "key-00991",
+            "user:101",
+            "key-00108",
+            "key-00528",
+            "key-00008",
+            "key-00012",
+            "key-00013",
+            "key-00025",
+            "key-00033",
+            "key-00034",
+            "key-00051",
+            "key-00054",
+            "key-00055",
+            "key-00063",
+            "key-00086",
+            "key-00087",
+            "key-00088",
+            "key-00095",
+            "key-00105",
+            "key-00111",
+            "key-00118",
+            "key-00127",
+            "key-00129",
+            "key-00134",
+            "key-00149",
+            "key-00156",
+            "key-00177",
+            "key-00185",
+            "key-00201",
+            "key-00202",
+            "key-00203",
+            "key-00214",
+            "key-00227",
+            "key-00236",
+            "key-00244",
+            "key-00246",
+            "key-00252",
+            "key-00253",
+            "key-00260",
+            "key-00266",
+            "key-00270",
+            "key-00271",
+            "key-00277",
+            "key-00278",
+            "key-00279",
+            "key-00282",
+            "key-00297",
+            "key-00306",
+            "key-00310",
+            "key-00315",
+            "key-00321",
+            "key-00323",
+            "key-00329",
+            "key-00336",
+            "key-00340",
+            "key-00352",
+            "key-00355",
+            "key-00356",
+            "key-00357",
+            "key-00368",
+            "key-00372",
+            "key-00375",
+            "key-00378",
+            "key-00379",
+            "key-00380",
+            "key-00386",
+            "key-00399",
+            "key-00402",
+            "key-00404",
+            "key-00406",
+            "key-00413",
+            "key-00414",
+            "key-00426",
+            "key-00427",
+            "key-00433",
+            "key-00436",
+            "key-00438",
+            "key-00439",
+            "key-00445",
+            "key-00451",
+            "key-00456",
+            "key-00467",
+            "key-00473",
+            "key-00485",
+            "key-00489",
+            "key-00495",
+            "key-00499",
+            "key-00500",
+            "key-00505",
+            "key-00506",
+            "key-00509",
+            "key-00512",
+            "key-00521",
+            "key-00524",
+            "key-00531",
+            "key-00547",
+            "key-00562",
+            "key-00569",
+            "key-00575",
+            "key-00576",
+            "key-00579",
+            "key-00583",
+            "key-00585",
+            "key-00588",
+            "key-00594",
+            "key-00608",
+            "key-00612",
+            "key-00619",
+            "key-00630",
+            "key-00632",
+            "key-00633",
+            "key-00634",
+            "key-00642",
+            "key-00649",
+            "key-00658",
+            "key-00659",
+            "key-00663",
+            "key-00664",
+            "key-00688",
+            "key-00695",
+            "key-00710",
+            "key-00712",
+            "key-00718",
+            "key-00726",
+            "key-00735",
+            "key-00740",
+            "key-00745",
+            "key-00746",
+            "key-00751",
+            "key-00755",
+            "key-00758",
+            "key-00761",
+            "key-00769",
+            "key-00771",
+            "key-00779",
+            "key-00784",
+            "key-00802",
+            "key-00805",
+            "key-00811",
+            "key-00814",
+            "key-00817",
+            "key-00831",
+            "key-00832",
+            "key-00840",
+            "key-00843",
+            "key-00857",
+            "key-00893",
+            "key-00900",
+            "key-00904",
+            "key-00921",
+            "key-00924",
+            "key-00934",
+            "key-00936",
+            "key-00943",
+            "key-00949",
+            "key-00961",
+            "key-00962",
+            "key-00963",
+            "key-00967",
+            "key-00983",
+            "key-00987",
+            "key-00990",
+            "key-00992"
+          ],
+          "migrated": 190,
+          "verified": 190,
+          "verification_failures": [],
+          "estimated_item_bytes": 10163,
+          "seconds": 0.7422220050000305,
+          "key_counts_after": {
+            "A": 297,
+            "B": 245,
+            "C": 270,
+            "D": 190
+          }
+        },
+        "pid": 20101
+      },
+      "verified_values": 1002,
+      "failures": [],
+      "physical_ownership_verified": true,
+      "interactive_continues_after_miss": true,
+      "owned_children_stopped": true
+    }
+  ],
+  "seconds": 22.74738862800001,
+  "kind": "Automated CLI exercise; concurrent migration behavior is tested with deterministic barriers in tests/test_framework.py"
+}

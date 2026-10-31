@@ -1,0 +1,10 @@
+{
+  "name": "shared-kv-storage-doc-checks",
+  "private": true,
+  "scripts": {
+    "check:math": "node tools/check_math.cjs"
+  },
+  "devDependencies": {
+    "mathjax-full": "3.2.2"
+  }
+}

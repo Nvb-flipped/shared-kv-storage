@@ -1,0 +1,3 @@
+PASS modulo V=1: CLI commands, misses, 1002 exact values, reconfiguration and clean shutdown.
+PASS consistent V=1: CLI commands, misses, 1002 exact values, reconfiguration and clean shutdown.
+PASS consistent V=16: CLI commands, misses, 1002 exact values, reconfiguration and clean shutdown.

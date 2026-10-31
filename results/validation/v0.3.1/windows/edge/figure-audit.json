@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "pdf_figures": [
+    {
+      "file": "movement.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    },
+    {
+      "file": "balance.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    },
+    {
+      "file": "node-loads.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    },
+    {
+      "file": "requests.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    },
+    {
+      "file": "transfers.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    },
+    {
+      "file": "join-time.pdf",
+      "findings": [],
+      "minimum_font_pt": 8.0
+    }
+  ],
+  "png_exports": [
+    {
+      "file": "figures/movement.png",
+      "size_px": [
+        2160,
+        1050
+      ]
+    },
+    {
+      "file": "figures/balance.png",
+      "size_px": [
+        2160,
+        1050
+      ]
+    },
+    {
+      "file": "figures/node-loads.png",
+      "size_px": [
+        2160,
+        1050
+      ]
+    },
+    {
+      "file": "figures/requests.png",
+      "size_px": [
+        2160,
+        1350
+      ]
+    },
+    {
+      "file": "figures/transfers.png",
+      "size_px": [
+        2160,
+        1095
+      ]
+    },
+    {
+      "file": "figures/join-time.png",
+      "size_px": [
+        2160,
+        1050
+      ]
+    }
+  ],
+  "layout_receipts": 6,
+  "verified_export_hashes": 18,
+  "scope": "Export integrity, selectable PDF text, 5 pt floor, page bounds and text overlap. Visual review and color-vision checks are separate."
+}

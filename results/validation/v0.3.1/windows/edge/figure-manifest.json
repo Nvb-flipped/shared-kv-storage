@@ -1,0 +1,32 @@
+{
+  "backend": "Matplotlib 3.11.2",
+  "outputs": {
+    "figures/movement.svg": "cb4d08cff6797780570b79780d6cd4946319f9e94756cac9a43453c2b95b6c07",
+    "figures/movement.pdf": "c5dae32ee44d1f225386493bc4bf46394145588c95d3ea9889b5c8563651e2a3",
+    "figures/movement.png": "e886f5796b9537b428b3fc22e5233e5db44526ef362fbb930b29c5389b3b4365",
+    "figures/balance.svg": "08da8a80b08924caddd008e1a44628a6fd44696a285e8ce520774dbbe31868fe",
+    "figures/balance.pdf": "394cf0af893e9f96df77054b9d6b0f139a3ce44216e26da24044fe89d5b4ba46",
+    "figures/balance.png": "56fcba590b7887f7a916dff36760e67cf3b387950ce2a98603f38fb175db69ab",
+    "figures/node-loads.svg": "0cad64b6736977f2de7c11ff0dbe1ae44b5b2631e63fcaa7872941f4b797ebd9",
+    "figures/node-loads.pdf": "1d3690b506b6419dcd94aedb95da8d047b96b068ec7e7422daaafc26bceafe4c",
+    "figures/node-loads.png": "cfe145d59bcc419292a6418129388c806754f5e9869cab1d54fc4e295f4e78a8",
+    "figures/requests.svg": "ff6ed18b7cd0b57c45a34a250a526053db8161e336f7ed35726402ea8bdaa114",
+    "figures/requests.pdf": "dfc566ace0f3ca9c62c7c0b8f46a666b02b0bf4b771b180691dce8799f5298dc",
+    "figures/requests.png": "1ecac46424050391cb2922e93908317e4c468e0b921c29b2d8623ef1e9ab4ad5",
+    "figures/transfers.svg": "4f4c2bb3c246cbb1fbf371e3f574a998fb1a87b2aad467f792ad9562c1570b90",
+    "figures/transfers.pdf": "97805a666a621f9c7d70c9ae5b38e8de505031261a4761975eb60e4765babd93",
+    "figures/transfers.png": "be20b6ff2ad09b73352cb46a8705fad84c3ae159e94f337156c4e0aa707f9c37",
+    "figures/join-time.svg": "e1ce7b7342218209d8c95b33f255678f61ac59a252aa46e7ac626b35315a0010",
+    "figures/join-time.pdf": "90beef838f8a73f47b7434ab4f095eeee57bc6f06132f84d8c0816e8f1e4e698",
+    "figures/join-time.png": "88ac23f6583776671fb7917a05fac7d0bab877d474db6b3d4d67e69b772a6adb"
+  },
+  "layouts": {
+    "figures/balance.layout.json": "9cd0f20be317253f369841b90419c9912a5808dac85c6dcf44ae3ca4fbd500f8",
+    "figures/join-time.layout.json": "9cd0f20be317253f369841b90419c9912a5808dac85c6dcf44ae3ca4fbd500f8",
+    "figures/movement.layout.json": "01dd6f549cf449c632cc412a08960c0980f48bf757199562248bfdbd9d142a39",
+    "figures/node-loads.layout.json": "f05bf5e16800033b87a0b3f7c81ccb7dde5386eeff39035f8f5a975724527b4a",
+    "figures/requests.layout.json": "e4e46f35869ae188b888b7c49dc942c6c7d9f013bc2255cda19787e49dc33a05",
+    "figures/transfers.layout.json": "e4ba4f885ff1f9243269a797cece7487c099277bdb80c7475cefc3706e6c4bd7"
+  },
+  "summary_sha256": "676d57c26b08ed01f6a9092391a78066b1bb4ac55e0048c0255f37f1a39f5387"
+}

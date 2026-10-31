@@ -40,6 +40,28 @@ def running_server(app):
 
 
 class ExternalBoundaryTests(unittest.TestCase):
+    def test_initial_storage_addresses_cannot_alias_one_physical_process(self):
+        from sharedkv.router import Router
+        for nodes in ({'A': '127.0.0.1:5101', 'B': '127.0.0.1:5101'},
+                      {'A': 'localhost:5101', 'B': '127.0.0.1:5101'}):
+            with self.subTest(nodes=nodes), self.assertRaises(ApiError) as caught:
+                Router(nodes)
+            self.assertEqual(caught.exception.code, 'duplicate_address')
+        result = subprocess.run([sys.executable, '-m', 'sharedkv.router', '--nodes',
+            'A=localhost:5101,B=127.0.0.1:5101'], cwd=ROOT, capture_output=True, text=True, timeout=5)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('distinct storage address', result.stderr)
+        self.assertNotIn('Traceback', result.stderr)
+
+    def test_both_openapi_contracts_describe_body_timeouts(self):
+        for name in ('openapi.json', 'storage-openapi.json'):
+            spec = json.loads((ROOT/'docs'/name).read_text(encoding='utf-8'))
+            for path, methods in spec['paths'].items():
+                for operation in methods.values():
+                    if isinstance(operation, dict) and 'responses' in operation:
+                        with self.subTest(contract=name, path=path):
+                            self.assertIn('408', operation['responses'])
+
     def test_standalone_startup_rejects_bad_ports_addresses_and_occupied_port(self):
         commands = [('-m', 'sharedkv.storage', '--id', 'A', '--port', str(p)) for p in (-1, 0, 65536)]
         commands += [('-m', 'sharedkv.router', '--port', str(p)) for p in (-1, 0, 65536)]

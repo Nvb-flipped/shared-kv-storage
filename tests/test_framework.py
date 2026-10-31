@@ -54,6 +54,13 @@ class LauncherTests(unittest.TestCase):
 
 
 class PlacementTests(unittest.TestCase):
+    def test_supported_custom_ids_have_distinct_redundant_terminal_styles(self):
+        from sharedkv.terminal import COLORS, PATTERNS, color
+        self.assertEqual(len({color(n, n).split('m')[0] for n in 'XYZ'}), 3)
+        self.assertEqual(len({PATTERNS[n] for n in 'XYZ'}), 3)
+        self.assertEqual(set(COLORS), set('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+        self.assertNotEqual(COLORS['X'], COLORS['Y'])
+
     def test_integer_modulo_and_clockwise_boundaries(self):
         self.assertIs(type(hash_integer('user:101')), int)
         for mode in ('modulo', 'consistent'):
@@ -100,6 +107,26 @@ class PlacementTests(unittest.TestCase):
 
 
 class StorageTests(unittest.TestCase):
+    def test_identity_checked_probe_restores_transient_failure_without_reconfiguration(self):
+        app = Router({'A': '127.0.0.1:5101'})
+        with patch('sharedkv.router.request', side_effect=ApiError(503, 'timeout', 'Transient failure.')):
+            with self.assertRaises(ApiError):
+                app.route_get('k')
+        self.assertEqual(app.nodes['A']['status'], 'down')
+        with patch('sharedkv.router.request', return_value={'id': 'B', 'key_count': 1}):
+            self.assertFalse(app.stats()['counts_complete'])
+        self.assertEqual(app.nodes['A']['status'], 'down')
+        with patch('sharedkv.router.request', return_value={'id': 'A', 'key_count': 1}):
+            row = app.stats()['nodes'][0]
+        self.assertEqual((row['status'], row['key_count']), ('active', 1))
+        with patch('sharedkv.router.request', return_value={'value': 'v'}):
+            self.assertEqual(app.route_get('k')['value'], 'v')
+        self.assertEqual((app.membership_version, app.placement_revision), (1, 1))
+        app.nodes['B'] = {'id': 'B', 'addr': '127.0.0.1:5102', 'status': 'joining'}
+        with patch('sharedkv.router.request', return_value={'id': 'B', 'key_count': 0}):
+            app.call_node('B', '/stats')
+        self.assertEqual(app.nodes['B']['status'], 'joining')
+
     def test_text_only_overwrite_empty_and_batch_validation(self):
         store = Storage('A')
         put = lambda data: store.handle('PUT', '/kv/user%3A101', {}, data)

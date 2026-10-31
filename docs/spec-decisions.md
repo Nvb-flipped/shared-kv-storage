@@ -23,5 +23,5 @@ Two convenience endpoints keep experiments behind the router: `GET /keys` expose
 Dynamo supplies the partitioning concepts. MIT's shard lab informs the separation of transfer and configuration changes. Neither requires this course framework to implement consensus, replication, quorums or durable recovery.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Requirements and evidence](scope.md) · Next: [Attribution](ai-use.md)
+[Documentation map](README.md) · Previous: [Assessment map](assessment.md) · Next: [Attribution](ai-use.md)
 <!-- reading:end -->

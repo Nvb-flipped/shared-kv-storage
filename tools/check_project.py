@@ -12,13 +12,13 @@ from tools.reference_evidence import check_source
 
 def main():
     out = ROOT/'results/framework'
-    environment = json.loads((out/'environment.json').read_text())
+    environment = json.loads((out/'environment.json').read_text(encoding='utf-8'))
     for name, digest in environment['source_sha256'].items():
         check_source(name, digest)
     files = list(out.glob('*-t*.json')); assert len(files) == 30
     datasets, sequences = set(), set()
     for file in files:
-        row = json.loads(file.read_text()); count = row['key_count']
+        row = json.loads(file.read_text(encoding='utf-8')); count = row['key_count']
         assert row['owned_children_stopped']
         assert len(set(row['pids'].values())) == 5
         assert row['verification']['checked'] == count == 1000
@@ -42,17 +42,18 @@ def main():
         assert all(r['stored_on'] == [r['owner']] for r in row['physical_inventory']['keys'])
         datasets.add(row['dataset_sha256']); sequences.add(row['uniform_sequence_sha256'])
     assert len(datasets) == len(sequences) == 1
-    rehearsal = json.loads((out/'rehearsal.json').read_text())
+    rehearsal = json.loads((out/'rehearsal.json').read_text(encoding='utf-8'))
     assert rehearsal['status'] == 'passed' and len(rehearsal['cases']) == 3
     for case in rehearsal['cases']:
         assert case['verified_values'] == 1002 and not case['failures']
         assert case['paused_put_status'] == 503 and case['get_during_migration']['value'] == 'Apple-2'
         assert case['owned_children_stopped'] and case['physical_ownership_verified']
     from tools.doc_navigation import ORDER
-    docs = [ROOT/'README.md', *sorted((ROOT/'docs').glob('*.md'))]
+    docs = [ROOT/'README.md', *[ROOT/'docs'/name for name in ORDER]]
     links = blocks = 0
     for file in docs:
-        text = file.read_text()
+        text = file.read_text(encoding='utf-8')
+        assert not re.search(r'[\u3400-\u9fff]', text), f'Maintained documentation must be English: {file.name}'
         assert '\\operatorname' not in text
         assert text.count('```') % 2 == 0 and text.count('\n$$\n') % 2 == 0, file
         blocks += text.count('\n$$\n')//2
@@ -64,9 +65,9 @@ def main():
     for name in ('kvstore', 'web', 'experiments', 'scripts'):
         assert not (ROOT/name).exists(), f'Remove superseded system directory: {name}'
     assert not (ROOT/'docs/console-openapi.json').exists()
-    tests = (out/'tests.txt').read_text(); assert 'OK' in tests
+    tests = (out/'tests.txt').read_text(encoding='utf-8'); assert 'OK' in tests
     test_count = int(re.search(r'Ran (\d+) tests', tests)[1]); assert test_count >= 14
-    assert json.loads((out/'api-audit.json').read_text())['status'] == 'passed'
+    assert json.loads((out/'api-audit.json').read_text(encoding='utf-8'))['status'] == 'passed'
     report = {'author': 'Paco', 'status': 'passed', 'trials': 30, 'tests': test_count,
         'identical_dataset_and_uniform_sequence': True, 'verified_values_per_trial': 1000,
         'migration_readable_and_writes_rejected': True, 'rehearsal_cases': 3,

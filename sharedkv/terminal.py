@@ -1,8 +1,12 @@
 """Format router responses. No hashing, token search or membership decisions."""
 import shutil
 
-COLORS = {'A': '#56B4E9', 'B': '#E69F00', 'C': '#77C9AC', 'D': '#CC79A7'}
-PATTERNS = {'A': '#', 'B': '/', 'C': '=', 'D': '+'}
+# IDs retain their styles when membership changes. For large memberships the
+# palette repeats, while letters, patterns and numeric shares preserve identity.
+PALETTE = ('#56B4E9', '#E69F00', '#77C9AC', '#CC79A7',
+           '#E5B17E', '#A6B5E0', '#9DCB8F', '#D99594')
+COLORS = {chr(65+i): PALETTE[i % len(PALETTE)] for i in range(26)}
+PATTERNS = {chr(65+i): '#/=+:*.~'[i % 8] for i in range(26)}
 
 
 def safe(value):

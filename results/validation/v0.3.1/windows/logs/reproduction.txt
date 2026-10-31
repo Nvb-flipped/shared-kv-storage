@@ -1,0 +1,61 @@
+PASS consistent-v2-t1.json: 3 exact values; 33.3% reassigned.
+PASS consistent-v2-t1.json: 3 exact values; 33.3% reassigned.
+PASS consistent-v2-t1.json: 3 exact values; 33.3% reassigned.
+test_malformed_manifest_is_rejected_without_cli_traceback (tests.test_boundaries.EvidenceBoundaryTests.test_malformed_manifest_is_rejected_without_cli_traceback) ... ok
+test_nested_evidence_and_wrong_hot_key_and_source_change_are_detected (tests.test_boundaries.EvidenceBoundaryTests.test_nested_evidence_and_wrong_hot_key_and_source_change_are_detected) ... ok
+test_both_openapi_contracts_describe_body_timeouts (tests.test_boundaries.ExternalBoundaryTests.test_both_openapi_contracts_describe_body_timeouts) ... ok
+test_incomplete_repeated_length_and_slow_bodies_leave_server_usable (tests.test_boundaries.ExternalBoundaryTests.test_incomplete_repeated_length_and_slow_bodies_leave_server_usable) ... ok
+test_initial_storage_addresses_cannot_alias_one_physical_process (tests.test_boundaries.ExternalBoundaryTests.test_initial_storage_addresses_cannot_alias_one_physical_process) ... ok
+test_invalid_application_response_is_a_json_error (tests.test_boundaries.ExternalBoundaryTests.test_invalid_application_response_is_a_json_error) ... ok
+test_invalid_experiment_settings_are_rejected_before_http_mutations (tests.test_boundaries.ExternalBoundaryTests.test_invalid_experiment_settings_are_rejected_before_http_mutations) ... ok
+test_invalid_nested_settings_and_unrepresentable_timeout (tests.test_boundaries.ExternalBoundaryTests.test_invalid_nested_settings_and_unrepresentable_timeout) ... ok
+test_standalone_startup_rejects_bad_ports_addresses_and_occupied_port (tests.test_boundaries.ExternalBoundaryTests.test_standalone_startup_rejects_bad_ports_addresses_and_occupied_port) ... ok
+test_strict_json_and_malformed_dependency_envelopes (tests.test_boundaries.ExternalBoundaryTests.test_strict_json_and_malformed_dependency_envelopes) ... ok
+test_wrong_operations_and_strange_http_inputs_do_not_mutate_or_stop_cluster (tests.test_boundaries.ExternalBoundaryTests.test_wrong_operations_and_strange_http_inputs_do_not_mutate_or_stop_cluster) ... ok
+test_readiness_timeout_cleans_up_owned_child (tests.test_framework.LauncherTests.test_readiness_timeout_cleans_up_owned_child) ... ok
+test_storage_port_override_and_progress (tests.test_framework.LauncherTests.test_storage_port_override_and_progress) ... ok
+test_windows_venv_uses_real_executable_and_preserves_environment (tests.test_framework.LauncherTests.test_windows_venv_uses_real_executable_and_preserves_environment) ... ok
+test_get_allowed_while_put_and_reconfiguration_are_paused (tests.test_framework.MigrationTests.test_get_allowed_while_put_and_reconfiguration_are_paused) ... ok
+test_lost_ack_rolls_back_staging_before_recovery (tests.test_framework.MigrationTests.test_lost_ack_rolls_back_staging_before_recovery) ... ok
+test_publication_waits_for_inflight_old_owner_get (tests.test_framework.MigrationTests.test_publication_waits_for_inflight_old_owner_get) ... ok
+test_published_cleanup_failure_recovers_forward (tests.test_framework.MigrationTests.test_published_cleanup_failure_recovers_forward) ... ok
+test_clients_do_not_import_placement_or_router (tests.test_framework.PlacementTests.test_clients_do_not_import_placement_or_router) ... ok
+test_exact_token_boundary_and_wrap (tests.test_framework.PlacementTests.test_exact_token_boundary_and_wrap) ... ok
+test_integer_modulo_and_clockwise_boundaries (tests.test_framework.PlacementTests.test_integer_modulo_and_clockwise_boundaries) ... ok
+test_ring_caret_uses_server_index_and_wraps (tests.test_framework.PlacementTests.test_ring_caret_uses_server_index_and_wraps) ... ok
+test_supported_custom_ids_have_distinct_redundant_terminal_styles (tests.test_framework.PlacementTests.test_supported_custom_ids_have_distinct_redundant_terminal_styles) ... ok
+test_down_node_keeps_its_owner_without_eviction (tests.test_framework.ProcessTests.test_down_node_keeps_its_owner_without_eviction) ... ok
+test_http_boundary_errors_have_one_envelope (tests.test_framework.ProcessTests.test_http_boundary_errors_have_one_envelope) ... ok
+test_miss_probe_counters_and_cli_exit (tests.test_framework.ProcessTests.test_miss_probe_counters_and_cli_exit) ... ok
+test_real_processes_both_policies_values_and_hot_key (tests.test_framework.ProcessTests.test_real_processes_both_policies_values_and_hot_key) ... ok
+test_runtime_switch_requires_explicit_flush_and_reload (tests.test_framework.ProcessTests.test_runtime_switch_requires_explicit_flush_and_reload) ... ok
+test_identity_checked_probe_restores_transient_failure_without_reconfiguration (tests.test_framework.StorageTests.test_identity_checked_probe_restores_transient_failure_without_reconfiguration) ... ok
+test_text_only_overwrite_empty_and_batch_validation (tests.test_framework.StorageTests.test_text_only_overwrite_empty_and_batch_validation) ... ok
+test_dominant_node_percentage_labels_do_not_overlap (tests.test_plotting.FigureExportTests.test_dominant_node_percentage_labels_do_not_overlap) ... ok
+test_pdf_collision_audit_rejects_an_actual_overlap (tests.test_plotting.FigureExportTests.test_pdf_collision_audit_rejects_an_actual_overlap) ... ok
+test_real_exports_preserve_metadata_text_and_data_manifest (tests.test_plotting.FigureExportTests.test_real_exports_preserve_metadata_text_and_data_manifest) ... ok
+test_explicit_off_canvas_text_and_unequal_panels_are_rejected (tests.test_plotting.PlotGeometryTests.test_explicit_off_canvas_text_and_unequal_panels_are_rejected) ... ok
+test_markers_have_space_at_zero_and_with_nearly_identical_times (tests.test_plotting.PlotGeometryTests.test_markers_have_space_at_zero_and_with_nearly_identical_times) ... ok
+test_dry_run_overrides_and_config_relative_output (tests.test_study.ConfigurationTests.test_dry_run_overrides_and_config_relative_output) ... ok
+test_refuses_to_overwrite_existing_evidence (tests.test_study.ConfigurationTests.test_refuses_to_overwrite_existing_evidence) ... ok
+test_rejects_unknown_settings_and_wrong_types (tests.test_study.ConfigurationTests.test_rejects_unknown_settings_and_wrong_types) ... ok
+test_shipped_profiles_and_help (tests.test_study.ConfigurationTests.test_shipped_profiles_and_help) ... ok
+test_study_bounds_and_schedule (tests.test_study.ConfigurationTests.test_study_bounds_and_schedule) ... ok
+test_topology_and_port_bounds (tests.test_study.ConfigurationTests.test_topology_and_port_bounds) ... ok
+test_empty_nodes_have_no_finite_ratio (tests.test_study.FiniteInvariantTests.test_empty_nodes_have_no_finite_ratio) ... ok
+test_membership_permutations_and_fixed_token_joins (tests.test_study.FiniteInvariantTests.test_membership_permutations_and_fixed_token_joins) ... ok
+test_modulo_uniform_residue_expectation_for_every_insertion_position (tests.test_study.FiniteInvariantTests.test_modulo_uniform_residue_expectation_for_every_insertion_position) ... ok
+test_recorded_ring_coverage_counts_wraparound_and_single_position (tests.test_study.FiniteInvariantTests.test_recorded_ring_coverage_counts_wraparound_and_single_position) ... ok
+test_custom_topology_single_trial_zero_hot_and_evidence_tamper (tests.test_study.StudyIntegrationTests.test_custom_topology_single_trial_zero_hot_and_evidence_tamper) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 79.382s
+
+OK
+PASS modulo-v1-t1.json: 60 exact values; 51.7% reassigned.
+PASS consistent-v1-t1.json: 60 exact values; 45.0% reassigned.
+PASS consistent-v16-t1.json: 60 exact values; 38.3% reassigned.
+PASS modulo-v1-t2.json: 60 exact values; 51.7% reassigned.
+PASS consistent-v1-t2.json: 60 exact values; 45.0% reassigned.
+PASS consistent-v16-t2.json: 60 exact values; 38.3% reassigned.
+Reproduction passed. Read [checkout]\results\runs\release-windows-final\study\analysis.md.

@@ -35,7 +35,7 @@ Repetitions with fixed identities and keys measure local process/timing variatio
 
 The visual argument is that movement, key-count spread and request concentration measure different tradeoffs. The movement plot is the main comparison; balance and per-node plots explain it, transfer matrices show destinations, and the request plot distinguishes key shares from observed traffic. Timing plots show all fresh-process repetitions and their means without inferential error bars. The source is each run's validated summary and raw trials.
 
-The Matplotlib exports use a white background, restrained colours, redundant markers/hatching, light grids and sans-serif editable vector text. Typical comparison panels are 183 mm wide; topology-dependent panels may grow to keep labels readable. SVG/PDF are the primary line-art exports; 300 dpi PNG is a review preview, with no TIFF submission requirement for this study framework. These choices borrow scientific-figure conventions without claiming journal submission compliance.
+The Matplotlib exports use a white background, light fills with clear outlines, redundant markers and labels and sans-serif editable vector text. Background grids are omitted. Typical comparison panels are 183 mm wide; topology-dependent panels may grow to keep labels readable. SVG/PDF are the primary line-art exports; 300 dpi PNG is a review preview, with no TIFF submission requirement for this study framework. These choices borrow scientific-figure conventions without claiming journal submission compliance.
 
 All settings appear in movement, CV, per-node and timing plots. The request figure shows one explicitly labelled illustrative setting; the transfer figure shows modulo when present and that same setting. This avoids an unreadable grid for large V sweeps. All settings' hot-owner shares appear in the report, and full counters/matrices remain in raw JSON. Captions declare each denominator, selected setting, replicate unit and reference assumption. Run the visual QA helper and inspect original and grayscale outputs for clipping, overlap and distinguishability.
 
@@ -46,5 +46,5 @@ Use separate output directories, retain both manifests, and explain what changed
 The [metric definitions](metrics.md) state the mathematical assumptions. The [configuration guide](configuration.md) and [reproduction guide](reproduction.md) connect those assumptions to executable settings.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Math and metrics](metrics.md) · Next: [Measured results](results.md)
+[Documentation map](README.md) · Previous: [Math and metrics](metrics.md) · Next: [Course report](report.md)
 <!-- reading:end -->

@@ -65,8 +65,8 @@ Bruno or another HTTP client can use `http://127.0.0.1:8000` while the cluster r
 
 ## Show the controlled comparison
 
-Use [results.md](results.md) for the recorded 1,000-key comparison and hot-key workload. Run `python -m sharedkv study --config configs/quick.toml --out results/runs/demo-study` to collect fresh trials; each trial owns and cleans up its own processes on OS-assigned ports. The [experiment design](experiment-design.md) explains the controls and timing limits.
+Use the [course report](report.md) for the final 1,000-key comparison and hot-key workload, with links to its raw observations. The [earlier comparison](results.md) is historical reference material. Run `python -m sharedkv study --config configs/quick.toml --out results/runs/demo-study` to collect fresh trials; each trial owns and cleans up its own processes on OS-assigned ports. The [experiment design](experiment-design.md) explains the controls and timing limits.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Measured results](results.md) · Next: [Requirements and evidence](scope.md)
+[Documentation map](README.md) · Previous: [Historical results](results.md) · Next: [Requirements and evidence](scope.md)
 <!-- reading:end -->

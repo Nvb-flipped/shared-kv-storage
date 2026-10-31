@@ -6,6 +6,45 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 
 [Study use cases](docs/use-cases.md) · [Configuration](docs/configuration.md) · [Architecture](docs/architecture.md) · [Math and metrics](docs/metrics.md) · [Documentation map](docs/README.md)
 
+## Project structure
+
+```text
+shared-kv-storage/
+├── README.md                       Start, project map and common commands
+├── refined_spec.md                 Supplied primary specification
+├── pyproject.toml                  Package metadata and console entry point
+├── package.json / package-lock.json Optional, pinned Markdown math renderer
+├── requirements-dev.txt            Complete tests, API and figure-QA environment
+├── requirements-figures.txt         Optional plotting dependencies only
+├── requirements-contracts.txt       Optional OpenAPI/schema validators
+├── client.py / router.py / storage_node.py / experiment.py
+│                                   Standalone compatibility entry points
+├── run_cluster.sh                  WSL/Linux launcher wrapper
+├── sharedkv/
+│   ├── __main__.py / cli.py         Workflow dispatcher and HTTP client
+│   ├── config.py / cluster.py       Validated profiles and owned processes
+│   ├── placement.py / router.py     Integer hashing and verified migration
+│   ├── storage.py / transport.py    Local values and bounded HTTP
+│   ├── experiment.py / study.py     Data collection and randomized trial order
+│   ├── metrics.py / analysis.py     Calculations, evidence checks and reports
+│   └── plotting.py / figure_quality.py / terminal.py
+│                                   Figures, layout checks and terminal display
+├── configs/                        demo.toml, quick.toml and study.toml
+├── tests/                          System, boundary, study and plotting tests
+├── docs/                           Reading map, design, API, math and assessment
+├── results/
+│   ├── final/                      Final course comparison and provenance
+│   ├── example/                    Earlier small worked example
+│   ├── framework/                  Authenticated historical measurements
+│   ├── validation/                 Recorded validation evidence
+│   └── runs/                       Your new runs; ignored by Git
+├── figures/                        Historical reference plots
+├── tools/                          Reproduction, API, figure and publication checks
+└── .github/workflows/tests.yml      Cross-platform tests with no skipped cases
+```
+
+Start with the [documentation map](docs/README.md) when moving between design, API, experiment and reproduction material. Generated trial filenames are grouped under their run directory rather than listed individually. Private slides, lecture material, skills, caches and virtual environments are excluded from the public project.
+
 ## Start an interactive cluster
 
 Python 3.11+ is sufficient; the runtime has no third-party dependencies. Run from a fresh clone on Linux, WSL or Windows:
@@ -58,6 +97,20 @@ Every trial reads all original values after joining and checks exactly one corre
 
 ## Reproduce and verify
 
+For the complete development check, install all dependencies into one environment. This includes the plotting tests and PDF/color-vision checks; it does not add dependencies to the KV runtime.
+
+```bash
+python -m venv .venv
+# WSL/Linux
+.venv/bin/python -m pip install -r requirements-dev.txt
+npm ci --ignore-scripts
+.venv/bin/python tools/validate.py --out results/runs/full-check
+```
+
+On Windows use `.venv\Scripts\python.exe` in place of `.venv/bin/python`. Full validation rejects skipped tests. It checks real CLI/API behavior, installed-package use outside the checkout, rendered figure geometry, metadata and color-vision review sheets. Inspect those sheets as described in the [figure guide](docs/figures.md).
+
+The smaller, dependency-free workflow remains available:
+
 ```bash
 python -m unittest -v
 python tools/reproduce.py --config configs/quick.toml --out results/runs/reproduced
@@ -65,7 +118,9 @@ python tools/reproduce.py --config configs/quick.toml --out results/runs/reprodu
 
 Reproduction uses the selected interpreter throughout. It requires no sudo, credentials, private material, original source directory or pre-existing virtual environment. Optional figures use `--plots`. The [reproduction guide](docs/reproduction.md) covers setup, evidence validation, packaging, privacy checks and historical results.
 
-[Original measured results](docs/results.md) are preserved as a historical course comparison, with their own source provenance. New runs never overwrite those reference measurements. The small [current worked example](results/example/analysis.md) illustrates the configurable workflow; it is a learning example, not a performance baseline.
+[Course results and interpretation](docs/report.md) identify the final comparison and its raw observations. The [assessment map](docs/assessment.md) connects each criterion to implementation and evidence. [Original measured results](docs/results.md) remain historical reference material. The earlier [small worked example](results/example/analysis.md) illustrates the workflow at its recorded source version. New runs never overwrite either reference dataset.
+
+For an assessed snapshot, use the immutable `v0.3.1` tag rather than assuming that a future `main` still contains the same source. The [reproduction guide](docs/reproduction.md) gives the exact workflow and explains what must agree and why timings may differ.
 
 ## System boundaries
 

@@ -11,7 +11,7 @@ import unittest
 
 from sharedkv.analysis import build_report, load_run
 from sharedkv.config import ClusterConfig, ConfigError, ExperimentConfig, StudyConfig, load_config
-from sharedkv.metrics import balance
+from sharedkv.metrics import balance, token_coverage
 from sharedkv.placement import Placement, SPACE
 from sharedkv.study import run_study, schedule_for, write_json
 
@@ -79,6 +79,13 @@ class ConfigurationTests(unittest.TestCase):
 
 
 class FiniteInvariantTests(unittest.TestCase):
+    def test_recorded_ring_coverage_counts_wraparound_and_single_position(self):
+        self.assertEqual(token_coverage([{'node': 'B', 'pos': 20}, {'node': 'A', 'pos': 80}], 100),
+                         {'A': 60, 'B': 40})
+        self.assertEqual(token_coverage([{'node': 'A', 'pos': 0}], 100), {'A': 100})
+        with self.assertRaises(ValueError):
+            token_coverage([{'node': 'A', 'pos': 80}, {'node': 'B', 'pos': 20}], 100)
+
     def test_modulo_uniform_residue_expectation_for_every_insertion_position(self):
         # Exact enumeration of the CRT sample space, not sampled key hashes.
         for n in range(1, 26):
@@ -118,6 +125,12 @@ class StudyIntegrationTests(unittest.TestCase):
             run_study(config, out)
             self.assertTrue(all(b'\r\n' not in p.read_bytes() for p in out.glob('*.json')))
             rows = build_report(out, require_current=True)
+            report = (out/'analysis.md').read_text(encoding='utf-8')
+            self.assertIn('Placement and transfer evidence', report)
+            self.assertIn('Copied / verified', report)
+            self.assertIn('Joining-node hash-space coverage', report)
+            self.assertIn('X=3', report)
+            self.assertIn('not measured network traffic', report)
             self.assertIsNone(rows[0]['join_seconds']['sample_sd'])
             self.assertIn('n/a', (out/'analysis.md').read_text(encoding='utf-8'))
             manifest = json.loads((out/'environment.json').read_text())

@@ -48,7 +48,7 @@ Phases are `idle -> preparing -> migrating -> verifying -> done -> idle`, with `
 
 Before publication, recovery removes staged destination copies, retains the old map and removes the failed candidate registration. Staging is recorded before copying so a lost acknowledgment can be rolled back. After publication, recovery finishes source cleanup and retains the new map. Unpause only after cleanup and member-health checks succeed. Recovery does not recreate data lost in a crashed storage process.
 
-An unreachable-node request marks it `down` and returns an error. The node remains in placement; there is no failure detector or automatic eviction. Stores and router are volatile. Router/laptop failure, lost storage contents after restart and external direct writes to stores are outside the correctness assumptions.
+An unreachable-node request marks it `down` and returns an error. A later successful health/statistics probe with the matching storage ID restores an existing member to `active`; `stats` performs that probe. This does not change placement or membership version, and a candidate remains `joining` until publication. The node remains in placement; there is no background failure detector or automatic eviction. A successful probe shows current reachability, not that volatile data survived a restart. Stores and router are volatile. Router/laptop failure, lost storage contents after restart and external direct writes to stores are outside the correctness assumptions.
 
 ## Runtime controls and observation
 

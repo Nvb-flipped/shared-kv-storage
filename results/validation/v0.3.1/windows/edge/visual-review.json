@@ -1,0 +1,29 @@
+{
+  "png_figures": 6,
+  "hashes": "verified",
+  "manual_review": "completed",
+  "sheets": {
+    "original": {
+      "file": "figure-review.png",
+      "sha256": "2d16911df757d7d9162e9c40f707d18a5cec62fcd001064e859d2dc3c3bd6514"
+    },
+    "grayscale": {
+      "file": "figure-review-grayscale.png",
+      "sha256": "bf65623cfa4df0e67acee02330616eeeb9c14536a0f0a4d67cfa7d9dd3c00df2"
+    },
+    "protanomaly": {
+      "file": "figure-review-protanomaly.png",
+      "sha256": "9ed47c8073b6708fbc64e476635660d1e29a0dfaaaadb4f562c01f4c52af744f"
+    },
+    "deuteranomaly": {
+      "file": "figure-review-deuteranomaly.png",
+      "sha256": "7f239f9dba2329e7cfa50d385149b836e05f619f7732d4bd93c69f79bb535e4a"
+    },
+    "tritanomaly": {
+      "file": "figure-review-tritanomaly.png",
+      "sha256": "7552d41143d5aa531497e4d44a47a5581a9c032219f31f25b3be758a66061de3"
+    }
+  },
+  "scope": "Original, grayscale and three color-vision simulations. Review aids, not accessibility certification.",
+  "inspection": "All six figures inspected in original, grayscale and three color-vision modes. Empty nodes, full-share labels and timing markers remain readable with no unresolved clipping or ambiguity."
+}

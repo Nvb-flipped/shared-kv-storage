@@ -6,6 +6,8 @@
 
 The primary spec is [refined_spec.md](../refined_spec.md), applied with the [documented correctness decisions](spec-decisions.md). The current framework has one owner, plain text values, integer hashing and a pure CLI client. Replication and record versions are excluded.
 
+The [course report](report.md) and [assessment map](assessment.md) identify the final evidence and distinguish it from historical examples. The presentation has already been delivered and is not a remaining software task.
+
 | Requirement | Implementation and evidence |
 |---|---|
 | Independent processes | `storage_node.py`, `router.py` and `sharedkv/cluster.py`; N initial stores, one waiting store and a distinct router PID in each current trial. The historical reference uses four stores and one router. |
@@ -27,5 +29,5 @@ The original thirty-trial comparison remains historical reference evidence. Curr
 The framework's practical uses are [guided lab exercises](use-cases.md), client practice and controlled local comparisons. It is not a research-paper pipeline. A complete exercise consists of a question, explicit settings, checked observations and a short explanation of the tradeoffs and limits. Presentations and private course material are not part of reproduction.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Demonstration](demo.md) · Next: [Spec decisions](spec-decisions.md)
+[Documentation map](README.md) · Previous: [Demonstration](demo.md) · Next: [Assessment map](assessment.md)
 <!-- reading:end -->

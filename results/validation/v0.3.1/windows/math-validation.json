@@ -1,0 +1,20 @@
+{
+  "author": "Paco",
+  "status": "passed",
+  "source_files": [
+    {
+      "path": "docs/metrics.md",
+      "sha256": "ff6733e996deb8093ae69d4b81fea99273c28123c136c9bf0d142551908a7d6e"
+    }
+  ],
+  "renderer": "MathJax 3.2.2, base and ams packages, SVG output with lite adaptor",
+  "display_expressions": 14,
+  "inline_expressions": 34,
+  "rendered_expressions": 48,
+  "strict_parser": "passed",
+  "malformed_expression_rejected": true,
+  "unknown_command_rejected": true,
+  "browser_preview": "not performed; local headless parser check",
+  "github_hosted_rendering": "not certified by this local check",
+  "scope": "Local parsing and SVG conversion; not a GitHub preview certification"
+}

@@ -1,0 +1,13 @@
+Processing [checkout]
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: cisc3010-sharded-kv
+  Building wheel for cisc3010-sharded-kv (pyproject.toml): started
+  Building wheel for cisc3010-sharded-kv (pyproject.toml): finished with status 'done'
+  Created wheel for cisc3010-sharded-kv: filename=cisc3010_sharded_kv-0.3.1-py3-none-any.whl size=40486 sha256=fdb0c520e57283af3e42b5c195ef7752b0a33180b51eb602eecece4c715ed7e1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-kgbgosh8/wheels/da/9c/d5/a6cfd09da631404abd538c77c30e6ddf2a11c573670e5ca557
+Successfully built cisc3010-sharded-kv

@@ -1,0 +1,1 @@
+PASS: 48 expressions (14 display); strict parser and SVG conversion; invalid inputs rejected.

@@ -38,7 +38,7 @@ Every application error has this shape:
 {"error":"not_found","message":"The key does not exist.","details":{"key":"missing","owner":"A"}}
 ```
 
-The owner in an error depends on the actual mode, V and membership. HTTP statuses are 400 invalid input, 404 missing key/path, 405 wrong handled method, 409 state conflict/reload required, 413 oversized body, 415 wrong media type, 500 internal error, 502 invalid dependency response and 503 unavailable/busy/paused. GET/POST/PUT/DELETE/PATCH/OPTIONS use the JSON handler; other unsupported HTTP verbs may receive Python's ordinary 501 response. The CLI returns 0 success, 2 usage, 3 missing key, 4 other client conflict/rejection, 5 unavailable/server failure and 130 interrupted command.
+The owner in an error depends on the actual mode, V and membership. HTTP statuses are 400 invalid input, 404 missing key/path, 405 wrong handled method, 408 body inactivity timeout, 409 state conflict/reload required, 413 oversized body, 415 wrong media type, 500 internal error, 502 invalid dependency response and 503 unavailable/busy/paused. GET/POST/PUT/DELETE/PATCH/OPTIONS use the JSON handler; other unsupported HTTP verbs may receive Python's ordinary 501 response. The CLI returns 0 success, 2 usage, 3 missing key, 4 other client conflict/rejection, 5 unavailable/server failure and 130 interrupted command.
 
 ## Router observation
 
@@ -69,7 +69,7 @@ By default, a ring query makes no existence claim. `check=1` requires a key and 
 
 The join response includes old/new membership versions, mode, reassigned count and key list, acknowledged `migrated` count, `verified` destinations, verification failures, final node counts, seconds and `estimated_item_bytes`. It declares `writes_paused_during_migration=true` but returns current `paused_writes=false` after success. The byte field is calculated UTF-8 JSON size of logical `{key,value}` items, **not measured network traffic**. [Metric definitions](metrics.md) explain its representation and the timer boundary.
 
-During migration, Put returns 503 `migration_in_progress` with `details.retry_after_ms=500`; Get, stats and ring remain available. Another join, mode/V change or flush returns 409. Gets use old sources until the verified new map is published. Recovery keeps the old map before publication and the new map afterward. Unreachable stores are marked down without automatic eviction or data repair. A mode/V switch with populated data sets `reload_required`; Put/Get return 409 until explicit flush/reload. Owner and ring inspection remain available.
+During migration, Put returns 503 `migration_in_progress` with `details.retry_after_ms=500`; Get, stats and ring remain available. Another join, mode/V change or flush returns 409. Gets use old sources until the verified new map is published. Recovery keeps the old map before publication and the new map afterward. Unreachable stores are marked down without automatic eviction or data repair. A successful matching-ID health/statistics probe restores a down member to active; `GET /stats` performs that probe and reports its result. A joining candidate stays joining until publication. This observation does not change ownership/version or certify retained data. A mode/V switch with populated data sets `reload_required`; Put/Get return 409 until explicit flush/reload. Owner and ring inspection remain available.
 
 No client automatically retries mutations. A busy/paused rejection did not perform the requested Put. A connection timeout is ambiguous: inspect membership/status or read the key before deciding whether to retry. Repeating the same text Put is a value overwrite, but it could overwrite a concurrent client's later value. Repeating addnode after a lost response may instead be a duplicate registration. Flush and recovery also need inspection after an ambiguous response.
 
@@ -87,6 +87,10 @@ No client automatically retries mutations. A busy/paused rejection did not perfo
 
 Storage does not know peers, placement, membership or record versions. Ordinary clients should use the router. Direct storage mutation can break routing and is outside the framework's migration assumptions. The implementation uses individual acknowledged Puts for migration; the small batch endpoint is available as specified, without introducing another replication mechanism.
 
+Standalone initial node addresses must be unique after localhost/127.0.0.1 canonicalization. Rejecting aliases prevents several logical IDs from presenting one physical process as multiple stores.
+
+The [HTTP client guide](api-client.md) maps the complete CLI sequence to REST requests, including Bruno setup and ordinary misses.
+
 ## Validate contracts
 
 ```bash
@@ -95,8 +99,8 @@ python tools/api_contracts.py
 python tools/check_contracts.py
 ```
 
-These optional development checks validate both OpenAPI documents and real responses. Running storage, router, CLI, experiments or unit tests needs no third-party runtime packages.
+These checks validate both OpenAPI documents and 30 live response envelopes, including a real request-body timeout against the common HTTP boundary for each contract. Health is checked after those timeouts. The KV runtime and core tests have no third-party dependencies; install `requirements-dev.txt` to execute every plotting and PDF test without skips.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [Architecture](architecture.md) · Next: [Math and metrics](metrics.md)
+[Documentation map](README.md) · Previous: [Architecture](architecture.md) · Next: [HTTP clients](api-client.md)
 <!-- reading:end -->

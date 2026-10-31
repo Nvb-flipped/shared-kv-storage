@@ -1,6 +1,10 @@
-# Three consecutive fresh validation rounds
+# Validation evidence
 
-All three final rounds passed on the same frozen source, tests, tools, configuration, documentation and project-metadata fingerprint. Each ran in a separate Linux/WSL directory with a new virtual environment and dependency installation. No prior round's generated results, figures or passing receipts were reused. The final 37-test suite also passed on Windows with Python 3.14.3.
+Current-release validation is recorded under [v0.3.1](v0.3.1/README.md). The three rounds below are historical receipts from the earlier public source pinned in [example provenance](../example/provenance.json). They do not validate the current runtime and must not be added to its test totals.
+
+## Historical three-round sequence
+
+All three historical rounds passed on the same frozen source, tests, tools, configuration, documentation and project-metadata fingerprint. Each ran in a separate Linux/WSL directory with a new virtual environment and dependency installation. No prior round's generated results, figures or passing receipts were reused. That 37-test suite also passed on Windows with Python 3.14.3.
 
 | Round | Runtime | Tests | Full stages | Visual inspection | Receipt |
 |---|---|---:|---:|---|---|
@@ -14,4 +18,4 @@ An earlier sequence was reset when visual review found a clipped timing marker. 
 
 The [summary](summary.json) records receipt hashes and the source fingerprint. [Round 3's worked example](../example/analysis.md) publishes raw trials, verified summaries and figures. Other machine-local logs and environments remain outside publication; receipt log hashes preserve their local identity. These receipts summarize executed checks and are not a proof over every input or environment. Math parsing checks rendering syntax; documented derivations and finite invariants provide separate evidence.
 
-Peers can recreate a fresh complete round with `python tools/validate.py --out results/runs/my-validation` after installing both optional requirements files into a new environment. Run three rounds from separate copies/environments and inspect each round's original and grayscale sheets before counting its pass. See the [peer reproduction guide](../../docs/reproduction.md) for setup, package installation, input limits and interpretation.
+For current reproduction, install `requirements-dev.txt` and follow the [peer reproduction guide](../../docs/reproduction.md). The complete current workflow includes every plotting test and five visual-review modes. Historical receipts retain their original meaning and counts.

@@ -2,6 +2,23 @@
 import statistics
 
 
+def token_coverage(tokens, hash_space):
+    """Count clockwise integer intervals from recorded tokens, without hashing keys."""
+    if type(hash_space) is not int or hash_space <= 0 or not tokens:
+        raise ValueError('Coverage requires tokens and a positive integer hash space.')
+    positions = [token['pos'] for token in tokens]
+    if any(type(p) is not int or not 0 <= p < hash_space for p in positions) or positions != sorted(positions):
+        raise ValueError('Coverage requires sorted integer token positions within the hash space.')
+    counts = dict.fromkeys(sorted({token['node'] for token in tokens}), 0)
+    if len(set(positions)) == 1:
+        # Equal-position ties use the first token, matching clockwise lookup.
+        counts[tokens[0]['node']] = hash_space
+    else:
+        for i, token in enumerate(tokens):
+            counts[token['node']] += (token['pos']-tokens[i-1]['pos']) % hash_space
+    return counts
+
+
 def balance(counts):
     values = list(counts.values())
     if not values or any(type(value) is not int or value < 0 for value in values):

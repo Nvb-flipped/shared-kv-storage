@@ -1,0 +1,16 @@
+Processing [checkout]
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: cisc3010-sharded-kv
+  Building wheel for cisc3010-sharded-kv (pyproject.toml): started
+  Building wheel for cisc3010-sharded-kv (pyproject.toml): finished with status 'done'
+  Created wheel for cisc3010-sharded-kv: filename=cisc3010_sharded_kv-0.3.1-py3-none-any.whl size=40493 sha256=503c514342ad54c7d2bfd0074d7525988fa9181935727d44508e40497e6a570a
+  Stored in directory: [user-home]/AppData\Local\Temp\pip-ephem-wheel-cache-jwxapcjt\wheels\7e\0c\ac\eeadf4cd3781b2af9eba68beda83f1a6aa1269b418b706defb
+Successfully built cisc3010-sharded-kv
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.2
+[notice] To update, run: [checkout]\.venv-dev\Scripts\python.exe -m pip install --upgrade pip

@@ -141,5 +141,5 @@ $$
 Here $s(k)$ is that byte length and $\mathcal M_{\mathrm{ack}}$ is the set of acknowledged copies. It is not measured HTTP or network traffic. Actual requests put keys in URLs and values in bodies; headers, responses, readback and deletion are outside this representation. The join timer includes preparation, copying, destination verification, publication and cleanup, and excludes the later independent exhaustive verification. Three fresh runs describe local timing variation; they do not sample independent token layouts or establish a universal optimum.
 
 <!-- reading:start -->
-[Documentation map](README.md) · Previous: [API reference](api.md) · Next: [Experiment design](experiment-design.md)
+[Documentation map](README.md) · Previous: [HTTP clients](api-client.md) · Next: [Experiment design](experiment-design.md)
 <!-- reading:end -->

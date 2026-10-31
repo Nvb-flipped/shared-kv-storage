@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "units": "pt",
+  "tolerance_pt": 1.5,
+  "plot_areas_xywh": [
+    [
+      92.30023999999999,
+      32.582349375,
+      423.09952,
+      341.9634105125
+    ]
+  ],
+  "explicit_text_boxes_checked": 13,
+  "comparable_panels": 1,
+  "scope": "Rendered alignment and explicit labels; PDF and visual inspection remain separate."
+}

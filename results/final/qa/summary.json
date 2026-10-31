@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "audits": [
+    {
+      "figure": "balance",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "balance",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    },
+    {
+      "figure": "join-time",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "join-time",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    },
+    {
+      "figure": "movement",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "movement",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    },
+    {
+      "figure": "node-loads",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "node-loads",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    },
+    {
+      "figure": "requests",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "requests",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    },
+    {
+      "figure": "transfers",
+      "tool": "audit_pdf_text.py",
+      "exit": 0
+    },
+    {
+      "figure": "transfers",
+      "tool": "audit_figure_collisions.py",
+      "exit": 0
+    }
+  ]
+}

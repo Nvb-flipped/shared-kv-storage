@@ -1,5 +1,7 @@
 # Local study results
 
+**Archived worked example.** These observations belong to the source revision in [provenance.json](provenance.json). Source-match labels below describe the original collection environment. The assessed release uses [results/final](../final/).
+
 6 fresh-process trials; 60 keys; 2 initial nodes and one join to C.
 
 Question: how do placement policy and token count affect movement, key balance, and concentration of reads?

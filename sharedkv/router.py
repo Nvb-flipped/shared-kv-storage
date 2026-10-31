@@ -37,6 +37,8 @@ def query_key(query):
 class Router:
     def __init__(self, nodes, mode='consistent', vnodes=16, phase_hook=None):
         self.nodes = {node: {'id': node, 'addr': address(addr), 'status': 'active'} for node, addr in nodes.items()}
+        if len({entry['addr'] for entry in self.nodes.values()}) != len(self.nodes):
+            raise ApiError(400, 'duplicate_address', 'Each initial node needs a distinct storage address.')
         self.map = Placement(nodes, mode, vnodes)
         self.membership_version = self.placement_revision = 1
         self.control, self.read_gate = threading.RLock(), threading.RLock()
@@ -54,7 +56,14 @@ class Router:
 
     def call_node(self, node, route, method='GET', data=None):
         try:
-            return request('http://'+self.nodes[node]['addr'], route, method, data, timeout=5)
+            result = request('http://'+self.nodes[node]['addr'], route, method, data, timeout=5)
+            if route in ('/health', '/stats'):
+                if result.get('id') != node:
+                    raise ApiError(503, 'identity_mismatch', 'Storage identity does not match its member ID.')
+                with self.control:
+                    if node in self.map.members and self.nodes[node]['status'] == 'down':
+                        self.nodes[node]['status'] = 'active'
+            return result
         except ApiError as exc:
             if exc.status >= 500:
                 with self.control:
@@ -127,6 +136,8 @@ class Router:
         for node in info['nodes']:
             try:
                 count = self.call_node(node['id'], '/stats')['key_count']
+                with self.control:
+                    node['status'] = self.nodes[node['id']]['status']
             except ApiError:
                 count = None; node['status'] = 'down'
             rows.append(dict(node, key_count=count, request_count=counts[node['id']]))

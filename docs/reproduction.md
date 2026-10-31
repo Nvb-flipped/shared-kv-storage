@@ -11,6 +11,7 @@ Core runtime, tests, study collection, integrity checks and numeric reports requ
 ```bash
 git clone https://github.com/Nvb-flipped/shared-kv-storage.git
 cd shared-kv-storage
+git checkout --detach v0.3.1
 python -m unittest -v
 python tools/reproduce.py --config configs/quick.toml --out results/runs/first-check
 ```
@@ -19,6 +20,31 @@ Use `python3` if that is your Python 3 command. `reproduce.py` uses its own inte
 
 On WSL/Linux, `bash tools/reproduce.sh --config configs/quick.toml --out results/runs/another-check` is a wrapper. `PYTHON` can select an interpreter. No named virtual environment is assumed.
 
+## Complete validation with no skipped tests
+
+Use the assessed `v0.3.1` tag. Create a new environment and install the complete development requirements rather than relying on global packages:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+npm ci --ignore-scripts
+.venv/bin/python tools/validate.py --out results/runs/full-check
+```
+
+On Windows use `.venv\Scripts\python.exe` for the same commands. Node.js 22+ is needed only for the optional Markdown formula renderer, not storage, clients, experiments or Python plotting. `package-lock.json` pins MathJax 3.2.2. Full validation uses it when installed and writes a new math receipt.
+
+The full environment includes Matplotlib, Pillow, PDF geometry inspection, color-vision simulation, OpenAPI validators and package-build tools. Full validation rejects skipped tests. It checks both the normal and edge-case figure exports, then creates five visual review sheets. Inspect the actual files as explained in the [figure guide](figures.md).
+
+For the original-sized data collection after those checks:
+
+```bash
+.venv/bin/python tools/reproduce.py --config configs/study.toml --out results/runs/course --plots
+.venv/bin/python tools/check_figures.py --input results/runs/course
+.venv/bin/python tools/visual_qa.py --input results/runs/course
+```
+
+This performs 30 fresh trials with 1,000 records each. Do not mix an interrupted run with a new run. Raw values/owners/counters and the current-source check must pass; elapsed times and rendered bytes may differ across machines.
+
 ## Optional figures
 
 Create any virtual environment and install [requirements-figures.txt](../requirements-figures.txt) into that interpreter. On Linux/WSL:
@@ -26,7 +52,8 @@ Create any virtual environment and install [requirements-figures.txt](../require
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-figures.txt
-.venv/bin/python tools/reproduce.py --config configs/study.toml --out results/runs/full-comparison --plots
+.venv/bin/python -m sharedkv study --config configs/study.toml --out results/runs/full-comparison
+.venv/bin/python -m sharedkv report --input results/runs/full-comparison --plots --require-current-source
 ```
 
 On Windows use `.venv\Scripts\python.exe`. Export is headless and needs neither GUI nor TeX. Six figure sets appear under the run's `figures/`, in SVG, PDF and PNG. The Matplotlib version and output hashes are recorded. Compatible dependency ranges make installation portable; timings and rendered bytes need not match another machine. Historical `requirements-figures.lock` describes the original reference environment and is not required by the current workflow.
@@ -36,6 +63,7 @@ For a completed run:
 ```bash
 python -m sharedkv check --input results/runs/first-check
 python -m sharedkv report --input results/runs/first-check --plots
+python tools/check_figures.py --input results/runs/first-check
 python tools/visual_qa.py --input results/runs/first-check
 ```
 
@@ -49,7 +77,7 @@ Manifests omit usernames, hostnames, absolute checkout paths, environment dumps 
 
 `python tools/check_publication.py` checks tracked history for known credential patterns and current publishable files for those patterns, quoted password assignments and machine-specific home paths. Ignored environments and skills are excluded. This focused check cannot recognize every kind of private information.
 
-If `mathjax-full` 3.2.2 is already installed, set `MATHJAX_PACKAGE` to its package directory and run `node tools/check_math.cjs` for an optional current-formula parsing check. It writes `.runtime/math-validation.json` by default; `--out` selects another receipt. This optional tool does not overwrite historical math receipts during ordinary use.
+After `npm ci --ignore-scripts`, run `npm run check:math`. Alternatively set `MATHJAX_PACKAGE` to an existing mathjax-full 3.2.2 package directory and run `node tools/check_math.cjs` for an optional current-formula parsing check. It writes `.runtime/math-validation.json` by default; `--out` selects another receipt. This optional tool does not overwrite historical math receipts during ordinary use.
 
 ## Install the package for another working directory
 
@@ -72,9 +100,15 @@ Optional API checks require `python -m pip install -r requirements-contracts.txt
 
 ## Full validation rounds
 
-For the broader maintainer check, install both optional requirements files into a fresh environment, then run `python tools/validate.py --out results/runs/validation-1`. It reruns tests, a new six-trial study, every CLI command, live API schemas, documentation/reference audits, publication scanning, edge-case reports/figures, wheel installation and an isolated installed-package exercise outside the checkout. Inspect both original and grayscale sheets under `study/` and `edge/`; its receipt deliberately leaves visual review pending.
+For the broader maintainer check, install `requirements-dev.txt` into a fresh environment, and run `npm ci --ignore-scripts` for the formula check, then run `python tools/validate.py --out results/runs/validation-1`. It reruns tests, a new six-trial study, every CLI command, live API schemas, documentation/reference audits, publication scanning, edge-case reports/figures, wheel installation and an isolated installed-package exercise outside the checkout. Inspect original, grayscale and the three color-vision sheets under `study/` and `edge/`; its receipt deliberately leaves visual review pending.
 
 For three consecutive validation rounds, use three fresh checkout copies and virtual environments, rerun dependency installation, and choose new output directories. Never copy earlier raw runs, generated figures or passing receipts into a new round. Validate the same frozen source/docs/configuration fingerprint. Count a pass only after fresh automated checks and visual inspection; a failure or source change resets the sequence. Different operating systems add portability coverage. Passing finite checks does not establish correctness for every possible input or environment.
+
+## Assessed release evidence
+
+The [course report](report.md) links the final 30-trial comparison in `results/final/`. Its source map, configuration, raw trials and derived exports are retained together. `python tools/check_release.py` checks agreement with this checkout, the declared tag/version, transfer/value invariants and figure hashes. It is a saved-evidence audit, not a claim to have restarted the stopped storage processes.
+
+The [platform validation records](../results/validation/v0.3.1/README.md) retain actual dependency versions, tests run, zero skips and newly exercised CLI/API/package workflows. Keep the supplied historical datasets separate; only results with matching current source hashes can be described as measurements of the current runtime.
 
 ## Published reference evidence
 

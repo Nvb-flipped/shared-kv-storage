@@ -3,10 +3,10 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-ORDER = ['README.md', 'use-cases.md', 'configuration.md', 'reproduction.md', 'architecture.md', 'api.md', 'metrics.md', 'experiment-design.md',
-         'results.md', 'demo.md', 'scope.md', 'spec-decisions.md', 'ai-use.md']
-LABELS = ['Documentation map', 'Study use cases', 'Configuration', 'Reproduction', 'Architecture', 'API reference', 'Math and metrics', 'Experiment design',
-          'Measured results', 'Demonstration', 'Requirements and evidence', 'Spec decisions', 'Attribution']
+ORDER = ['README.md', 'use-cases.md', 'configuration.md', 'reproduction.md', 'architecture.md', 'api.md', 'api-client.md', 'metrics.md', 'experiment-design.md',
+         'report.md', 'figures.md', 'results.md', 'demo.md', 'scope.md', 'assessment.md', 'spec-decisions.md', 'ai-use.md']
+LABELS = ['Documentation map', 'Study use cases', 'Configuration', 'Reproduction', 'Architecture', 'API reference', 'HTTP clients', 'Math and metrics', 'Experiment design',
+          'Course report', 'Figure guide', 'Historical results', 'Demonstration', 'Requirements and evidence', 'Assessment map', 'Spec decisions', 'Attribution']
 
 
 def update_page(path):
@@ -20,7 +20,7 @@ def update_page(path):
     breadcrumb = '[Project home](../README.md) / [Documentation map](README.md)'
     first, rest = text.split('\n', 1)
     contents = ''
-    if name in ('architecture.md', 'api.md', 'metrics.md', 'results.md', 'demo.md'):
+    if name in ('architecture.md', 'api.md', 'metrics.md', 'results.md', 'demo.md', 'report.md', 'figures.md', 'api-client.md'):
         headings = re.findall(r'^## (.+)$', text, re.M)
         def slug(value):
             return re.sub(r'[^\w\s-]', '', value.lower()).replace(' ', '-')

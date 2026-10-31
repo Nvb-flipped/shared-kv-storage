@@ -10,7 +10,7 @@ import random
 import statistics
 
 from .config import ConfigError, section, ClusterConfig, ExperimentConfig
-from .metrics import balance, movement
+from .metrics import balance, movement, token_coverage
 from .study import digest, schedule_for, source_hashes, write_json
 from .transport import decode_json
 
@@ -73,6 +73,13 @@ def validate_trial(row, case, cluster, experiment):
         new_tokens = row['ring_after']['tokens']
         require(len(new_tokens) == len(after_nodes)*case['vnodes'], 'Incorrect token count.')
         require([t for t in new_tokens if t['node'] != cluster.joining_node] == old_tokens, 'Old tokens changed.')
+        for stage, nodes in [('before', before_nodes), ('after', after_nodes)]:
+            ring = row['ring_'+stage]
+            coverage = token_coverage(ring['tokens'], ring['hash_space'])
+            require(set(coverage) == set(ring['node_shares']) == nodes, 'Ring coverage nodes differ.')
+            require(all(ring['node_shares'][node]['hash_units'] == coverage[node] and
+                        ring['node_shares'][node]['fraction'] == coverage[node]/ring['hash_space']
+                        for node in nodes), 'Ring coverage differs from its integer intervals.')
     workload = row['request_balance']
     require(workload['uniform_reads'] == experiment.uniform_reads and workload['additional_hot_reads'] == experiment.additional_hot_reads, 'Workload settings differ.')
     require(set(workload['before_hot']) == set(workload['after_hot']) == after_nodes, 'Workload nodes differ.')
@@ -137,6 +144,11 @@ def summarize(manifest, trials):
         rows[-1]['join_seconds'] = dict(values=times, mean=statistics.mean(times),
             sample_sd=statistics.stdev(times) if len(times) > 1 else None, minimum=min(times), maximum=max(times))
         rows[-1]['estimated_item_bytes'] = first['migration']['estimated_item_bytes']
+        rows[-1]['migrated'] = first['migration']['migrated']
+        rows[-1]['verified'] = first['migration']['verified']
+        rows[-1]['joining_hash_space_share'] = (
+            token_coverage(first['ring_after']['tokens'], first['ring_after']['hash_space'])[manifest['config']['cluster']['joining_node']]
+            / first['ring_after']['hash_space'] if mode == 'consistent' else None)
     return rows
 
 
@@ -172,6 +184,17 @@ def build_report(directory, plots=False, require_current=False):
             f"{row['placement_balance_after']['cv']:.3f} | {display(row['placement_balance_after']['max_min_ratio'])} | "
             f"{row['reassignment']['fraction']:.1%} | {timing['mean']:.3f} | {display(timing['sample_sd'])} | {timing['minimum']:.3f}–{timing['maximum']:.3f} |")
     label = lambda row: row['mode']+f" V={row['vnodes_per_node']}"
+    def counts_text(row, stage):
+        return '; '.join(f'{node}={count}' for node, count in row['placement_balance_'+stage]['key_counts'].items())
+    lines += ['', '## Placement and transfer evidence', '',
+        'Counts are physical stored keys. Every row uses the same original dataset. Copied and verified count acknowledged destination writes and read-back checks; later exhaustive verification also checks every original value and exactly one correct physical host.', '',
+        '| Setting | Before (keys) | After (keys) | Reassigned keys | Copied / verified | Estimated item bytes |',
+        '|---|---|---|---:|---:|---:|']
+    for row in rows:
+        lines.append(f"| {label(row)} | {counts_text(row, 'before')} | {counts_text(row, 'after')} | "
+            f"{row['reassignment']['reassigned_key_count']} ({row['reassignment']['fraction']:.1%}) | "
+            f"{row['migrated']} / {row['verified']} | {row['estimated_item_bytes']:,} |")
+    lines += ['', 'Estimated item bytes are calculated UTF-8 JSON logical-item sizes, not measured network traffic. Transfer counts and elapsed join seconds are measured. The three quantities answer different questions.', '']
     smallest_cv = min(r['placement_balance_after']['cv'] for r in rows)
     best = ', '.join(label(r) for r in rows if r['placement_balance_after']['cv'] == smallest_cv)
     lines += ['', '## Observed comparisons', '',
@@ -184,14 +207,26 @@ def build_report(directory, plots=False, require_current=False):
             lines += ['No consistent-hash setting moved a key in this finite dataset.']
         else:
             lines += [f"Consistent-hash settings moved {min(fractions):.1%}–{max(fractions):.1%} of keys; every changed owner is the joining node."]
+        lines += ['', '## Fixed-ring coverage and observed movement', '',
+            'The joining node captures the integer predecessor intervals of its new tokens. Its exact coverage is conditional on this particular ring; the finite dataset need not fill those intervals in precisely the same proportion. The random-layout mean answers a separate question.', '',
+            '| Setting | Joining-node hash-space coverage | Observed reassigned fraction | Ideal random-layout mean |',
+            '|---|---:|---:|---:|']
+        for row in consistent:
+            lines.append(f"| {label(row)} | {row['joining_hash_space_share']:.2%} | {row['reassignment']['fraction']:.1%} | {1/(n+1):.1%} |")
     if modulo:
         lines += [f"Modulo moved {modulo['reassignment']['fraction']:.1%} of keys. Its transfer matrix shows whether moves also occurred between old nodes."]
+    lines += ['', '## Hot-key request concentration', '',
+        f"Background requests sample the same {experiment['keys']} keys uniformly. After {experiment['uniform_reads']} background reads, the run adds {experiment['additional_hot_reads']} reads to the first key. Stored-key counts remain unchanged. Each request-share column uses its own stated total.", '',
+        '| Setting | Hot owner | Stored-key share | Background reads | Background + extra hot reads |',
+        '|---|---|---:|---:|---:|']
     for row in rows:
         workload = row['request_balance']
         owner = workload['hot_key_owner']
         before_share = workload['before_hot'][owner]/experiment['uniform_reads']
         after_share = workload['after_hot'][owner]/(experiment['uniform_reads']+experiment['additional_hot_reads'])
-        lines += [f"{label(row)}: the hot key belongs to {owner}; that node's share of observed reads changes from {before_share:.1%} to {after_share:.1%}, while its stored-key share remains {row['placement_balance_after']['shares'][owner]:.1%}."]
+        lines += [f"| {label(row)} | {owner} | {row['placement_balance_after']['shares'][owner]:.1%} | "
+            f"{workload['before_hot'][owner]} / {experiment['uniform_reads']} ({before_share:.1%}) | "
+            f"{workload['after_hot'][owner]} / {experiment['uniform_reads']+experiment['additional_hot_reads']} ({after_share:.1%}) |"]
     if experiment['additional_hot_reads'] == 0:
         lines += ['No extra hot reads were requested, so the two request-count distributions coincide.']
     lines += ['', '## Reading these results', '',
@@ -210,12 +245,13 @@ def build_report(directory, plots=False, require_current=False):
         import matplotlib
         write_json(directory/'figure-manifest.json', {'backend': 'Matplotlib '+matplotlib.__version__,
             'outputs': {p.relative_to(directory).as_posix(): digest(p) for p in outputs},
+            'layouts': {p.relative_to(directory).as_posix(): digest(p) for p in sorted((directory/'figures').glob('*.layout.json'))},
             'summary_sha256': digest(directory/'summary.json')})
         lines += ['', '## Figures', '']
         captions = {
             'movement': 'Every setting; finite-key moved fractions with ideal-model references. References are expectations under the assumptions above.',
             'balance': 'Every setting; population CV across physical nodes before and after joining. These points describe fixed placements, not replicate uncertainty.',
-            'node-loads': 'Every setting and physical node after joining; the reference line is equal key counts.',
+            'node-loads': 'Every physical node is marked. The box shows median and interquartile range across physical-node counts; whiskers show their full minimum/maximum. This finite-population summary is not a confidence interval or timing uncertainty. The reference line is equal key counts.',
             'requests': 'Illustrative full node distribution: consistent V=16 when present, otherwise the first consistent setting or modulo. Each series uses its own stated total; all settings are reported in the text and raw data.',
             'transfers': 'Illustrative modulo matrix when present and the same request-figure setting. Each cell is a count and fraction of all original keys, including stayed keys on the diagonal. Every setting has a raw matrix.',
             'join-time': f"Every setting and all {experiment['trials']} fresh-process timing repetitions; circles are individual observations and open diamonds are means. No inferential error bars are used.",

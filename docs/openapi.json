@@ -60,6 +60,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -171,6 +181,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
@@ -299,6 +319,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -411,6 +441,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
@@ -552,6 +592,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -653,6 +703,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
@@ -770,6 +830,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -879,6 +949,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -980,6 +1060,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
@@ -1107,6 +1197,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -1218,6 +1318,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
@@ -1345,6 +1455,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -1454,6 +1574,16 @@
               }
             }
           },
+          "408": {
+            "description": "Request body inactivity timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "409": {
             "description": "State conflict or reload required",
             "content": {
@@ -1555,6 +1685,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Request body inactivity timeout",
             "content": {
               "application/json": {
                 "schema": {
