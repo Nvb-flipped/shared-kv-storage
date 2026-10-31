@@ -23,7 +23,7 @@ The [submission verification receipt](validation.json) records a fresh test of a
 
 ## Submit
 
-Submit the report PDF and a source archive containing the top-level README, runtime, configurations, tests, raw results, plotting/reproduction scripts and report source. Build the archive after the report checks pass:
+Upload two attachments: `report.pdf` for direct reading and one source ZIP containing the top-level README, runtime, configurations, tests, raw results, plotting/reproduction scripts and report source. This preserves the directory structure within the submission limit of 20 attachments and 200 MB per file. The PDF also stays inside the source archive to keep that package self-contained. Build the archive after the report checks pass:
 
 ```bash
 python tools/package_submission.py --out results/runs/um-submission.zip
