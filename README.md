@@ -9,38 +9,51 @@ One router coordinates independent in-memory text stores. A pure HTTP client per
 ## Project structure
 
 ```text
-shared-kv-storage/
-├── README.md                       Start, project map and common commands
-├── refined_spec.md                 Supplied primary specification
-├── pyproject.toml                  Package metadata and console entry point
-├── package.json / package-lock.json Optional, pinned Markdown math renderer
-├── requirements-dev.txt            Complete tests, API and figure-QA environment
-├── requirements-figures.txt         Optional plotting dependencies only
-├── requirements-contracts.txt       Optional OpenAPI/schema validators
-├── client.py / router.py / storage_node.py / experiment.py
-│                                   Standalone compatibility entry points
-├── run_cluster.sh                  WSL/Linux launcher wrapper
-├── sharedkv/
-│   ├── __main__.py / cli.py         Workflow dispatcher and HTTP client
-│   ├── config.py / cluster.py       Validated profiles and owned processes
-│   ├── placement.py / router.py     Integer hashing and verified migration
-│   ├── storage.py / transport.py    Local values and bounded HTTP
-│   ├── experiment.py / study.py     Data collection and randomized trial order
-│   ├── metrics.py / analysis.py     Calculations, evidence checks and reports
-│   └── plotting.py / figure_quality.py / terminal.py
-│                                   Figures, layout checks and terminal display
-├── configs/                        demo.toml, quick.toml and study.toml
-├── tests/                          System, boundary, study and plotting tests
-├── docs/                           Reading map, design, API, math and assessment
-├── results/
-│   ├── final/                      Final course comparison and provenance
-│   ├── example/                    Earlier small worked example
-│   ├── framework/                  Authenticated historical measurements
-│   ├── validation/                 Recorded validation evidence
-│   └── runs/                       Your new runs; ignored by Git
-├── figures/                        Historical reference plots
-├── tools/                          Reproduction, API, figure and publication checks
-└── .github/workflows/tests.yml      Cross-platform tests with no skipped cases
+.
+├── README.md                           # Start, project map and common commands
+├── refined_spec.md                     # Supplied primary specification
+├── pyproject.toml                      # Package metadata and console entry point
+├── package.json                        # Optional Markdown math check
+├── package-lock.json                   # Pinned math-renderer dependencies
+├── requirements-dev.txt                # Complete test, API and figure-QA environment
+├── requirements-figures.txt            # Optional plotting dependencies
+├── requirements-contracts.txt          # Optional API validators
+├── client.py                           # Standalone HTTP client entry point
+├── router.py                           # Standalone router entry point
+├── storage_node.py                     # Standalone storage entry point
+├── experiment.py                       # Standalone experiment entry point
+├── run_cluster.sh                      # WSL/Linux launcher wrapper
+├── sharedkv/                           # Runtime and experiment package
+│   ├── __init__.py                     # Package definition
+│   ├── __main__.py                     # Workflow command dispatcher
+│   ├── cli.py                          # HTTP client and interactive prompt
+│   ├── config.py                       # Validated TOML profiles
+│   ├── cluster.py                      # Owned process startup and shutdown
+│   ├── placement.py                    # Integer modulo and consistent hashing
+│   ├── router.py                       # Membership and verified migration
+│   ├── storage.py                      # Local in-memory text values
+│   ├── transport.py                    # Bounded HTTP requests and responses
+│   ├── experiment.py                   # One live comparison trial
+│   ├── study.py                        # Dataset, schedule and repeated trials
+│   ├── metrics.py                      # Balance, movement and ring coverage
+│   ├── analysis.py                     # Evidence checks and numeric reports
+│   ├── plotting.py                     # Data-derived scientific figures
+│   ├── figure_quality.py               # Rendered layout checks
+│   └── terminal.py                     # Formatted and colored CLI output
+├── configs/                            # Demo, quick-check and course-study profiles
+├── tests/                              # System, boundary, study and plotting tests
+├── docs/                               # Reading map, design, API, math and assessment
+├── results/                            # Recorded observations and validation evidence
+│   ├── final/                          # Assessed course comparison and provenance
+│   ├── example/                        # Earlier small worked example
+│   ├── framework/                      # Authenticated historical measurements
+│   ├── validation/                     # Platform receipts and inspected figures
+│   └── runs/                           # New local runs; ignored by Git
+├── figures/                            # Historical reference plots
+├── tools/                              # Reproduction, documentation and export checks
+└── .github/                            # Repository automation
+    └── workflows/                      # Continuous integration
+        └── tests.yml                   # Cross-platform tests and figure checks
 ```
 
 Start with the [documentation map](docs/README.md) when moving between design, API, experiment and reproduction material. Generated trial filenames are grouped under their run directory rather than listed individually. Private slides, lecture material, skills, caches and virtual environments are excluded from the public project.
